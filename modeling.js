@@ -37,9 +37,8 @@ class Manager extends Employee {
     }
 }
 class Executive extends Manager {
-    constructor (id, managerId, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, bonus) {
+    constructor (id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, bonus, directReports) {
         super(id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, directReports)
-        this.managerId = managerId
         this.bonus = bonus
     }
 }
@@ -82,13 +81,13 @@ for (let i=0; i<5; i++){
     vendors.push(new Vendor(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
     customers.push(new Customer(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
     contractors.push(new Contractor(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
-    managers.push(new Manager(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number()))
+    managers.push(new Manager(faker.random.number(), faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number(), faker.random.number()))
     if (i < 3){
-        executives.push(new Executive(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number(), faker.finance.amount()))
+        executives.push(new Executive(faker.random.number(),faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number(), faker.finance.amount(), faker.random.number()))
     }
 }
 for (let i=0; i<20; i++){
-    employees.push(new Employee(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number()))
+    employees.push(new Employee(faker.random.number(), faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number()))
 }
 
 
@@ -113,7 +112,7 @@ executives[2].managerId = executives[2].id
 // console.log(contractors)
 // console.log(managers)
 // console.log(executives)
-console.log(employees[0])
+// console.log(employees)
 
 
 // ORM 2 Employee testing - - - - - - - - 
@@ -121,8 +120,8 @@ console.log(employees[0])
 // employee2DAO.read(employees[0].id)
 // employees[0].firstName = 'Connor'
 // employee2DAO.update(employees[0])
-employee2DAO.remove(73627)
-employee2DAO.list()
+// employee2DAO.remove(73627)
+// employee2DAO.list()
 // for (employee of employees) {
 //     employee2DAO.create(employee)
 // }
