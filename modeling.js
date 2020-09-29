@@ -19,8 +19,9 @@ class Person {
     }
 }
 class Employee extends Person {
-    constructor (id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId) {
+    constructor (id, personId, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId) {
         super(id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip)
+        this.personId = personId
         this.companyId = companyId
         this.department = department
         this.title = title
@@ -29,13 +30,16 @@ class Employee extends Person {
     }
 }
 class Manager extends Employee {
-    constructor (id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId) {
+    constructor (id, employeeId, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, directReports) {
         super(id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId)
+        this.employeeId = employeeId
+        this.directReports = directReports
     }
 }
 class Executive extends Manager {
-    constructor (id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, bonus) {
-        super(id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId)
+    constructor (id, managerId, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, bonus) {
+        super(id, firstName, middleName, lastName, dob, phone, email, streetAddress, city, state, zip, companyId, department, title, salary, managerId, directReports)
+        this.managerId = managerId
         this.bonus = bonus
     }
 }
