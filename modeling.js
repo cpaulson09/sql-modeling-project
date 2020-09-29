@@ -103,9 +103,9 @@ executives[1].managerId = executives[2].id
 
 executives[2].managerId = executives[2].id
 
-// console.log(vendors)
-// console.log(customers)
-// console.log(contractors)
-// console.log(managers)
-// console.log(executives)
-// console.log(employees)
+console.log(vendors)
+console.log(customers)
+console.log(contractors)
+console.log(managers)
+console.log(executives)
+console.log(employees)
