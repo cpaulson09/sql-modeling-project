@@ -1,4 +1,5 @@
 const faker = require('faker')
+employee2DAO = require('../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite')
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -108,4 +109,16 @@ executives[2].managerId = executives[2].id
 // console.log(contractors)
 // console.log(managers)
 // console.log(executives)
-// console.log(employees)
+console.log(employees[0])
+
+
+// ORM 2 Employee testing - - - - - - - - 
+// employee2DAO.create(employees[0]) 
+// employee2DAO.read(employees[0].id)
+// employees[0].firstName = 'Connor'
+// employee2DAO.update(employees[0])
+employee2DAO.remove(73627)
+employee2DAO.list()
+// for (employee of employees) {
+//     employee2DAO.create(employee)
+// }
