@@ -74,16 +74,16 @@ let executives = []
 // 2 - use faker.js to create fake data
 // 3 - call the constructors with faker data
 for (let i=0; i<5; i++){
-    vendors.push(new Vendor(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
-    customers.push(new Customer(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
-    contractors.push(new Contractor(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
-    managers.push(new Manager(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.uuid(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.uuid()))
+    vendors.push(new Vendor(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
+    customers.push(new Customer(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
+    contractors.push(new Contractor(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.company.companyName()))
+    managers.push(new Manager(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number()))
     if (i < 3){
-        executives.push(new Executive(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.uuid(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.uuid(), faker.finance.amount()))
+        executives.push(new Executive(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number(), faker.finance.amount()))
     }
 }
 for (let i=0; i<20; i++){
-    employees.push(new Employee(faker.random.uuid(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.uuid(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.uuid()))
+    employees.push(new Employee(faker.random.number(), faker.name.firstName(), faker.name.firstName(), faker.name.lastName(), faker.date.past(), faker.phone.phoneNumber(), faker.internet.email(), faker.address.streetAddress(), faker.address.city(), faker.address.state(), faker.address.zipCode(), faker.random.number(), faker.commerce.department(), faker.name.jobTitle(), faker.finance.amount(), faker.random.number()))
 }
 
 
@@ -103,9 +103,9 @@ executives[1].managerId = executives[2].id
 
 executives[2].managerId = executives[2].id
 
-console.log(vendors)
-console.log(customers)
-console.log(contractors)
-console.log(managers)
-console.log(executives)
-console.log(employees)
+// console.log(vendors)
+// console.log(customers)
+// console.log(contractors)
+// console.log(managers)
+// console.log(executives)
+// console.log(employees)

@@ -2,25 +2,6 @@
 const sqlite = require('sqlite3').verbose()
 const client = require('pg')
 
-let employeeMock =  {
-    id: 125,
-    firstName: 'Webster',
-    middleName: 'Jaeden',
-    lastName: 'Medhurst',
-    dob: '2020-04-22T15:35:16.137Z',
-    phone: '688-780-5062',
-    email: 'Layla_MacGyver@yahoo.com',
-    streetAddress: '949 Metz Parks',
-    city: 'Framiview',
-    state: 'Connecticut',
-    zip: '26155',
-    companyId: '94e3efe7-4c62-490e-afbf-0d73c12a0c5b',
-    department: 'Automotive',
-    title: 'Central Identity Associate',
-    salary: 906.45,
-    managerId: '02bdc7b9-a3a0-4de8-8e49-6388db34aa21'
-  }
-
 const create = (employee) => {
     // no return
 

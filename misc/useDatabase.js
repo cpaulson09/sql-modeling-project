@@ -13,7 +13,7 @@ const client = require('pg')
 
 // sqlite - - - - - - - - - - 
 
-let db = new sqlite.Database('./sqlite.db', err => {
+let db = new sqlite.Database('./../sqlite.db', err => {
     if (err){
         console.error(err.message)
     }
