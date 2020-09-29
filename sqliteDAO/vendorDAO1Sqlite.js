@@ -1,4 +1,6 @@
 // ORM 1 sqlite vendors
+const sqlite3 = require('sqlite3').verbose();
+let db = new sqlite3.Database(':vendor:');
 
 create = (vendor) => {
     // no return
