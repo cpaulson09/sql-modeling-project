@@ -1,8 +1,17 @@
 const sqlite = require('sqlite3').verbose()
 const client = require('pg')
-const postyDB = 'postgres://postgres:root@localhost:5432/nosql'
+// const vendorDao = require('./sqliteDAO/vendorDAO1Sqlite')
+// const pgClient = new client({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'nosql',
+//     password: 'root',
+//     port: 5432
+// })
+// vendorDao.create()
+// vendorDao.read()
 
-// sqlite
+// sqlite - - - - - - - - - - 
 
 let db = new sqlite.Database('./sqlite.db', err => {
     if (err){
@@ -29,9 +38,17 @@ db.close((err) => {
 
 
 
-// PostgreSQL
+// PostgreSQL - - - - - - - - - 
 
-let client = new pg.Client(postyDB);
-client.connect();
+// pgClient.connect();
+
+// const query = `SELECT * FROM orm3_employees`
+
+// pgClient.query(query, (err, res) => {
+//     if (err) {
+//         console.error(err)
+//     }
+//     console.log(res)
+// })
 
 //do more queries down here
