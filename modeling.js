@@ -448,7 +448,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 
 // ORM 2 Employee testing - - - - - - - -
 employee2DAO.create(employees[0], db)
- employee2DAO.read(employees[0].id, db)
+employee2DAO.read(employees[0].id, db)
 employees[0].firstName = 'Connor'
 employee2DAO.update(employees[0], db)
 // employee2DAO.remove(73627, db)
