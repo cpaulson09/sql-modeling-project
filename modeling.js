@@ -447,23 +447,23 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // console.log(employees)
 
 // ORM 2 Employee testing - - - - - - - -
-// employee2DAO.create(employees[0])
-// employee2DAO.read(employees[0].id)
-// employees[0].firstName = 'Connor'
-// employee2DAO.update(employees[0])
-// employee2DAO.remove(73627)
-// employee2DAO.list()
+employee2DAO.create(employees[0], db)
+ employee2DAO.read(employees[0].id, db)
+employees[0].firstName = 'Connor'
+employee2DAO.update(employees[0], db)
+// employee2DAO.remove(73627, db)
+employee2DAO.list(db)
 // for (employee of employees) {
 //     employee2DAO.create(employee)
 // }
 
 // ORM 2 customer testing - - - - - - - -
-customer2DAO.create(customers[0], db);
-customer2DAO.read(customers[0].id, db);
-customers[0].firstName = "Connor";
-customer2DAO.update(employees[0]);
-customer2DAO.remove(73627);
-customer2DAO.list();
+// customer2DAO.create(customers[0], db);
+// customer2DAO.read(customers[0].id, db);
+// customers[0].firstName = "Connor";
+// customer2DAO.update(employees[0]);
+// customer2DAO.remove(73627);
+// customer2DAO.list();
 
 db.close((err) => {
     if (err) {
