@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
@@ -5,6 +6,16 @@ manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite"
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
 mployee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite")
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite")
+=======
+const faker = require("faker");
+employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
+customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
+manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
+contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
+vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
+executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite");
+const sqlite = require("sqlite3").verbose();
+>>>>>>> 2cb3a6d64477142bc1f2a4540ff29fd15b9b43f8
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -493,18 +504,55 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // employees[0].firstName = 'Connor'
 // employee2DAO.update(employees[0], db)
  //employee2DAO.remove(73627, db)
+// employee2DAO.remove(73627, db)
 // employee2DAO.list(db)
 // for (employee of employees) {
 //     employee2DAO.create(employee, db)
 // }
 
 // ORM 2 customer testing - - - - - - - -
+customers.forEach((item) => {
+    customer2DAO.create(item, db);
+});
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);
 // customers[0].firstName = "Connor";
 // customer2DAO.update(employees[0]);
 // customer2DAO.remove(45, db);
 // customer2DAO.list();
+
+// ORM 2 manager testing - - - - - - - -
+// manager2DAO.create(managers[0], db);
+// manager2DAO.read(managers[0].id, db);
+// managers[0].employeeId = "100000001";
+// manager2DAO.update(managers[0], db);
+// manager2DAO.remove(73627, db);
+// manager2DAO.list(db);
+
+// ORM 2 contractor testing - - - - - - - -
+// contractor2DAO.create(managers[0], db);
+// contractor2DAO.read(managers[0].id, db);
+// contractors[0].firstName = "Breck";
+// contractor2DAO.update(managers[0], db);
+// contractor2DAO.remove(73627, db);
+// contractor2DAO.list(db);
+
+// ORM 2 Vendor testing - - - - - - - -
+// vendor2DAO.create(vendors[0], db)
+// console.log('create')
+//  vendor2DAO.read(vendors[0].id, db)
+//  console.log('read')
+// vendors[0].firstName = 'Gracias'
+// console.log('update name')
+// vendor2DAO.update(vendors[0], db)
+// console.log('update')
+// vendor2DAO.remove(73627, db)
+// console.log('remove')
+// vendor2DAO.list(db)
+// for (vendor of vendors) {
+//     //SQLITE_CONSTRAINT: UNIQUE constraint failed
+//     vendor2DAO.create(vendor, db)
+// }
 
 db.close((err) => {
     if (err) {

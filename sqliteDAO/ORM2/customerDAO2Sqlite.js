@@ -61,12 +61,6 @@ const read = (id, db) => {
 };
 
 const update = (customer, db) => {
-    // let db = new sqlite.Database("sqlite.db", (err) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //     }
-    //     console.log("\nconnected to db");
-    // });
     let data = [
         customer.id,
         customer.firstName,
@@ -79,16 +73,12 @@ const update = (customer, db) => {
         customer.city,
         customer.state,
         customer.zip,
-        customer.companyId,
-        customer.department,
-        customer.title,
-        customer.salary,
-        customer.managerId,
+        customer.company,
         customer.id,
     ];
-
-    db.run(
-        `UPDATE orm2_customer SET 
+    db.serialize(() => {
+        db.run(
+            `UPDATE orm2_customer SET 
         id = ?, 
         "firstName" = ?, 
         "middleName" = ?, 
@@ -100,83 +90,48 @@ const update = (customer, db) => {
         city = ?, 
         state = ?, 
         zip = ?, 
-        "companyId" = ?, 
-        department = ?, 
-        title = ?, 
-        salary = ?, 
-        "managerId" = ?
+        "company" = ? 
         WHERE id = ?;`,
-        data,
-        function (err) {
-            if (err) {
-                return console.log(err.message);
+            data,
+            function (err) {
+                if (err) {
+                    return console.log(err.message);
+                }
+                // get the last insert id
+                console.log(`Success, updated customer`);
             }
-            // get the last insert id
-            console.log(`Success, updated customer`);
-        }
-    );
-
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log("closing sqlite database\n");
+        );
     });
-    // no return
 };
 
 const remove = (id, db) => {
-    // let db = new sqlite.Database("sqlite.db", (err) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //     }
-    //     console.log("\nconnected to db");
-    // });
-
-    let sql = `DELETE FROM orm2_customer WHERE id = ${id}`;
-    db.run(sql, (err, row) => {
-        if (err) {
-            return console.error(err.message);
-        }
-        // {object}
-        return row
-            ? console.log(`No record found with the id ${id}`)
-            : console.log(`record ${id} removed from DB`);
-    });
-
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log("closing sqlite database\n");
+    db.serialize(() => {
+        let sql = `DELETE FROM orm2_customer WHERE id = ${id}`;
+        db.run(sql, (err, row) => {
+            if (err) {
+                return console.error(err.message);
+            }
+            // {object}
+            return row
+                ? console.log(`No record found with the id ${id}`)
+                : console.log(`record ${id} removed from DB`);
+        });
     });
     // no return
 };
 
 const list = (db) => {
-    // let db = new sqlite.Database("sqlite.db", (err) => {
-    //     if (err) {
-    //         console.error(err.message);
-    //     }
-    //     console.log("\nconnected to db");
-    // });
-
-    let sql = `SELECT * FROM orm2_customer;`;
-    db.all(sql, [], (err, rows) => {
-        if (err) {
-            console.error(err.message);
-        }
-        // return array
-        rows.forEach((row) => {
-            console.log(row);
+    db.serialize(() => {
+        let sql = `SELECT * FROM orm2_customer;`;
+        db.all(sql, [], (err, rows) => {
+            if (err) {
+                console.error(err.message);
+            }
+            // return array
+            rows.forEach((row) => {
+                console.log(row);
+            });
         });
-    });
-
-    db.close((err) => {
-        if (err) {
-            console.error(err.message);
-        }
-        console.log("closing sqlite database\n");
     });
 };
 
