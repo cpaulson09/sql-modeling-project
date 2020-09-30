@@ -1,7 +1,10 @@
-const faker = require("faker");
-employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
-customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
-const sqlite = require("sqlite3").verbose();
+const faker = require("faker")
+const sqlite = require("sqlite3").verbose()
+employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
+manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite")
+executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
+mployee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite")
+customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -446,15 +449,53 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // console.log(executives)
 // console.log(employees)
 
-// ORM 2 Employee testing - - - - - - - -
-employee2DAO.create(employees[0], db)
-employee2DAO.read(employees[0].id, db)
-employees[0].firstName = 'Connor'
-employee2DAO.update(employees[0], db)
-// employee2DAO.remove(73627, db)
-employee2DAO.list(db)
+// ============ TESTING ========================
+
+// ORM 1 Employee testing - - - - - - - -
+// employee1DAO.create(employees[0], db)
+// employee1DAO.read(employees[0].id, db)
+// employees[0].department = 'Connor'
+// console.log(employees[0])
+// employee1DAO.update(employees[0], db)
+// employee1DAO.remove(3763, db)
+// employee1DAO.list(db)
 // for (employee of employees) {
-//     employee2DAO.create(employee)
+//     employee1DAO.create(employee, db)
+// }
+
+// ORM 1 Manager testing - - - - - - - -
+// manager1DAO.create(managers[0], db)
+// manager1DAO.read(managers[0].id, db)
+// console.log(managers[0].employeeId)
+// managers[0].employeeId = 9
+// console.log(managers[0])
+// manager1DAO.update(managers[0], db)
+// manager1DAO.remove(3763, db)
+// manager1DAO.list(db)
+// for (manager of managers) {
+//     manager1DAO.create(managers, db)
+// }
+
+// ORM 1 Executive testing - - - - - - - -
+// executive1DAO.create(executives[0], db)
+// executive1DAO.read(executives[0].id, db)
+// executives[0].bonus = '400.69'
+// executive1DAO.update(executives[0], db)
+// executive1DAO.remove(23536, db)
+// executive1DAO.list(db)
+// for (executive of executives) {
+//     executive1DAO.create(managers, db)
+// }
+
+// ORM 2 Employee testing - - - - - - - -
+// employee2DAO.create(employees[0], db)
+// employee2DAO.read(employees[0].id, db)
+// employees[0].firstName = 'Connor'
+// employee2DAO.update(employees[0], db)
+ //employee2DAO.remove(73627, db)
+// employee2DAO.list(db)
+// for (employee of employees) {
+//     employee2DAO.create(employee, db)
 // }
 
 // ORM 2 customer testing - - - - - - - -
@@ -462,7 +503,7 @@ employee2DAO.list(db)
 // customer2DAO.read(customers[0].id, db);
 // customers[0].firstName = "Connor";
 // customer2DAO.update(employees[0]);
-// customer2DAO.remove(73627);
+// customer2DAO.remove(45, db);
 // customer2DAO.list();
 
 db.close((err) => {
