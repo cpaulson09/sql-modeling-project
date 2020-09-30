@@ -2,6 +2,8 @@ const faker = require("faker");
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
+contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
+
 
 const sqlite = require("sqlite3").verbose();
 
@@ -474,6 +476,14 @@ employee2DAO.list(db)
 // manager2DAO.update(managers[0], db);
 // manager2DAO.remove(73627, db);
 // manager2DAO.list(db);
+
+// ORM 2 contractor testing - - - - - - - -
+// contractor2DAO.create(managers[0], db);
+// contractor2DAO.read(managers[0].id, db);
+// contractors[0].firstName = "Breck";
+// contractor2DAO.update(managers[0], db);
+// contractor2DAO.remove(73627, db);
+// contractor2DAO.list(db);
 
 db.close((err) => {
     if (err) {
