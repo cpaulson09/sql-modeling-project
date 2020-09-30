@@ -1,6 +1,8 @@
 const faker = require("faker");
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
+manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
+
 const sqlite = require("sqlite3").verbose();
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
@@ -464,6 +466,14 @@ employee2DAO.list(db)
 // customer2DAO.update(employees[0]);
 // customer2DAO.remove(73627);
 // customer2DAO.list();
+
+// ORM 2 manager testing - - - - - - - -
+// manager2DAO.create(managers[0], db);
+// manager2DAO.read(managers[0].id, db);
+// managers[0].employeeId = "100000001";
+// manager2DAO.update(managers[0], db);
+// manager2DAO.remove(73627, db);
+// manager2DAO.list(db);
 
 db.close((err) => {
     if (err) {
