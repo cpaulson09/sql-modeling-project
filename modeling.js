@@ -1,8 +1,9 @@
 const faker = require("faker");
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
-manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
-
+// manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
+vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
+executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite");
 const sqlite = require("sqlite3").verbose();
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
@@ -449,12 +450,12 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // console.log(employees)
 
 // ORM 2 Employee testing - - - - - - - -
-employee2DAO.create(employees[0], db)
-employee2DAO.read(employees[0].id, db)
-employees[0].firstName = 'Connor'
-employee2DAO.update(employees[0], db)
+// employee2DAO.create(employees[0], db)
+// employee2DAO.read(employees[0].id, db)
+// employees[0].firstName = 'Connor'
+// employee2DAO.update(employees[0], db)
 // employee2DAO.remove(73627, db)
-employee2DAO.list(db)
+// employee2DAO.list(db)
 // for (employee of employees) {
 //     employee2DAO.create(employee)
 // }
@@ -474,6 +475,23 @@ employee2DAO.list(db)
 // manager2DAO.update(managers[0], db);
 // manager2DAO.remove(73627, db);
 // manager2DAO.list(db);
+
+// ORM 2 Vendor testing - - - - - - - -
+// vendor2DAO.create(vendors[0], db)
+// console.log('create')
+//  vendor2DAO.read(vendors[0].id, db)
+//  console.log('read')
+// vendors[0].firstName = 'Gracias'
+// console.log('update name')
+// vendor2DAO.update(vendors[0], db)
+// console.log('update')
+// vendor2DAO.remove(73627, db)
+// console.log('remove')
+// vendor2DAO.list(db)
+// for (vendor of vendors) {
+//     //SQLITE_CONSTRAINT: UNIQUE constraint failed
+//     vendor2DAO.create(vendor, db)
+// }
 
 db.close((err) => {
     if (err) {
