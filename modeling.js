@@ -458,12 +458,9 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 2 customer testing - - - - - - - -
-customer2DAO.create(customers[0], db);
-customer2DAO.read(customers[0].id, db);
-customers[0].firstName = "Connor";
-customer2DAO.update(employees[0]);
-customer2DAO.remove(73627);
-customer2DAO.list();
+customers.forEach((item) => {
+    customer2DAO.create(item, db);
+});
 
 db.close((err) => {
     if (err) {
