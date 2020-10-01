@@ -1,14 +1,15 @@
-const faker = require("faker")
-const sqlite = require("sqlite3").verbose()
-employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
-manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite")
-executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
-employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite")
-customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite")
-manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite")
-contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
-vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite")
-executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite")
+const faker = require("faker");
+const sqlite = require("sqlite3").verbose();
+employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
+manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
+executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
+employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
+customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
+customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
+manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
+contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
+vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
+executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite");
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -496,7 +497,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // employee2DAO.read(employees[0].id, db)
 // employees[0].firstName = 'Connor'
 // employee2DAO.update(employees[0], db)
- //employee2DAO.remove(73627, db)
+//employee2DAO.remove(73627, db)
 // employee2DAO.remove(73627, db)
 // employee2DAO.list(db)
 // for (employee of employees) {
@@ -506,6 +507,8 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // ORM 2 customer testing - - - - - - - -
 customers.forEach((item) => {
     customer2DAO.create(item, db);
+    customer3DAO.create(item, db);
+    // customer2DAO.create(item, db);
 });
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);
