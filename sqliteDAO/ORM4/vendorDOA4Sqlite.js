@@ -1,10 +1,9 @@
 // ORM 1 sqlite vendors
-const sqlite3 = require("sqlite3").verbose();
 
 const create = (vendor, db) => {
     db.serialize(() => {
         db.run(
-            `INSERT INTO orm2_vendor ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
+            `INSERT INTO orm4_vendor ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 vendor.id,
                 vendor.firstName,
@@ -32,7 +31,7 @@ const create = (vendor, db) => {
 
 const read = (id, db) => {
   // return vendor object
-  let sql = `SELECT * FROM orm2_vendor WHERE id = ${id}`;
+  let sql = `SELECT * FROM orm4_vendor WHERE id = ${id}`;
     db.serialize(() => {
         db.get(sql, [], (err, row) => {
             if (err) {
@@ -67,7 +66,7 @@ const update = (vendor, db) => {
 
     let data = [vendor.id, vendor.firstName, vendor.middleName, vendor.lastName, vendor.dob, vendor.phone, vendor.email, vendor.streetAddress, vendor.city, vendor.state, vendor.zip, vendor.company]
 
-    db.run(`UPDATE orm2_vendor SET 
+    db.run(`UPDATE orm4_vendor SET 
         id = ?, 
         "firstName" = ?, 
         "middleName" = ?, 
@@ -94,7 +93,7 @@ const update = (vendor, db) => {
 const remove = (id, db) => {
   // no return
   db.serialize(() => {
-    let sql = `DELETE FROM orm2_vendor WHERE id = ${id}`
+    let sql = `DELETE FROM orm4_vendor WHERE id = ${id}`
     db.run(sql, (err, row) => {
         if (err) {
           return console.error(err.message);
@@ -110,7 +109,7 @@ const remove = (id, db) => {
 const list = (db) => {
   // return array of objects
   db.serialize(() => {
-    let sql = `SELECT * FROM orm2_vendor;`
+    let sql = `SELECT * FROM orm4_vendor;`
     db.all(sql, [], (err, rows) => {
         if (err){
             console.error(err.message)
