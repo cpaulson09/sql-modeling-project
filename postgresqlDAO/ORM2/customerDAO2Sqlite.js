@@ -1,10 +1,22 @@
 // ORM 2 sqlite customers
 // const sqlite = require("sqlite3").verbose();
 // const faker = require("faker");
+const { Pool, Client } = require("pg");
 
-const create = (customer, db) => {
-    db.serialize(() => {
-        db.run(
+const create = async (customer) => {
+    const connectionString =
+        "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
+
+    const client = new Client({
+        connectionString: connectionString,
+    });
+    client.connect();
+    let w = await client.query("SELECT NOW()");
+    console.log(w);
+    await client.end();
+    return;
+    client.serialize(() => {
+        client.run(
             `INSERT INTO orm2_customer ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 customer.id,
@@ -31,10 +43,10 @@ const create = (customer, db) => {
     });
 };
 
-const read = (id, db) => {
+const read = (id, client) => {
     let sql = `SELECT * FROM orm2_customer WHERE id = ${id}`;
-    db.serialize(() => {
-        db.get(sql, [], (err, row) => {
+    client.serialize(() => {
+        client.get(sql, [], (err, row) => {
             if (err) {
                 return console.error(err.message);
             }
@@ -60,7 +72,7 @@ const read = (id, db) => {
     });
 };
 
-const update = (customer, db) => {
+const update = (customer, client) => {
     let data = [
         customer.id,
         customer.firstName,
@@ -76,8 +88,8 @@ const update = (customer, db) => {
         customer.company,
         customer.id,
     ];
-    db.serialize(() => {
-        db.run(
+    client.serialize(() => {
+        client.run(
             `UPDATE orm2_customer SET 
         id = ?, 
         "firstName" = ?, 
@@ -104,26 +116,26 @@ const update = (customer, db) => {
     });
 };
 
-const remove = (id, db) => {
-    db.serialize(() => {
+const remove = (id, client) => {
+    client.serialize(() => {
         let sql = `DELETE FROM orm2_customer WHERE id = ${id}`;
-        db.run(sql, (err, row) => {
+        client.run(sql, (err, row) => {
             if (err) {
                 return console.error(err.message);
             }
             // {object}
             return row
                 ? console.log(`No record found with the id ${id}`)
-                : console.log(`record ${id} removed from DB`);
+                : console.log(`record ${id} removed from client`);
         });
     });
     // no return
 };
 
-const list = (db) => {
-    db.serialize(() => {
+const list = (client) => {
+    client.serialize(() => {
         let sql = `SELECT * FROM orm2_customer;`;
-        db.all(sql, [], (err, rows) => {
+        client.all(sql, [], (err, rows) => {
             if (err) {
                 console.error(err.message);
             }

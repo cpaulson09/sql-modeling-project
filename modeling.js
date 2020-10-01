@@ -4,9 +4,9 @@ const { Pool, Client } = require("pg");
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
-vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite")
-contractor1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite')
-customer1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite')
+vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite");
+contractor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite");
+customer1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite");
 
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
@@ -21,6 +21,8 @@ vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite");
 customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
 
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
+
+customer2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/customerDAO2Sqlite");
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -458,14 +460,20 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db");
 });
 
-const connectionString =
-    "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
+// const connectionString =
+//     "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
 
-const client = new Client({
-    connectionString: connectionString,
-});
-client.connect();
+// const client = new Client({
+//     connectionString: connectionString,
+// });
+// client.connect();
 
+postgresRun(customers);
+return;
+// client.query("SELECT NOW()", (err, res) => {
+//     console.log(err, res);
+//     client.end();
+// });
 // console.log(vendors)
 // console.log(customers)
 // console.log(contractors)
@@ -685,4 +693,22 @@ db.close((err) => {
     console.log("closing sqlite database\n");
 });
 
-client.end();
+// client.end();
+
+async function postgresRun(
+    customers,
+    employees,
+    vendors,
+    managers,
+    contractors,
+    executives
+) {
+    // for (customer of customers) {
+    // await customer2DAOpostgres.create(customer);
+    // await customer3DAOpostgres.create(customer);
+    // }
+    // for (employee of employees) {
+    //     await employee3DAOpostgres.create(employee)
+    // }
+    //etc.....
+}
