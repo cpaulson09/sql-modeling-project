@@ -10,6 +10,7 @@ contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2S
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
 manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite")
+customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
 contractor3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/contractorDAO3Sqlite")
 employee4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/employeeDAO4Sqlite")
 vendor4DAO = require("./sqliteDAO/ORM4/vendorDOA4Sqlite")
@@ -501,7 +502,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // employee2DAO.read(employees[0].id, db)
 // employees[0].firstName = 'Connor'
 // employee2DAO.update(employees[0], db)
- //employee2DAO.remove(73627, db)
+//employee2DAO.remove(73627, db)
 // employee2DAO.remove(73627, db)
 // employee2DAO.list(db)
 // for (employee of employees) {
@@ -509,9 +510,11 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 2 customer testing - - - - - - - -
-// customers.forEach((item) => {
-//     customer2DAO.create(item, db);
-// });
+customers.forEach((customer) => {
+    customer2DAO.create(customer, db);
+    customer3DAO.create(customer, db);
+    // customer2DAO.create(item, db);
+});
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);
 // customers[0].firstName = "Connor";
@@ -552,23 +555,22 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 //     vendor2DAO.create(vendor, db)
 // }
 
-
 // ORM 4 Vendor testing - - - - - - - -
-vendor4DAO.create(vendors[0], db)
-console.log('create')
- vendor4DAO.read(vendors[0].id, db)
- console.log('read')
-vendors[0].firstName = 'Gracias'
-console.log('update name')
-vendor4DAO.update(vendors[0], db)
-console.log('update')
-vendor4DAO.remove(96025, db)
-console.log('remove')
-vendor4DAO.list(db)
-for (vendor of vendors) {
-    //SQLITE_CONSTRAINT: UNIQUE constraint failed
-    vendor4DAO.create(vendor, db)
-}
+// vendor4DAO.create(vendors[0], db)
+// console.log('create')
+//  vendor4DAO.read(vendors[0].id, db)
+//  console.log('read')
+// vendors[0].firstName = 'Gracias'
+// console.log('update name')
+// vendor4DAO.update(vendors[0], db)
+// console.log('update')
+// vendor4DAO.remove(96025, db)
+// console.log('remove')
+// vendor4DAO.list(db)
+// for (vendor of vendors) {
+//     //SQLITE_CONSTRAINT: UNIQUE constraint failed
+//     vendor4DAO.create(vendor, db)
+// }
 
 // ORM 2 Executive testing - - - - - - - -
 // executiveDAO4.create(executives[0], db)
@@ -611,7 +613,7 @@ for (vendor of vendors) {
 // employees[0].firstName = 'Connor'
 // employee4DAO.update(employees[0])
 // employee4DAO.remove(73627)
-// employee4DAO.list(db)
+// employee4DAO.list()
 // for (employee of employees) {
 //     employee4DAO.create(employee)
 // }
