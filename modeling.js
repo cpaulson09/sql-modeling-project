@@ -505,9 +505,9 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 2 customer testing - - - - - - - -
-customers.forEach((item) => {
-    customer2DAO.create(item, db);
-    customer3DAO.create(item, db);
+customers.forEach((customer) => {
+    customer2DAO.create(customer, db);
+    customer3DAO.create(customer, db);
     // customer2DAO.create(item, db);
 });
 // customer2DAO.create(customers[0], db);
