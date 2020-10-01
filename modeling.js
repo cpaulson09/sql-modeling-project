@@ -591,6 +591,17 @@ customers.forEach((customer) => {
 //     executive2DAO.create(executive, db)
 // }
 
+// ORM 3 Employee testing - - - - - - - -
+// employee3DAO.create(employees[0])
+// employee3DAO.read(employees[0].id)
+// employees[0].firstName = 'Connor'
+// employee3DAO.update(employees[0])
+// employee3DAO.remove(73627)
+// employee3DAO.list()
+// for (employee of employees) {
+//     employee3DAO.create(employee)
+// }
+
 // ORM 3 manager testing - - - - - - - -
 // manager3DAO.create(managers[0], db);
 // manager3DAO.read(managers[0].id, db);
