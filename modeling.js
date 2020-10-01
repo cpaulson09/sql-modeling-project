@@ -9,7 +9,9 @@ manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite"
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
+employee4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/employeeDAO4Sqlite")
 vendor4DAO = require("./sqliteDAO/ORM4/vendorDOA4Sqlite")
+contractor4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/contractorDAO4Sqlite")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -583,6 +585,26 @@ for (vendor of vendors) {
 //     //SQLITE_CONSTRAINT: UNIQUE constraint failed
 //     executive2DAO.create(executive, db)
 // }
+
+// ORM 4 Employee testing - - - - - - - -
+// employee4DAO.create(employees[0], db)
+// employee4DAO.read(employees[0].id, db)
+// employees[0].firstName = 'Connor'
+// employee4DAO.update(employees[0], db)
+ //employee4DAO.remove(73627, db)
+// employee4DAO.remove(73627, db)
+// employee4DAO.list(db)
+// for (employee of employees) {
+//     employee4DAO.create(employee, db)
+// }
+
+// ORM 4 contractor testing - - - - - - - -
+// contractor4DAO.create(managers[0], db);
+// contractor4DAO.read(managers[0].id, db);
+// contractors[0].firstName = "Breck";
+// contractor4DAO.update(managers[0], db);
+// contractor4DAO.remove(73627, db);
+// contractor4DAO.list(db);
 
 db.close((err) => {
     if (err) {
