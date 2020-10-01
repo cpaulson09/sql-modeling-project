@@ -9,6 +9,10 @@ npm install pg
 npm install faker
 
 
+### DB
+- SQLite
+- Postgre SQL
+
 ### List
 - manager
 - employee
@@ -17,13 +21,6 @@ npm install faker
 - vendor
 - customers
 - excluding -- person, nonemployee
-
-
-### DB
-- SQLLITE
-- Postgre SQL
-- MSSQL
-- MySQL
 
 
 # Breck - Manager, Contractors
