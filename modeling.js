@@ -7,8 +7,9 @@ employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlit
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite")
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite")
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
-vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite")
-executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite")
+vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
+executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
+vendor4DAO = require("./sqliteDAO/ORM4/vendorDOA4Sqlite")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -504,9 +505,9 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 2 customer testing - - - - - - - -
-customers.forEach((item) => {
-    customer2DAO.create(item, db);
-});
+// customers.forEach((item) => {
+//     customer2DAO.create(item, db);
+// });
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);
 // customers[0].firstName = "Connor";
@@ -547,22 +548,41 @@ customers.forEach((item) => {
 //     vendor2DAO.create(vendor, db)
 // }
 
-// ORM 2 Executive testing - - - - - - - -
-executive2DAO.create(executives[0], db)
+
+// ORM 4 Vendor testing - - - - - - - -
+vendor4DAO.create(vendors[0], db)
 console.log('create')
-executive2DAO.read(executives[0].id, db)
+ vendor4DAO.read(vendors[0].id, db)
  console.log('read')
-executives[0].firstName = 'Gracias'
+vendors[0].firstName = 'Gracias'
 console.log('update name')
-executive2DAO.update(executives[0], db)
+vendor4DAO.update(vendors[0], db)
 console.log('update')
-executive2DAO.remove(73627, db)
+vendor4DAO.remove(96025, db)
 console.log('remove')
-executive2DAO.list(db)
-for (executive of executives) {
+vendor4DAO.list(db)
+for (vendor of vendors) {
     //SQLITE_CONSTRAINT: UNIQUE constraint failed
-    executive2DAO.create(executive, db)
+    vendor4DAO.create(vendor, db)
 }
+
+// ORM 2 Executive testing - - - - - - - -
+// executiveDAO4.create(executives[0], db)
+// executive2DAO.create(executives[0], db)
+// console.log('create')
+// executive2DAO.read(executives[0].id, db)
+//  console.log('read')
+// executives[0].firstName = 'Gracias'
+// console.log('update name')
+// executive2DAO.update(executives[0], db)
+// console.log('update')
+// executive2DAO.remove(73627, db)
+// console.log('remove')
+// executive2DAO.list(db)
+// for (executive of executives) {
+//     //SQLITE_CONSTRAINT: UNIQUE constraint failed
+//     executive2DAO.create(executive, db)
+// }
 
 db.close((err) => {
     if (err) {
