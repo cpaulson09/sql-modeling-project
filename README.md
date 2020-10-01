@@ -1,10 +1,12 @@
 # sql-modeling-project
-CS 4690 NoSQL - Modeling project
+CS 4690 NoSQL - Modeling project\n
+Breck, Connor, Gracias, Nate
 
 
-# npm installs for sqlite and postgreSQL
-npm install sqlite3
-npm install pg
+## npm installs
+npm install sqlite3\n
+npm install pg\n
+npm install faker
 
 
 ### List
