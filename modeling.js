@@ -6,6 +6,7 @@ executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sql
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
 customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
+customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
 vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
@@ -508,7 +509,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 customers.forEach((customer) => {
     customer2DAO.create(customer, db);
     customer3DAO.create(customer, db);
-    // customer2DAO.create(item, db);
+    customer4DAO.create(customer, db);
 });
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);

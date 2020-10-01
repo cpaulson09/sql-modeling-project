@@ -5,7 +5,7 @@
 const create = (customer, db) => {
     db.serialize(() => {
         db.run(
-            `INSERT INTO orm2_customer ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
+            `INSERT INTO orm4_customer ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 customer.id,
                 customer.firstName,
