@@ -460,20 +460,9 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db");
 });
 
-// const connectionString =
-//     "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
-
-// const client = new Client({
-//     connectionString: connectionString,
-// });
-// client.connect();
-
 postgresRun(customers);
 return;
-// client.query("SELECT NOW()", (err, res) => {
-//     console.log(err, res);
-//     client.end();
-// });
+
 // console.log(vendors)
 // console.log(customers)
 // console.log(contractors)
