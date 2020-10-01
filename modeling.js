@@ -17,6 +17,8 @@ manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite"
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
 vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
 executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite");
+executive3DAO = require("./sqliteDAO/ORM3/executiveDAO3Sqlite");
+vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite");
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -618,6 +620,22 @@ customers.forEach((customer) => {
 // manager3DAO.update(managers[0], db);
 // manager3DAO.remove(73627, db);
 // manager3DAO.list(db);
+
+// ORM 3 vendor testing - - - - - - - -
+// vendors3DAO.create(vendors[0], db);
+// vendors3DAO.read(vendors[0].id, db);
+// vendors[0].employeeId = "100000001";
+// vendors3DAO.update(vendors[0], db);
+// vendors3DAO.remove(73627, db);
+// vendors3DAO.list(db);
+
+// ORM 3 executive testing - - - - - - - -
+executive3DAO.create(executives[0], db);
+executive3DAO.read(executives[0].id, db);
+executives[0].employeeId = "100000001";
+executive3DAO.update(executives[0], db);
+executive3DAO.remove(73627, db);
+executive3DAO.list(db);
 
 // ORM 3 contractor testing - - - - - - - -
 // contractor3DAO.create(managers[0], db);
