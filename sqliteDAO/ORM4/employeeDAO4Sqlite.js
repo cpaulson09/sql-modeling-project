@@ -10,7 +10,7 @@ const create = (employee) => {
         console.log('\nconnected to db')
     })
 
-    db.run(`INSERT INTO orm2_employee ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, companyId, department, title, salary, managerId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [employee.id, employee.firstName, employee.middleName, employee.lastName, employee.dob, employee.phone, employee.email, employee.streetAddress, employee.city, employee.state, employee.zip, employee.companyId, employee.department, employee.title, employee.salary, employee.managerId], function(err) {
+    db.run(`INSERT INTO orm4_employee ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, "companyId", department, title, salary, "managerId", "isManager", bonus) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`, [employee.id, employee.firstName, employee.middleName, employee.lastName, employee.dob, employee.phone, employee.email, employee.streetAddress, employee.city, employee.state, employee.zip, employee.companyId, employee.department, employee.title, employee.salary, employee.managerId, employee.isManager, employee.bonus], function(err) {
         if (err) {
             return console.log(err.message);
         }
@@ -35,7 +35,7 @@ const read = (id) => {
         console.log('\nconnected to db')
     })
 
-    let sql = `SELECT * FROM orm2_employee WHERE id = ${id}`
+    let sql = `SELECT * FROM orm4_employee WHERE id = ${id}`
     db.get(sql, [], (err, row) => {
         if (err) {
           return console.error(err.message);
@@ -56,7 +56,9 @@ const read = (id) => {
             department: row.department,
             title: row.title,
             salary: row.salary,
-            managerId: row.managerId
+            managerId: row.managerId,
+            isManager: row.isManager,
+            bonus: row.bonus
         }
         // {object}
         return row
@@ -82,9 +84,9 @@ const update = (employee) => {
         }
         console.log('\nconnected to db')
     })
-    let data = [employee.id, employee.firstName, employee.middleName, employee.lastName, employee.dob, employee.phone, employee.email, employee.streetAddress, employee.city, employee.state, employee.zip, employee.companyId, employee.department, employee.title, employee.salary, employee.managerId, employee.id]
+    let data = [employee.id, employee.firstName, employee.middleName, employee.lastName, employee.dob, employee.phone, employee.email, employee.streetAddress, employee.city, employee.state, employee.zip, employee.companyId, employee.department, employee.title, employee.salary, employee.managerId, employee.isManager, employee.bonus, employee.id]
 
-    db.run(`UPDATE orm2_employee SET 
+    db.run(`UPDATE orm4_employee SET 
         id = ?, 
         "firstName" = ?, 
         "middleName" = ?, 
@@ -100,7 +102,9 @@ const update = (employee) => {
         department = ?, 
         title = ?, 
         salary = ?, 
-        "managerId" = ?
+        "managerId" = ?,
+        "isManager" = ?,
+        bonus = ?,
         WHERE id = ?;`, data,  function(err) {
         if (err) {
             return console.log(err.message);
@@ -126,7 +130,7 @@ const remove = (id) => {
         console.log('\nconnected to db')
     })
 
-    let sql = `DELETE FROM orm2_employee WHERE id = ${id}`
+    let sql = `DELETE FROM orm4_employee WHERE id = ${id}`
     db.run(sql, (err, row) => {
         if (err) {
           return console.error(err.message);
@@ -155,7 +159,7 @@ const list = () => {
         console.log('\nconnected to db')
     })
 
-    let sql = `SELECT * FROM orm2_employee;`
+    let sql = `SELECT * FROM orm4_employee;`
     db.all(sql, [], (err, rows) => {
         if (err){
             console.error(err.message)
