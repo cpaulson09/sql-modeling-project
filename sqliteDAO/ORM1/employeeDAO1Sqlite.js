@@ -4,6 +4,13 @@ const faker = require('faker')
 
 const create = (employee, db) => {
     db.serialize(() => {
+        db.run(`INSERT INTO orm1_person ( id, "firstName", "middleName", "lastName", dob, "phone", "email", "streetAddress", city, state, zip) VALUES(?,?,?,?,?,?,?,?,?,?,?)`, [employee.id, employee.firstName, employee.middleName, employee.lastName, employee.dob, employee.phone, employee.email, employee.streetAddress, employee.city, employee.state, employee.zip], function(err) {
+            if (err) {
+                return console.log(err.message);
+            }
+            // get the last insert id
+            console.log(`Success, created employee`);
+        })
         db.run(`INSERT INTO orm1_employee ( id, "personId", "department", "title", salary, "managerId", "companyId") VALUES(?,?,?,?,?,?,?)`, [employee.id, employee.personId, employee.department, employee.title, employee.salary, employee.managerId, employee.companyId], function(err) {
             if (err) {
                 return console.log(err.message);

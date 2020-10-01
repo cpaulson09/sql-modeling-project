@@ -3,6 +3,9 @@ const sqlite = require("sqlite3").verbose();
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
+vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite")
+contractor1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite')
+customer1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite')
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
@@ -498,6 +501,18 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 //     executive1DAO.create(managers, db)
 // }
 
+// ORM 1 vendor testing - - - - - - - -
+//customer1DAO.create(customers[0], db)
+// vendor1DAO.read(vendors[0].id, db)
+// vendors[0].department = 'Connor'
+// console.log(vendors[0])
+// employee1DAO.update(vendors[0], db)
+// customer1DAO.remove(3763, db)
+// employee1DAO.list(db)
+// for (vendor of vendors) {
+//     employee1DAO.create(employee, db)
+// }
+
 // ORM 2 Employee testing - - - - - - - -
 // employee2DAO.create(employees[0], db)
 // employee2DAO.read(employees[0].id, db)
@@ -511,11 +526,11 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 2 customer testing - - - - - - - -
-customers.forEach((customer) => {
-    customer2DAO.create(customer, db);
-    customer3DAO.create(customer, db);
-    customer4DAO.create(customer, db);
-});
+// customers.forEach((customer) => {
+//     customer2DAO.create(customer, db);
+//     customer3DAO.create(customer, db);
+//     customer4DAO.create(customer, db);
+// });
 // customer2DAO.create(customers[0], db);
 // customer2DAO.read(customers[0].id, db);
 // customers[0].firstName = "Connor";
