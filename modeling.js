@@ -1,5 +1,6 @@
 const faker = require("faker");
 const sqlite = require("sqlite3").verbose();
+const { Pool, Client } = require("pg");
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
@@ -453,6 +454,14 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db");
 });
 
+const connectionString =
+    "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
+
+const client = new Client({
+    connectionString: connectionString,
+});
+client.connect();
+
 // console.log(vendors)
 // console.log(customers)
 // console.log(contractors)
@@ -643,3 +652,5 @@ db.close((err) => {
     }
     console.log("closing sqlite database\n");
 });
+
+client.end();
