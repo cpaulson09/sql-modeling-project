@@ -9,6 +9,8 @@ manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite"
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
+manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite")
+contractor3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/contractorDAO3Sqlite")
 employee4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/employeeDAO4Sqlite")
 vendor4DAO = require("./sqliteDAO/ORM4/vendorDOA4Sqlite")
 contractor4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/contractorDAO4Sqlite")
@@ -586,16 +588,32 @@ for (vendor of vendors) {
 //     executive2DAO.create(executive, db)
 // }
 
+// ORM 3 manager testing - - - - - - - -
+// manager3DAO.create(managers[0], db);
+// manager3DAO.read(managers[0].id, db);
+// managers[0].employeeId = "100000001";
+// manager3DAO.update(managers[0], db);
+// manager3DAO.remove(73627, db);
+// manager3DAO.list(db);
+
+// ORM 3 contractor testing - - - - - - - -
+// contractor3DAO.create(managers[0], db);
+// contractor3DAO.read(managers[0].id, db);
+// managers[0].employeeId = "100000001";
+// contractor3DAO.update(managers[0], db);
+// contractor3DAO.remove(73627, db);
+// contractor3DAO.list(db);
+
+
 // ORM 4 Employee testing - - - - - - - -
-// employee4DAO.create(employees[0], db)
-// employee4DAO.read(employees[0].id, db)
+// employee4DAO.create(employees[0])
+// employee4DAO.read(employees[0].id)
 // employees[0].firstName = 'Connor'
-// employee4DAO.update(employees[0], db)
- //employee4DAO.remove(73627, db)
-// employee4DAO.remove(73627, db)
+// employee4DAO.update(employees[0])
+// employee4DAO.remove(73627)
 // employee4DAO.list(db)
 // for (employee of employees) {
-//     employee4DAO.create(employee, db)
+//     employee4DAO.create(employee)
 // }
 
 // ORM 4 contractor testing - - - - - - - -

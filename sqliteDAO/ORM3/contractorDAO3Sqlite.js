@@ -1,11 +1,12 @@
-// ORM 4 sqlite contractors
+// ORM 3 sqlite contractors
 
 create = (contractor, db) => {
     db.serialize(() => {
         db.run(
-            `INSERT INTO orm4_contractor ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
+            `INSERT INTO orm3_person (id, type, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, "companyId", department, title, salary, "managerId", bonus, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
             [
                 contractor.id,
+                'contractor',
                 contractor.firstName,
                 contractor.middleName,
                 contractor.lastName,
@@ -16,7 +17,13 @@ create = (contractor, db) => {
                 contractor.city,
                 contractor.state,
                 contractor.zip,
-                contractor.company,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                contractor.company
             ],
             function (err) {
                 if (err) {
@@ -30,7 +37,7 @@ create = (contractor, db) => {
 }
 
 read = (id, db) => {
-    let sql = `SELECT * FROM orm4_contractor WHERE id = ${id}`;
+    let sql = `SELECT * FROM orm3_person WHERE id = ${id}`;
     db.serialize(() => {
         db.get(sql, [], (err, row) => {
             if (err) {
@@ -38,6 +45,7 @@ read = (id, db) => {
             }
             let obj = {
                 id: row.id,
+                type: row.type,
                 firstName: row.firstName,
                 middleName: row.middleName,
                 lastName: row.lastName,
@@ -48,7 +56,13 @@ read = (id, db) => {
                 city: row.city,
                 state: row.state,
                 zip: row.zip,
-                company: row.company,
+                companyId: row.companyId,
+                department: row.department,
+                title: row.title,
+                salary: row.salary,
+                managerId: row.managerId,
+                bonus: row.bonus,
+                company: row.company
             };
             // {object}
             return row
@@ -61,6 +75,7 @@ read = (id, db) => {
 update = (contractor, db) => {
     let data = [
         contractor.id,
+        contractor.type,
         contractor.firstName,
         contractor.middleName,
         contractor.lastName,
@@ -71,14 +86,21 @@ update = (contractor, db) => {
         contractor.city,
         contractor.state,
         contractor.zip,
+        contractor.companyId,
+        contractor.department,
+        contractor.title,
+        contractor.salary,
+        contractor.managerId,
+        contractor.bonus,
         contractor.company,
         contractor.id,
     ];
 
     db.serialize(() => {
         db.run(
-            `UPDATE orm4_contractor SET 
-            id = ?, 
+            `UPDATE orm3_person SET 
+            id = ?,
+            type = ?, 
             "firstName" = ?, 
             "middleName" = ?, 
             "lastName" = ?,
@@ -89,7 +111,13 @@ update = (contractor, db) => {
             city = ?, 
             state = ?, 
             zip = ?,  
-            company= ?,
+            companyId = ?,
+            department = ?,
+            title = ?,
+            salary = ?,
+            managerId = ?,
+            bonus = ?,
+            company = ?,
             WHERE id = ?;`,
             data,
             function (err) {
@@ -97,7 +125,7 @@ update = (contractor, db) => {
                     return console.log(err.message);
                 }
                 // get the last insert id
-                console.log(`Success, updated contractor`);
+                console.log(`Success, updated manager`);
             }
         );
     })
@@ -105,7 +133,7 @@ update = (contractor, db) => {
 
 remove = (id, db) => {
     db.serialize(() => {
-        let sql = `DELETE FROM orm4_contractor WHERE id = ${id}`;
+        let sql = `DELETE FROM orm3_person WHERE id = ${id}`;
         db.run(sql, (err, row) => {
             if (err) {
                 return console.error(err.message);
@@ -120,7 +148,7 @@ remove = (id, db) => {
 
 list = (db) => {
     db.serialize(() => {
-        let sql = `SELECT * FROM orm4_contractor;`;
+        let sql = `SELECT * FROM orm3_person;`;
         db.all(sql, [], (err, rows) => {
             if (err) {
                 console.error(err.message);
