@@ -547,6 +547,23 @@ customers.forEach((item) => {
 //     vendor2DAO.create(vendor, db)
 // }
 
+// ORM 2 Executive testing - - - - - - - -
+executive2DAO.create(executives[0], db)
+console.log('create')
+executive2DAO.read(executives[0].id, db)
+ console.log('read')
+executives[0].firstName = 'Gracias'
+console.log('update name')
+executive2DAO.update(executives[0], db)
+console.log('update')
+executive2DAO.remove(73627, db)
+console.log('remove')
+executive2DAO.list(db)
+for (executive of executives) {
+    //SQLITE_CONSTRAINT: UNIQUE constraint failed
+    executive2DAO.create(executive, db)
+}
+
 db.close((err) => {
     if (err) {
         console.error(err.message);

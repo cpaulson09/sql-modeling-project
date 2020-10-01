@@ -24,7 +24,7 @@ const create = (vendor, db) => {
                     return console.log(err.message);
                 }
                 // get the last insert id
-                console.log(`Success, created customer`);
+                console.log(`Success, created vendor`);
             }
         );
     });
@@ -65,7 +65,7 @@ const update = (vendor, db) => {
   // no return
   db.serialize(() => {
 
-    let data = [vendor.id, vendor.firstName, vendor.middleName, vendor.lastName, vendor.dob, vendor.phone, vendor.email, vendor.streetAddress, vendor.city, vendor.state, vendor.zip, vendor.companyId, vendor.department, vendor.title, vendor.salary, vendor.managerId, vendor.id]
+    let data = [vendor.id, vendor.firstName, vendor.middleName, vendor.lastName, vendor.dob, vendor.phone, vendor.email, vendor.streetAddress, vendor.city, vendor.state, vendor.zip, vendor.company]
 
     db.run(`UPDATE orm2_vendor SET 
         id = ?, 
@@ -79,11 +79,7 @@ const update = (vendor, db) => {
         city = ?, 
         state = ?, 
         zip = ?, 
-        "companyId" = ?, 
-        department = ?, 
-        title = ?, 
-        salary = ?, 
-        "managerId" = ?
+        "company" = ?, 
         WHERE id = ?;`, data,  function(err) {
         if (err) {
             return console.log(err.message);
