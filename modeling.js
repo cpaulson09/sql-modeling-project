@@ -7,21 +7,20 @@ executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sql
 vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite")
 contractor1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite')
 customer1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite')
+
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite");
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite");
+
 manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite");
-customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
-customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
-manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
-contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
-vendor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/vendorDAO2Sqlite");
-executive2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/executiveDAO2Sqlite");
 executive3DAO = require("./sqliteDAO/ORM3/executiveDAO3Sqlite");
 vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite");
+customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
+
+customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
