@@ -9,6 +9,7 @@ manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite"
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
+employee3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/employeeDAO3Sqlite")
 manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite")
 customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
 contractor3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/contractorDAO3Sqlite")
@@ -588,6 +589,17 @@ customers.forEach((customer) => {
 // for (executive of executives) {
 //     //SQLITE_CONSTRAINT: UNIQUE constraint failed
 //     executive2DAO.create(executive, db)
+// }
+
+// ORM 3 Employee testing - - - - - - - -
+// employee3DAO.create(employees[0])
+// employee3DAO.read(employees[0].id)
+// employees[0].firstName = 'Connor'
+// employee3DAO.update(employees[0])
+// employee3DAO.remove(73627)
+// employee3DAO.list()
+// for (employee of employees) {
+//     employee3DAO.create(employee)
 // }
 
 // ORM 3 manager testing - - - - - - - -
