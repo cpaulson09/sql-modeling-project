@@ -1,150 +1,124 @@
 // ORM 2 sqlite customers
 // const sqlite = require("sqlite3").verbose();
 // const faker = require("faker");
-const { Pool, Client } = require("pg");
+const { Pool, Client } = require("pg")
 
 const create = async (customer) => {
-    const connectionString =
-        "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
+    try {
+        const connectionString =
+            "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx"
 
-    const client = new Client({
-        connectionString: connectionString,
-    });
-    client.connect();
-    let w = await client.query("SELECT NOW()");
-    console.log(w);
-    await client.end();
-    return;
-    client.serialize(() => {
-        client.run(
-            `INSERT INTO orm2_customer ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
-            [
-                customer.id,
-                customer.firstName,
-                customer.middleName,
-                customer.lastName,
-                customer.dob,
-                customer.phone,
-                customer.email,
-                customer.streetAddress,
-                customer.city,
-                customer.state,
-                customer.zip,
-                customer.company,
-            ],
-            function (err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-                // get the last insert id
-                console.log(`Success, created customer`);
-            }
-        );
-    });
-};
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+        const query =
+            "INSERT INTO orm2_customer( id, firstname, middlename, lastname, dob, phone, email, streetaddress, city, state, zip, company) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)"
+        const res = await client.query(query, [
+            customer.id,
+            customer.firstName,
+            customer.middleName,
+            customer.lastName,
+            customer.dob,
+            customer.phone,
+            customer.email,
+            customer.streetAddress,
+            customer.city,
+            customer.state,
+            customer.zip,
+            customer.company,
+        ])
+        console.log(res.rows)
+        await client.end()
+    } catch (err) {
+        console.log(err.stack)
+    }
+}
 
-const read = (id, client) => {
-    let sql = `SELECT * FROM orm2_customer WHERE id = ${id}`;
-    client.serialize(() => {
-        client.get(sql, [], (err, row) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            let obj = {
-                id: row.id,
-                firstName: row.firstName,
-                middleName: row.middleName,
-                lastName: row.lastName,
-                dob: row.dob,
-                phone: row.phone,
-                email: row.email,
-                streetAddress: row.streetAddress,
-                city: row.city,
-                state: row.state,
-                zip: row.zip,
-                company: row.company,
-            };
-            // {object}
-            return row
-                ? console.log(obj)
-                : console.log(`No record found with the id ${id}`);
-        });
-    });
-};
+const read = async (id) => {
+    try {
+        const connectionString =
+            "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx"
 
-const update = (customer, client) => {
-    let data = [
-        customer.id,
-        customer.firstName,
-        customer.middleName,
-        customer.lastName,
-        customer.dob,
-        customer.phone,
-        customer.email,
-        customer.streetAddress,
-        customer.city,
-        customer.state,
-        customer.zip,
-        customer.company,
-        customer.id,
-    ];
-    client.serialize(() => {
-        client.run(
-            `UPDATE orm2_customer SET 
-        id = ?, 
-        "firstName" = ?, 
-        "middleName" = ?, 
-        "lastName" = ?,
-        dob = ?,
-        phone = ?, 
-        email = ?, 
-        "streetAddress" = ?, 
-        city = ?, 
-        state = ?, 
-        zip = ?, 
-        "company" = ? 
-        WHERE id = ?;`,
-            data,
-            function (err) {
-                if (err) {
-                    return console.log(err.message);
-                }
-                // get the last insert id
-                console.log(`Success, updated customer`);
-            }
-        );
-    });
-};
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+        const query = "SELECT * FROM orm2_customer WHERE id = $1"
+        const res = await client.query(query, [id])
+        console.log(res.rows)
+        await client.end()
+    } catch (err) {
+        console.log(err.stack)
+    }
+}
 
-const remove = (id, client) => {
-    client.serialize(() => {
-        let sql = `DELETE FROM orm2_customer WHERE id = ${id}`;
-        client.run(sql, (err, row) => {
-            if (err) {
-                return console.error(err.message);
-            }
-            // {object}
-            return row
-                ? console.log(`No record found with the id ${id}`)
-                : console.log(`record ${id} removed from client`);
-        });
-    });
-    // no return
-};
+const update = async (customer) => {
+    try {
+        const connectionString =
+            "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx"
 
-const list = (client) => {
-    client.serialize(() => {
-        let sql = `SELECT * FROM orm2_customer;`;
-        client.all(sql, [], (err, rows) => {
-            if (err) {
-                console.error(err.message);
-            }
-            // return array
-            rows.forEach((row) => {
-                console.log(row);
-            });
-        });
-    });
-};
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+        const query =
+            "UPDATE orm2_customer SET (firstname, middlename, lastname, dob, phone, email, streetaddress, city, state, zip, company) = ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) WHERE id = $12"
+        const res = await client.query(query, [
+            customer.firstName,
+            customer.middleName,
+            customer.lastName,
+            customer.dob,
+            customer.phone,
+            customer.email,
+            customer.streetAddress,
+            customer.city,
+            customer.state,
+            customer.zip,
+            customer.company,
+            customer.id,
+        ])
+        console.log(res.rows)
+        await client.end()
+    } catch (err) {
+        console.log(err.stack)
+    }
+}
 
-module.exports = { create, read, update, remove, list };
+const remove = async (id) => {
+    try {
+        const connectionString =
+            "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx"
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+        const query = "DELETE FROM orm2_customer WHERE id = $1"
+        const res = await client.query(query, [customer.id])
+        console.log(res.rows)
+        await client.end()
+    } catch (err) {
+        console.log(err.stack)
+    }
+}
+
+const list = async () => {
+    try {
+        const connectionString =
+            "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx"
+
+        const client = new Client({
+            connectionString: connectionString,
+        })
+        client.connect()
+        const query = "SELECT * FROM orm2_customer;"
+        const res = await client.query(query)
+        console.log(res.rows)
+        await client.end()
+    } catch (err) {
+        console.log(err.stack)
+    }
+}
+
+module.exports = { create, read, update, remove, list }
