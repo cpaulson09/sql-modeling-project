@@ -1,24 +1,29 @@
-const faker = require("faker");
-const sqlite = require("sqlite3").verbose();
-const { Pool, Client } = require("pg");
-//sqlite DAOs
-employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
-manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
-executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
+const faker = require("faker")
+const sqlite = require("sqlite3").verbose()
+const { Pool, Client } = require("pg")
+employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
+manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite")
+executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
 vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite")
-contractor1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite')
-customer1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite')
-employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
-customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
-manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
-contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
-vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite");
-executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite");
-manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite");
-executive3DAO = require("./sqliteDAO/ORM3/executiveDAO3Sqlite");
-vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite");
-customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
-customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
+contractor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite")
+customer1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite")
+
+employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite")
+customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite")
+manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite")
+contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite")
+vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite")
+executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite")
+
+manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite")
+executive3DAO = require("./sqliteDAO/ORM3/executiveDAO3Sqlite")
+vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite")
+customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite")
+
+customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite")
+
+customer2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/customerDAO2Sqlite")
+executive2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/executiveDAO2Postgres")
 
 // PostgreSQL DAOs
 pg_employee1DAO = require('./postgresqlDAO/ORM1/employeeORM1Postgre')
@@ -39,17 +44,17 @@ class Person {
         state,
         zip
     ) {
-        this.id = id;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.dob = dob;
-        this.phone = phone;
-        this.email = email;
-        this.streetAddress = streetAddress;
-        this.city = city;
-        this.state = state;
-        this.zip = zip;
+        this.id = id
+        this.firstName = firstName
+        this.middleName = middleName
+        this.lastName = lastName
+        this.dob = dob
+        this.phone = phone
+        this.email = email
+        this.streetAddress = streetAddress
+        this.city = city
+        this.state = state
+        this.zip = zip
     }
 }
 class Employee extends Person {
@@ -84,13 +89,13 @@ class Employee extends Person {
             city,
             state,
             zip
-        );
-        this.personId = personId;
-        this.companyId = companyId;
-        this.department = department;
-        this.title = title;
-        this.salary = salary;
-        this.managerId = managerId;
+        )
+        this.personId = personId
+        this.companyId = companyId
+        this.department = department
+        this.title = title
+        this.salary = salary
+        this.managerId = managerId
     }
 }
 class Manager extends Employee {
@@ -131,9 +136,9 @@ class Manager extends Employee {
             title,
             salary,
             managerId
-        );
-        this.employeeId = employeeId;
-        this.directReports = directReports;
+        )
+        this.employeeId = employeeId
+        this.directReports = directReports
     }
 }
 class Executive extends Manager {
@@ -175,8 +180,8 @@ class Executive extends Manager {
             salary,
             managerId,
             directReports
-        );
-        this.bonus = bonus;
+        )
+        this.bonus = bonus
     }
 }
 
@@ -207,8 +212,8 @@ class Nonemployee extends Person {
             city,
             state,
             zip
-        );
-        this.company = company;
+        )
+        this.company = company
     }
 }
 class Contractor extends Nonemployee {
@@ -239,7 +244,7 @@ class Contractor extends Nonemployee {
             state,
             zip,
             company
-        );
+        )
     }
 }
 class Vendor extends Nonemployee {
@@ -270,7 +275,7 @@ class Vendor extends Nonemployee {
             state,
             zip,
             company
-        );
+        )
     }
 }
 class Customer extends Nonemployee {
@@ -301,17 +306,17 @@ class Customer extends Nonemployee {
             state,
             zip,
             company
-        );
+        )
     }
 }
 
 // 5 - put the objects in arrays
-let vendors = [];
-let customers = [];
-let contractors = [];
-let employees = [];
-let managers = [];
-let executives = [];
+let vendors = []
+let customers = []
+let contractors = []
+let employees = []
+let managers = []
+let executives = []
 
 // 2 - use faker.js to create fake data
 // 3 - call the constructors with faker data
@@ -331,7 +336,7 @@ for (let i = 0; i < 5; i++) {
             faker.address.zipCode(),
             faker.company.companyName()
         )
-    );
+    )
     customers.push(
         new Customer(
             faker.random.number(),
@@ -347,7 +352,7 @@ for (let i = 0; i < 5; i++) {
             faker.address.zipCode(),
             faker.company.companyName()
         )
-    );
+    )
     contractors.push(
         new Contractor(
             faker.random.number(),
@@ -363,7 +368,7 @@ for (let i = 0; i < 5; i++) {
             faker.address.zipCode(),
             faker.company.companyName()
         )
-    );
+    )
     managers.push(
         new Manager(
             faker.random.number(),
@@ -385,7 +390,7 @@ for (let i = 0; i < 5; i++) {
             faker.random.number(),
             faker.random.number()
         )
-    );
+    )
     if (i < 3) {
         executives.push(
             new Executive(
@@ -408,7 +413,7 @@ for (let i = 0; i < 5; i++) {
                 faker.finance.amount(),
                 faker.random.number()
             )
-        );
+        )
     }
 }
 for (let i = 0; i < 20; i++) {
@@ -432,46 +437,35 @@ for (let i = 0; i < 20; i++) {
             faker.finance.amount(),
             faker.random.number()
         )
-    );
+    )
 }
 
 // 4 - modify the objects
 for (employee of employees) {
     employee.managerId =
-        managers[Math.floor(Math.random() * managers.length)].id;
+        managers[Math.floor(Math.random() * managers.length)].id
 }
-managers[0].managerId = executives[0].id;
-managers[1].managerId = executives[0].id;
+managers[0].managerId = executives[0].id
+managers[1].managerId = executives[0].id
 
-managers[2].managerId = executives[1].id;
-managers[3].managerId = executives[1].id;
-managers[4].managerId = executives[1].id;
+managers[2].managerId = executives[1].id
+managers[3].managerId = executives[1].id
+managers[4].managerId = executives[1].id
 
-executives[0].managerId = executives[2].id;
-executives[1].managerId = executives[2].id;
+executives[0].managerId = executives[2].id
+executives[1].managerId = executives[2].id
 
-executives[2].managerId = executives[2].id;
+executives[2].managerId = executives[2].id
 
 let db = new sqlite.Database("sqlite.db", (err) => {
     if (err) {
-        console.error(err.message);
+        console.error(err.message)
     }
-    // console.log("\nconnected to db");
-});
+    console.log("\nconnected to db")
+})
 
-const connectionString =
-    "postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt@lallah.db.elephantsql.com:5432/chdnzkgx";
-
-const client = new Client({
-    connectionString: connectionString,
-});
-// client.connect();
-
-// client.query('SELECT NOW()', (err, res) => {
-//     console.log(err, res)
-//     client.end()
-// })
-// return
+postgresRun(customers, null, null, null, vendors, executives);
+return;
 
 // console.log(vendors)
 // console.log(customers)
@@ -685,27 +679,50 @@ const client = new Client({
 // contractor4DAO.remove(73627, db);
 // contractor4DAO.list(db);
 
+// Postgres ORM 2 Executive testing - - - - - - - -
+// executive1DAO.create(executives[0], db)
+// executive1DAO.read(executives[0].id, db)
+// executives[0].bonus = '400.69'
+// executive1DAO.update(executives[0], db)
+// executive1DAO.remove(23536, db)
+// executive1DAO.list(db)
+// for (executive of executives) {
+//     executive1DAO.create(managers, db)
+// }
+
 db.close((err) => {
     if (err) {
-        console.error(err.message);
+        console.error(err.message)
     }
-    // console.log("closing sqlite\n");
-});
+    console.log("closing sqlite database\n")
+})
 
+// client.end();
 
-// ============ TESTING  PostgreSQL ========================
-// ORM 1 Employee testing - - - - - - - -
-// pg_employee1DAO.create(employees[0], client)
-// employee1DAO.read(employees[0].id, db)
-// employees[0].department = 'Connor'
-// console.log(employees[0])
-// employee1DAO.update(employees[0], db)
-// employee1DAO.remove(3763, db)
-// employee1DAO.list(db)
-for (employee of employees) {
-    pg_employee1DAO.create(employee, client)
-}
-
-//client.end();
-
-
+async function postgresRun(
+    customers,
+    employees,
+    vendors,
+    managers,
+    contractors,
+    executives
+) {
+    // for (customer of customers) {
+        // await customer2DAOpostgres.create(customer)
+        // await customer2DAOpostgres.read(customer.id)
+    }
+    // for (employee of employees) {
+    //     await employee3DAOpostgres.create(employee)
+    // }
+    //etc.....
+// Postgres ORM 2 Executive testing - - - - - - - -
+// await executive2DAOpostgres.create(executives[0])
+// await executive2DAOpostgres.read(executives[0].id)
+// await executive2DAOpostgres.update()
+// executive1DAO.update(executives[0].id)
+executive1DAO.remove(64482, db)
+// executive1DAO.list(db)
+// for (executive of executives) {
+//     executive1DAO.create(managers, db)
+// }
+// }
