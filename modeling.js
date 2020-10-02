@@ -23,6 +23,7 @@ customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlit
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite")
 
 customer2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/customerDAO2Sqlite")
+executive2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/executiveDAO2Postgres")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -460,8 +461,8 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db")
 })
 
-postgresRun(customers)
-return
+postgresRun(customers, null, null, null, vendors, executives);
+return;
 
 // console.log(vendors)
 // console.log(customers)
@@ -675,6 +676,17 @@ return
 // contractor4DAO.remove(73627, db);
 // contractor4DAO.list(db);
 
+// Postgres ORM 2 Executive testing - - - - - - - -
+// executive1DAO.create(executives[0], db)
+// executive1DAO.read(executives[0].id, db)
+// executives[0].bonus = '400.69'
+// executive1DAO.update(executives[0], db)
+// executive1DAO.remove(23536, db)
+// executive1DAO.list(db)
+// for (executive of executives) {
+//     executive1DAO.create(managers, db)
+// }
+
 db.close((err) => {
     if (err) {
         console.error(err.message)
@@ -693,10 +705,22 @@ async function postgresRun(
     executives
 ) {
     for (customer of customers) {
-        await customer2DAOpostgres.create(customer)
+        // await customer2DAOpostgres.create(customer)
+        // await customer2DAOpostgres.read(customer.id)
     }
     // for (employee of employees) {
     //     await employee3DAOpostgres.create(employee)
     // }
     //etc.....
+// Postgres ORM 2 Executive testing - - - - - - - -
+// await executive2DAOpostgres.create(executives[0])
+await executive2DAOpostgres.read(executives[0].id)
+executives[0].bonus = '40000.69'
+// await executive2DAOpostgres.update(executives[0].id)
+// executive1DAO.update(executives[0].id)
+// executive1DAO.remove(53573, db)
+// executive1DAO.list(db)
+// for (executive of executives) {
+//     executive1DAO.create(managers, db)
+// }
 }
