@@ -1,26 +1,27 @@
 const faker = require("faker");
 const sqlite = require("sqlite3").verbose();
 const { Pool, Client } = require("pg");
+//sqlite DAOs
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite");
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite");
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite");
 vendor1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/vendorDAO1Sqlite")
 contractor1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/contractorDAO1Sqlite')
 customer1DAO = require('../sql-modeling-project/sqliteDAO/ORM1/customerDAO1Sqlite')
-
 employee2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/employeeDAO2Sqlite");
 customer2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/customerDAO2Sqlite");
 manager2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/managerDAO2Sqlite");
 contractor2DAO = require("../sql-modeling-project/sqliteDAO/ORM2/contractorDAO2Sqlite");
 vendor2DAO = require("./sqliteDAO/ORM2/vendorDAO2Sqlite");
 executive2DAO = require("./sqliteDAO/ORM2/executiveDAO2Sqlite");
-
 manager3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/managerDAO3Sqlite");
 executive3DAO = require("./sqliteDAO/ORM3/executiveDAO3Sqlite");
 vendors3DAO = require("./sqliteDAO/ORM3/vendorDAO3Sqlite");
 customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlite");
-
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite");
+
+// PostgreSQL DAOs
+pg_employee1DAO = require('./postgresqlDAO/ORM1/employeeORM1Postgre')
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -455,7 +456,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     if (err) {
         console.error(err.message);
     }
-    console.log("\nconnected to db");
+    // console.log("\nconnected to db");
 });
 
 const connectionString =
@@ -464,7 +465,13 @@ const connectionString =
 const client = new Client({
     connectionString: connectionString,
 });
-client.connect();
+// client.connect();
+
+// client.query('SELECT NOW()', (err, res) => {
+//     console.log(err, res)
+//     client.end()
+// })
+// return
 
 // console.log(vendors)
 // console.log(customers)
@@ -473,7 +480,7 @@ client.connect();
 // console.log(executives)
 // console.log(employees)
 
-// ============ TESTING ========================
+// ============ TESTING  SQLite========================
 
 // ORM 1 Employee testing - - - - - - - -
 // employee1DAO.create(employees[0], db)
@@ -644,12 +651,12 @@ client.connect();
 // vendors3DAO.list(db);
 
 // ORM 3 executive testing - - - - - - - -
-executive3DAO.create(executives[0], db);
-executive3DAO.read(executives[0].id, db);
-executives[0].employeeId = "100000001";
-executive3DAO.update(executives[0], db);
-executive3DAO.remove(73627, db);
-executive3DAO.list(db);
+// executive3DAO.create(executives[0], db);
+// executive3DAO.read(executives[0].id, db);
+// executives[0].employeeId = "100000001";
+// executive3DAO.update(executives[0], db);
+// executive3DAO.remove(73627, db);
+// executive3DAO.list(db);
 
 // ORM 3 contractor testing - - - - - - - -
 // contractor3DAO.create(managers[0], db);
@@ -682,7 +689,23 @@ db.close((err) => {
     if (err) {
         console.error(err.message);
     }
-    console.log("closing sqlite database\n");
+    // console.log("closing sqlite\n");
 });
 
-client.end();
+
+// ============ TESTING  PostgreSQL ========================
+// ORM 1 Employee testing - - - - - - - -
+// pg_employee1DAO.create(employees[0], client)
+// employee1DAO.read(employees[0].id, db)
+// employees[0].department = 'Connor'
+// console.log(employees[0])
+// employee1DAO.update(employees[0], db)
+// employee1DAO.remove(3763, db)
+// employee1DAO.list(db)
+for (employee of employees) {
+    pg_employee1DAO.create(employee, client)
+}
+
+//client.end();
+
+
