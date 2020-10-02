@@ -704,7 +704,7 @@ async function postgresRun(
     contractors,
     executives
 ) {
-    for (customer of customers) {
+    // for (customer of customers) {
         // await customer2DAOpostgres.create(customer)
         // await customer2DAOpostgres.read(customer.id)
     }
@@ -714,11 +714,10 @@ async function postgresRun(
     //etc.....
 // Postgres ORM 2 Executive testing - - - - - - - -
 // await executive2DAOpostgres.create(executives[0])
-await executive2DAOpostgres.read(executives[0].id)
-executives[0].bonus = '40000.69'
-// await executive2DAOpostgres.update(executives[0].id)
+// await executive2DAOpostgres.read(executives[0].id)
+// await executive2DAOpostgres.update()
 // executive1DAO.update(executives[0].id)
-// executive1DAO.remove(53573, db)
+executive1DAO.remove(64482, db)
 // executive1DAO.list(db)
 // for (executive of executives) {
 //     executive1DAO.create(managers, db)
