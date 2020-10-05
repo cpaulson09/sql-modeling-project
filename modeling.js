@@ -1,6 +1,7 @@
 const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
+
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite")
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
@@ -22,11 +23,12 @@ customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlit
 
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite")
 
-customer2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/customerDAO2Sqlite")
-executive2DAOpostgres = require("../sql-modeling-project/postgresqlDAO/ORM2/executiveDAO2Postgres")
-
 // PostgreSQL DAOs
-pg_employee1DAO = require('./postgresqlDAO/ORM1/employeeORM1Postgre')
+employee2DAOpostgres = require('./postgresqlDAO/ORM2/employeeDAO2Postgres')
+customer2DAOpostgres = require("./postgresqlDAO/ORM2/customerDAO2Postgres")
+executive2DAOpostgres = require("./postgresqlDAO/ORM2/executiveDAO2Postgres")
+contractor2DAOpostgres = require('./postgresqlDAO/ORM2/contractorDAO2Postgres')
+manager2DAOpostgres = require('./postgresqlDAO/ORM2/managerDAO2Postgres')
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -464,7 +466,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db")
 })
 
-postgresRun(customers, null, null, null, vendors, executives);
+postgresRun(null, null, null, managers, contractors, null);
 return;
 
 // console.log(vendors)
@@ -707,6 +709,33 @@ async function postgresRun(
     contractors,
     executives
 ) {
+    // Postgres ORM 2 Executive testing - - - - - - - -
+
+
+    await manager2DAOpostgres.create(managers[0])
+    // managers[0].employeeId = '3456'
+    // await manager2DAOpostgres.update()
+    // await manager2DAOpostgres.read(managers[0].id)
+
+
+    // await executive2DAOpostgres.create(executives[0])
+    // await executive2DAOpostgres.read(executives[0].id)
+    // await executive2DAOpostgres.update()
+
+
+    // await contractor2DAOpostgres.create(contractors[0])
+    // contractors[0].firstName = 'Conman'
+    // await contractor2DAOpostgres.update(contractors[0])
+    // await contractor2DAOpostgres.read(contractors[0].id)
+
+
+    // await employee2DAOpostgres.create(employees[0])
+    // employees[0].firstName = 'Conman'
+    // await employee2DAOpostgres.update(employees[0])
+    // await employee2DAOpostgres.read(employees[0].id)
+    // // console.log(employees[0])
+
+
     // for (customer of customers) {
         // await customer2DAOpostgres.create(customer)
         // await customer2DAOpostgres.read(customer.id)
@@ -715,14 +744,3 @@ async function postgresRun(
     //     await employee3DAOpostgres.create(employee)
     // }
     //etc.....
-// Postgres ORM 2 Executive testing - - - - - - - -
-// await executive2DAOpostgres.create(executives[0])
-// await executive2DAOpostgres.read(executives[0].id)
-// await executive2DAOpostgres.update()
-// executive1DAO.update(executives[0].id)
-executive1DAO.remove(64482, db)
-// executive1DAO.list(db)
-// for (executive of executives) {
-//     executive1DAO.create(managers, db)
-// }
-// }
