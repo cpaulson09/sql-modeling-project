@@ -25,16 +25,19 @@ customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlit
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite")
 
 // PostgreSQL DAOs
-employee1DAOPostgres = require("./postgresqlDAO/ORM1/employeeORM1Postgres")
-manager1DAOPostgres = require("./postgresqlDAO/ORM1/managerORM1Postgres")
-executive1DAOPostgres = require("./postgresqlDAO/ORM1/executiveORM1Postgres")
-customer1DAOPostgres = require("./postgresqlDAO/ORM1/customerORM1Postgres")
+employee1DAOPostgres = require("./postgresqlDAO/ORM1/employeeDAO1Postgres")
+manager1DAOPostgres = require("./postgresqlDAO/ORM1/managerDAO1Postgres")
+executive1DAOPostgres = require("./postgresqlDAO/ORM1/executiveDAO1Postgres")
+customer1DAOPostgres = require("./postgresqlDAO/ORM1/customerDAO1Postgres")
+contractor1DAOPostgres = require("./postgresqlDAO/ORM1/contractorDAO1Postgres")
+vendor1DAOPostgres = require("./postgresqlDAO/ORM1/vendorDAO1Postgres")
 
 employee2DAOpostgres = require('./postgresqlDAO/ORM2/employeeDAO2Postgres')
 customer2DAOpostgres = require("./postgresqlDAO/ORM2/customerDAO2Postgres")
 executive2DAOpostgres = require("./postgresqlDAO/ORM2/executiveDAO2Postgres")
 contractor2DAOpostgres = require('./postgresqlDAO/ORM2/contractorDAO2Postgres')
 manager2DAOpostgres = require('./postgresqlDAO/ORM2/managerDAO2Postgres')
+vendor2DAOPostgres = require("./postgresqlDAO/ORM2/vendorDAO2Postgres")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
