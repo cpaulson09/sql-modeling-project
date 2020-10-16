@@ -14,7 +14,7 @@ const create = async (executive) => {
         const query = "INSERT INTO orm2_executive( id, managerid, bonus) VALUES($1,$2,$3)"
         const res = await client.query(query, [
             executive.id,
-            executive.managerid,
+            executive.managerId,
             executive.bonus
         ])
         console.log(res.rows)
@@ -42,7 +42,7 @@ const read = async (id) => {
             knownId = result.rows[0].id
         })
 
-        const query2 = `SELECT * FROM orm2_executive WHERE id = ${knownId}`
+        const query2 = `SELECT * FROM orm2_executive WHERE id = ${id}`
 
         const found = await client.query(query2).then(result => {
             console.log('found Data',result.rows)
@@ -88,7 +88,7 @@ const remove = async (id) => {
             connectionString: connectionString,
         })
         client.connect()
-        const query = "DELETE FROM orm2_customer WHERE id = $1"
+        const query = "DELETE FROM orm2_executive WHERE id = $1"
         const res = await client.query(query, [customer.id])
         console.log(res.rows)
         await client.end()
@@ -106,7 +106,7 @@ const list = async () => {
             connectionString: connectionString,
         })
         client.connect()
-        const query = "SELECT * FROM orm2_customer;"
+        const query = "SELECT * FROM orm2_executive;"
         const res = await client.query(query).then(result => {
             console.log(result.rows)
 

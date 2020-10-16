@@ -2,6 +2,7 @@ const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
 
+// SQLite DAO
 employee1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/employeeDAO1Sqlite")
 manager1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/managerDAO1Sqlite")
 executive1DAO = require("../sql-modeling-project/sqliteDAO/ORM1/executiveDAO1Sqlite")
@@ -24,6 +25,11 @@ customer3DAO = require("../sql-modeling-project/sqliteDAO/ORM3/customerDAO3Sqlit
 customer4DAO = require("../sql-modeling-project/sqliteDAO/ORM4/customerDAO4Sqlite")
 
 // PostgreSQL DAOs
+employee1DAOPostgres = require("./postgresqlDAO/ORM1/employeeORM1Postgres")
+manager1DAOPostgres = require("./postgresqlDAO/ORM1/managerORM1Postgres")
+executive1DAOPostgres = require("./postgresqlDAO/ORM1/executiveORM1Postgres")
+customer1DAOPostgres = require("./postgresqlDAO/ORM1/customerORM1Postgres")
+
 employee2DAOpostgres = require('./postgresqlDAO/ORM2/employeeDAO2Postgres')
 customer2DAOpostgres = require("./postgresqlDAO/ORM2/customerDAO2Postgres")
 executive2DAOpostgres = require("./postgresqlDAO/ORM2/executiveDAO2Postgres")
@@ -466,7 +472,13 @@ let db = new sqlite.Database("sqlite.db", (err) => {
     console.log("\nconnected to db")
 })
 
-postgresRun(null, null, null, managers, contractors, null);
+
+
+// ================== DAOs ===================================================
+// ===========================================================================
+
+// customers, employees, vendors, managers, contractors, executives
+postgresRun(customers, null, null, null, null, null);
 return;
 
 // console.log(vendors)
@@ -711,8 +723,33 @@ async function postgresRun(
 ) {
     // Postgres ORM 2 Executive testing - - - - - - - -
 
+    await customer1DAOPostgres.create(customers[0])
 
-    await manager2DAOpostgres.create(managers[0])
+    // await executive1DAOPostgres.create(executives[0])
+    // await executive1DAOPostgres.read(executives[0].id)
+    // executives[0].bonus = "4"
+    // console.log(executives[0])
+    // await executive1DAOPostgres.update(executives[0])
+    // await executive1DAOPostgres.remove(62455)
+    // await executive1DAOPostgres.list()
+
+    // await manager1DAOPostgres.create(managers[0])
+    // await manager1DAOPostgres.read(managers[0].id)
+    // managers[0].employeeId = 4
+    // await manager1DAOPostgres.update(managers[0])
+    // await manager1DAOPostgres.remove(62455)
+    // await manager1DAOPostgres.list()
+
+
+    // await employee1DAOPostgres.create(employees[0])
+    // employees[0].department = 'ConnorP'
+    // console.log(employees[0])
+    // await employee1DAOPostgres.update(employees[0])
+    // await employee1DAOPostgres.list()
+    // await employee1DAOPostgres.read(employees[0].id)
+
+    //await executive2DAOpostgres.create(executives[0])
+    //await manager2DAOpostgres.create(managers[0])
     // managers[0].employeeId = '3456'
     // await manager2DAOpostgres.update()
     // await manager2DAOpostgres.read(managers[0].id)
