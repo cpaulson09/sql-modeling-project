@@ -1,3 +1,4 @@
+const { exec } = require("child_process")
 const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
@@ -38,6 +39,19 @@ executive2DAOpostgres = require("./postgresqlDAO/ORM2/executiveDAO2Postgres")
 contractor2DAOpostgres = require('./postgresqlDAO/ORM2/contractorDAO2Postgres')
 manager2DAOpostgres = require('./postgresqlDAO/ORM2/managerDAO2Postgres')
 vendor2DAOPostgres = require("./postgresqlDAO/ORM2/vendorDAO2Postgres")
+
+contractor3DAOPostgres = require("./postgresqlDAO/ORM3/contractorDAO3Postgres")
+customer3DAOPostgres = require("./postgresqlDAO/ORM3/customerDAO3Postgres")
+vendor3DAOPostgres = require("./postgresqlDAO/ORM3/vendorDAO3Postgres")
+executive3DAOPostgres = require("./postgresqlDAO/ORM3/executiveDAO3Postgres")
+manager3DAOPostgres = require("./postgresqlDAO/ORM3/managerDAO3Postgres")
+employee3DAOPostgres = require("./postgresqlDAO/ORM3/employeeDAO3Postgres")
+
+employee4DAOPostgres = require("./postgresqlDAO/ORM4/employeeDAO4Postgres")
+customer4DAOPostgres = require("./postgresqlDAO/ORM4/customerDAO4Postgres")
+contractor4DAOPostgres = require("./postgresqlDAO/ORM4/contractorDAO4Postgres")
+vendor4DAOPostgres = require("./postgresqlDAO/ORM4/vendorDAO4Postgres")
+
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -481,7 +495,7 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // ===========================================================================
 
 // customers, employees, vendors, managers, contractors, executives
-postgresRun(customers, null, null, null, null, null);
+postgresRun(customers, employees, vendors, managers, contractors, executives);
 return;
 
 // console.log(vendors)
@@ -716,17 +730,37 @@ db.close((err) => {
 
 // client.end();
 
-async function postgresRun(
-    customers,
-    employees,
-    vendors,
-    managers,
-    contractors,
-    executives
-) {
+async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
     // Postgres ORM 2 Executive testing - - - - - - - -
 
-    await customer1DAOPostgres.create(customers[0])
+    // await vendor4DAOPostgres.create(vendors[0])
+
+    //await contractor4DAOPostgres.create(contractors[0])
+
+    // await customer4DAOPostgres.create(customers[0])
+
+    // await employee4DAOPostgres.create(employees[0])
+
+    // await employee3DAOPostgres.create(employees[0])
+    // await employee3DAOPostgres.read(employees[0].id)
+
+    // await manager3DAOPostgres.create(managers[0])
+
+    // await executive3DAOPostgres.create(executives[0])
+
+    // await vendor3DAOPostgres.create(vendors[0])
+    // vendors[0].lastName = 'Paulson'
+    // await vendor3DAOPostgres.update(vendors[0])
+    // await vendor3DAOPostgres.read(vendors[0].id)
+    // await vendor3DAOPostgres.list()
+
+    // await customer3DAOPostgres.create(customers[0])
+    // customers[0].lastName = 'Paulson'
+    // await customer3DAOPostgres.update(customers[0])
+    // await customer3DAOPostgres.read(customers[0].id)
+    // await customer3DAOPostgres.list()
+
+    //await customer1DAOPostgres.create(customers[0])
 
     // await executive1DAOPostgres.create(executives[0])
     // await executive1DAOPostgres.read(executives[0].id)
