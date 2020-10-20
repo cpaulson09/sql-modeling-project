@@ -6,7 +6,7 @@ Breck, Connor, Gracias, Nate
 ## npm installs
 npm install sqlite3  
 npm install pg  
-npm install faker
+npm install faker  
 npm install knex
 
 
