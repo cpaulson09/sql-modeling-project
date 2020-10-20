@@ -821,8 +821,9 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
 
     // ============ SQLite Knex Testing ===================
 
-    employee1DAOsqlite_knex.create(employees[0])
-    employees[0].department = "Connor"
-    employee1DAOsqlite_knex.update(employees[0])
+    // employee1DAOsqlite_knex.create(employees[0])
+    // employees[0].department = "Connor"
+    // employee1DAOsqlite_knex.update(employees[0])
     employee1DAOsqlite_knex.remove(3711)
-    employee1DAOsqlite_knex.read(employees[0].id)
+    // employee1DAOsqlite_knex.read(employees[0].id)
+    employee1DAOsqlite_knex.list()

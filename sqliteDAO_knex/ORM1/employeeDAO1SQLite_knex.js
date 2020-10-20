@@ -20,6 +20,8 @@ const create = (employee) => {
         for (row of rows) {
             //console.log(row['department'])
         }
+    }).finally(function () {
+        knex.destroy()
     })
 }
 
@@ -31,12 +33,14 @@ const read = (id) => {
     for (row of rows) {
         console.log(`${row['id']} ${row['personId']} ${row['department']} ${row['title']} ${row['salary']} ${row['managerId']} ${row['companyId']}`);
     }
+    }).finally(function () {
+        knex.destroy()
     })
 }
 
 const update = (employee) => {
     knex('orm1_employee')
-    .where({'id': employee.id})
+    .where("id", `${employee.id}`)
     .update({ 
         id: `${employee.id}`, 
         personId: `${employee.personId}`, 
@@ -45,25 +49,29 @@ const update = (employee) => {
         salary: `${employee.salary}`, 
         managerId:`${employee.managerId}`, 
         companyId: `${employee.companyId}`
-    })
+    }).then(function (count) {
+        console.log('update successful');
+    }).finally(function () {
+        knex.destroy();
+    });
 }
 
 const remove = (id) => {
-    console.log(id)
-    knex('orm1_employee')
-        .where( 'id', id )
-        .del()
 
+    knex("orm1_employee").where("id",`${id}`).del().then(function (count) {
+        console.log('delete successful');
+    }).finally(function () {
+        knex.destroy()
+    });
 }
 
 const list = () => {
-
     knex
     .from('orm1_employee').select('*')
     .then((rows) => {
     for (row of rows) {
         console.log(`${row['id']} ${row['firstName']} ${row['lastName']}`);
-    }
+        }
     })
 }
 
