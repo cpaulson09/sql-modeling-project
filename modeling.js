@@ -3,54 +3,53 @@ const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
 
-// SQLite DAO
+// SQLite Raw DAO
 employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
 manager1DAO = require("./sqliteDAO_raw/ORM1/managerDAO1Sqlite")
 executive1DAO = require("./sqliteDAO_raw/ORM1/executiveDAO1Sqlite")
 vendor1DAO = require("./sqliteDAO_raw/ORM1/vendorDAO1Sqlite")
 contractor1DAO = require("./sqliteDAO_raw/ORM1/contractorDAO1Sqlite")
 customer1DAO = require("./sqliteDAO_raw/ORM1/customerDAO1Sqlite")
-
 employee2DAO = require("./sqliteDAO_raw/ORM2/employeeDAO2Sqlite")
 customer2DAO = require("./sqliteDAO_raw/ORM2/customerDAO2Sqlite")
 manager2DAO = require("./sqliteDAO_raw/ORM2/managerDAO2Sqlite")
 contractor2DAO = require("./sqliteDAO_raw/ORM2/contractorDAO2Sqlite")
 vendor2DAO = require("./sqliteDAO_raw/ORM2/vendorDAO2Sqlite")
 executive2DAO = require("./sqliteDAO_raw/ORM2/executiveDAO2Sqlite")
-
 manager3DAO = require("./sqliteDAO_raw/ORM3/managerDAO3Sqlite")
 executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
 vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
 customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
-
 customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
 
-// PostgreSQL DAOs
-employee1DAOPostgres = require("./postgresqlDAO_raw/ORM1/employeeDAO1Postgres")
-manager1DAOPostgres = require("./postgresqlDAO_raw/ORM1/managerDAO1Postgres")
-executive1DAOPostgres = require("./postgresqlDAO_raw/ORM1/executiveDAO1Postgres")
-customer1DAOPostgres = require("./postgresqlDAO_raw/ORM1/customerDAO1Postgres")
-contractor1DAOPostgres = require("./postgresqlDAO_raw/ORM1/contractorDAO1Postgres")
-vendor1DAOPostgres = require("./postgresqlDAO_raw/ORM1/vendorDAO1Postgres")
+// SQLite Knex DAO
+employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
 
-employee2DAOpostgres = require('./postgresqlDAO_raw/ORM2/employeeDAO2Postgres')
-customer2DAOpostgres = require("./postgresqlDAO_raw/ORM2/customerDAO2Postgres")
-executive2DAOpostgres = require("./postgresqlDAO_raw/ORM2/executiveDAO2Postgres")
-contractor2DAOpostgres = require('./postgresqlDAO_raw/ORM2/contractorDAO2Postgres')
-manager2DAOpostgres = require('./postgresqlDAO_raw/ORM2/managerDAO2Postgres')
-vendor2DAOPostgres = require("./postgresqlDAO_raw/ORM2/vendorDAO2Postgres")
+// PostgreSQL Raw DAOs
+employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
+manager1DAOPostgres = require("./postgresDAO_raw/ORM1/managerDAO1Postgres")
+executive1DAOPostgres = require("./postgresDAO_raw/ORM1/executiveDAO1Postgres")
+customer1DAOPostgres = require("./postgresDAO_raw/ORM1/customerDAO1Postgres")
+contractor1DAOPostgres = require("./postgresDAO_raw/ORM1/contractorDAO1Postgres")
+vendor1DAOPostgres = require("./postgresDAO_raw/ORM1/vendorDAO1Postgres")
+employee2DAOpostgres = require('./postgresDAO_raw/ORM2/employeeDAO2Postgres')
+customer2DAOpostgres = require("./postgresDAO_raw/ORM2/customerDAO2Postgres")
+executive2DAOpostgres = require("./postgresDAO_raw/ORM2/executiveDAO2Postgres")
+contractor2DAOpostgres = require('./postgresDAO_raw/ORM2/contractorDAO2Postgres')
+manager2DAOpostgres = require('./postgresDAO_raw/ORM2/managerDAO2Postgres')
+vendor2DAOPostgres = require("./postgresDAO_raw/ORM2/vendorDAO2Postgres")
 
-contractor3DAOPostgres = require("./postgresqlDAO_raw/ORM3/contractorDAO3Postgres")
-customer3DAOPostgres = require("./postgresqlDAO_raw/ORM3/customerDAO3Postgres")
-vendor3DAOPostgres = require("./postgresqlDAO_raw/ORM3/vendorDAO3Postgres")
-executive3DAOPostgres = require("./postgresqlDAO_raw/ORM3/executiveDAO3Postgres")
-manager3DAOPostgres = require("./postgresqlDAO_raw/ORM3/managerDAO3Postgres")
-employee3DAOPostgres = require("./postgresqlDAO_raw/ORM3/employeeDAO3Postgres")
+contractor3DAOPostgres = require("./postgresDAO_raw/ORM3/contractorDAO3Postgres")
+customer3DAOPostgres = require("./postgresDAO_raw/ORM3/customerDAO3Postgres")
+vendor3DAOPostgres = require("./postgresDAO_raw/ORM3/vendorDAO3Postgres")
+executive3DAOPostgres = require("./postgresDAO_raw/ORM3/executiveDAO3Postgres")
+manager3DAOPostgres = require("./postgresDAO_raw/ORM3/managerDAO3Postgres")
+employee3DAOPostgres = require("./postgresDAO_raw/ORM3/employeeDAO3Postgres")
 
-employee4DAOPostgres = require("./postgresqlDAO_raw/ORM4/employeeDAO4Postgres")
-customer4DAOPostgres = require("./postgresqlDAO_raw/ORM4/customerDAO4Postgres")
-contractor4DAOPostgres = require("./postgresqlDAO_raw/ORM4/contractorDAO4Postgres")
-vendor4DAOPostgres = require("./postgresqlDAO_raw/ORM4/vendorDAO4Postgres")
+employee4DAOPostgres = require("./postgresDAO_raw/ORM4/employeeDAO4Postgres")
+customer4DAOPostgres = require("./postgresDAO_raw/ORM4/customerDAO4Postgres")
+contractor4DAOPostgres = require("./postgresDAO_raw/ORM4/contractorDAO4Postgres")
+vendor4DAOPostgres = require("./postgresDAO_raw/ORM4/vendorDAO4Postgres")
 
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
@@ -482,12 +481,12 @@ executives[1].managerId = executives[2].id
 
 executives[2].managerId = executives[2].id
 
-let db = new sqlite.Database("sqlite.db", (err) => {
-    if (err) {
-        console.error(err.message)
-    }
-    console.log("\nconnected to db")
-})
+// let db = new sqlite.Database("sqlite.db", (err) => {
+//     if (err) {
+//         console.error(err.message)
+//     }
+//     console.log("\nconnected to db")
+// })
 
 
 
@@ -495,8 +494,8 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // ===========================================================================
 
 // customers, employees, vendors, managers, contractors, executives
-postgresRun(customers, employees, vendors, managers, contractors, executives);
-return;
+// postgresRun(customers, employees, vendors, managers, contractors, executives);
+// return;
 
 // console.log(vendors)
 // console.log(customers)
@@ -721,12 +720,12 @@ return;
 //     executive1DAO.create(managers, db)
 // }
 
-db.close((err) => {
-    if (err) {
-        console.error(err.message)
-    }
-    console.log("closing sqlite database\n")
-})
+// db.close((err) => {
+//     if (err) {
+//         console.error(err.message)
+//     }
+//     console.log("closing sqlite database\n")
+// })
 
 // client.end();
 
@@ -818,3 +817,12 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     //     await employee3DAOpostgres.create(employee)
     // }
     //etc.....
+
+
+    // ============ SQLite Knex Testing ===================
+
+    employee1DAOsqlite_knex.create(employees[0])
+    employees[0].department = "Connor"
+    employee1DAOsqlite_knex.update(employees[0])
+    employee1DAOsqlite_knex.remove(3711)
+    employee1DAOsqlite_knex.read(employees[0].id)
