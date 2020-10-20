@@ -52,8 +52,8 @@ const update = (employee) => {
     }).then(function (count) {
         console.log('update successful');
     }).finally(function () {
-        knex.destroy();
-    });
+        knex.destroy()
+    })
 }
 
 const remove = (id) => {
@@ -72,6 +72,8 @@ const list = () => {
     for (row of rows) {
         console.log(`${row['id']} ${row['firstName']} ${row['lastName']}`);
         }
+    }).finally(function () {
+        knex.destroy()
     })
 }
 

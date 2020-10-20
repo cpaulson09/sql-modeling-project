@@ -24,6 +24,8 @@ customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
 
 // SQLite Knex DAO
 employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
+manager1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/managerDAO1Sqlite_knex')
+
 
 // PostgreSQL Raw DAOs
 employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
@@ -824,6 +826,13 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // employee1DAOsqlite_knex.create(employees[0])
     // employees[0].department = "Connor"
     // employee1DAOsqlite_knex.update(employees[0])
-    employee1DAOsqlite_knex.remove(3711)
+    // employee1DAOsqlite_knex.remove(3711)
     // employee1DAOsqlite_knex.read(employees[0].id)
-    employee1DAOsqlite_knex.list()
+    // employee1DAOsqlite_knex.list()
+
+    // manager1DAOsqlite_knex.create(managers[0])
+    // manager1DAOsqlite_knex.read(managers[0].id)
+    // managers[0].employeeId = 464
+    // manager1DAOsqlite_knex.update(managers[0])
+    // manager1DAOsqlite_knex.remove(24739)
+    manager1DAOsqlite_knex.list()
