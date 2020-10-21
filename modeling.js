@@ -835,4 +835,28 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // managers[0].employeeId = 464
     // manager1DAOsqlite_knex.update(managers[0])
     // manager1DAOsqlite_knex.remove(24739)
-    manager1DAOsqlite_knex.list()
+    // manager1DAOsqlite_knex.list()
+
+
+    
+    // const MongoClient = require('mongodb').MongoClient;
+    // const uri = "mongodb+srv://admin:ZQpYhv2b5d9Q5Q3@sql-modeling-project.kufz1.mongodb.net/<dbname>?retryWrites=true&w=majority";
+    // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    // async function run() {
+    //     try {
+    //         await client.connect();
+        
+    //         const collection = client.db("4660-Boiz").collection("orm1_employee");
+    //         collection.insertOne({"yoma": "sup"});
+    //         console.log(await collection.findOne({"yoma": "sups"}))
+        
+    //         // const query = { "personId": 81167 }
+    //         // const result = await collection.findOne(query);
+    //         // console.log(result);
+    //     } finally {
+    //       // Ensures that the client will close when you finish/error
+    //          await client.close();
+    //     }
+    // }
+    // run().catch(console.dir);
