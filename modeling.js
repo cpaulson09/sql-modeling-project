@@ -2,6 +2,8 @@ const { exec } = require("child_process")
 const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
+const { Sequelize } = require("sequelize");
+
 
 // SQLite Raw DAO
 employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
@@ -26,6 +28,8 @@ customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
 employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
 manager1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/managerDAO1Sqlite_knex')
 
+// SQLite sequelize
+const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
 
 // PostgreSQL Raw DAOs
 employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
@@ -337,6 +341,7 @@ class Customer extends Nonemployee {
 }
 
 // 5 - put the objects in arrays
+let persons = []
 let vendors = []
 let customers = []
 let contractors = []
@@ -347,6 +352,21 @@ let executives = []
 // 2 - use faker.js to create fake data
 // 3 - call the constructors with faker data
 for (let i = 0; i < 5; i++) {
+    persons.push(
+        new Person(
+            faker.random.number(),
+            faker.name.firstName(),
+            faker.name.firstName(),
+            faker.name.lastName(),
+            faker.date.past(),
+            faker.phone.phoneNumber(),
+            faker.internet.email(),
+            faker.address.streetAddress(),
+            faker.address.city(),
+            faker.address.state(),
+            faker.address.zipCode(),
+        )
+    )
     vendors.push(
         new Vendor(
             faker.random.number(),
@@ -835,4 +855,39 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // managers[0].employeeId = 464
     // manager1DAOsqlite_knex.update(managers[0])
     // manager1DAOsqlite_knex.remove(24739)
+
+
+    
+    // const MongoClient = require('mongodb').MongoClient;
+    // const uri = "mongodb+srv://admin:ZQpYhv2b5d9Q5Q3@sql-modeling-project.kufz1.mongodb.net/<dbname>?retryWrites=true&w=majority";
+    // const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+
+    // async function run() {
+    //     try {
+    //         await client.connect();
+        
+    //         const collection = client.db("4660-Boiz").collection("orm1_employee");
+    //         collection.insertOne({"yoma": "sup"});
+    //         console.log(await collection.findOne({"yoma": "sups"}))
+        
+    //         // const query = { "personId": 81167 }
+    //         // const result = await collection.findOne(query);
+    //         // console.log(result);
+    //     } finally {
+    //       // Ensures that the client will close when you finish/error
+    //          await client.close();
+    //     }
+    // }
+    // run().catch(console.dir);
+
+    
     manager1DAOsqlite_knex.list()
+
+
+
+    // ===================== SQLITE Sequilize ======================== //
+// executiveDAOsqlite_sequelize();
+
+module.exports = {
+    persons
+}
