@@ -32,6 +32,49 @@ const NonEmployee = sequelize.define(
   }
 );
 
+const Person = sequelize.define('orm1_person', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false
+  },
+  firstName: {
+    type: DataTypes.STRING,
+  },
+  middleName: {
+    type: DataTypes.STRING,
+},
+  lastName: {
+    type: DataTypes.STRING,
+  },
+  dob: {
+    type: DataTypes.DATE,
+  },
+  phone: {
+    type: DataTypes.STRING,
+  },
+  email: {
+    type: DataTypes.STRING,
+  },
+  streetAddress: {
+    type: DataTypes.STRING,
+  },
+  city: {
+    type: DataTypes.STRING,
+  },
+  state: {
+    type: DataTypes.STRING,
+  },
+  zip: {
+    type: DataTypes.STRING,
+  },
+}, {
+  // Other model options go here
+  freezeTableName: true,
+  timestamps: false
+});
+
 //test function to authenticate and create the function
 async function authenticate() {
   try {

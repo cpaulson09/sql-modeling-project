@@ -1,13 +1,36 @@
-const { timeStamp } = require("console");
 const { Sequelize, DataTypes } = require("sequelize");
-const { persons } = require("../../modeling.js")
-const { resolve } = require("path")
+const { resolve } = require("path");
 
 const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: resolve(__dirname, '../../test.db')
+  dialect: "sqlite",
+  storage: resolve(__dirname, "../../test.db"),
 });
 
+const Customer = sequelize.define(
+  "orm1_nonemployee",
+  {
+    // Model attributes are defined here
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+      allowNull: false,
+    },
+    personId: {
+      type: DataTypes.INTEGER,
+    },
+    company: {
+      type: DataTypes.TEXT,
+    },
+    type: {
+      type: DataTypes.INTEGER,
+    },
+  },
+  {
+    freezeTableName: true,
+    timestamps: false,
+  }
+);
 const Person = sequelize.define('orm1_person', {
   id: {
     type: DataTypes.INTEGER,
@@ -51,16 +74,20 @@ const Person = sequelize.define('orm1_person', {
   timestamps: false
 });
 
+
+
+
 //test function to authenticate and create the function
 async function authenticate() {
   try {
     await sequelize.authenticate();
+    await Customer.sync({ force: true });
     await Person.sync({ force: true });
     console.log("Connection has been established successfully.");
     create();
-    read();
-    update();
-    remove();
+    // read();
+    // update();
+    // remove();
     list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
@@ -70,49 +97,55 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
+  const customer = await Customer.create({
+    personId: 8,
+    company: 'LMP',
+    type: 'Marketing'
+  });
+
   const person = await Person.create({
-    firstName: 'Edmond',
-    lastName: 'Weiss',
-    dob: new Date('September 6, 1995 03:24:00'),
+    id: 8,
+    firstName: 'John',
+    lastName: 'Doe',
+    dob: new Date('October 6, 1995 03:24:00'),
     phone: '123-123-2134',
-    email: 'eW@gamil.com',
-    streetAddress: '2 stuff ave',
+    email: 'LMPW@gamil.com',
+    streetAddress: '2 Roger ave',
     city: 'tocoma',
-    state: 'WA',
-    zip: '11923'
+    state: 'LA',
+    zip: '99199'
   });
 };
 
 const read = async (id) => {
-  const person = await Person.findAll({
+  const customer = await Customer.findAll({
     where: {
-      firstName: 'Edmond'
+      personId: 8
     }
   })
 };
 
 const update = async (executive) => {
-  const person = await Person.update({ middleName : 'Gracias' }, {
+  const customer = await Customer.update({ company: 'LSP' }, {
     where: {
-      firstName: 'Edmond'
+      personId: 8
     }
   });
 };
 
 const remove = async (id) => {
-  const person = await Person.destroy({
+  const customer = await Customer.destroy({
     where: {
-      firstName: 'Edmond'
+      personId: 8
     }
   });
 };
 
 const list = async () => {
-  const person= Person.findAll()
+  const nonemployee= Customer.findAll()
+  const person = Person.findAll()
+  console.log(await nonemployee);
   console.log(await person);
-
 };
 
 // module.exports = { create, read, update, remove, list };
-
-// module.exports = { create, read, update, remove, list, Person };
