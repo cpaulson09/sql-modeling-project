@@ -6,8 +6,8 @@ const sequelize = new Sequelize({
   storage: resolve(__dirname, "../../test.db"),
 });
 
-const Executive = sequelize.define(
-  "orm1_executive",
+const Manager = sequelize.define(
+  "orm1_manager",
   {
     // Model attributes are defined here
     id: {
@@ -16,11 +16,8 @@ const Executive = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    managerId: {
+    employeeId: {
       type: DataTypes.INTEGER,
-    },
-    bonus: {
-      type: DataTypes.TEXT,
     },
   },
   {
@@ -33,7 +30,7 @@ const Executive = sequelize.define(
 async function authenticate() {
   try {
     await sequelize.authenticate();
-    await Executive.sync({ force: true });
+    await Manager.sync({ force: true });
     console.log("Connection has been established successfully.");
     create();
     // read();
@@ -48,38 +45,37 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
-  const executive1 = await Executive.create({
-    managerId: 2,
-    bonus: "2000",
+  const manager = await Manager.create({
+    employeeId: 2,
   });
 };
 
 const read = async (id) => {
-  const executive = await Executive.findAll({
+  const manager = await Manager.findAll({
     where: {
-      managerId: 2
+      employeeUd: 2
     }
   })
 };
 
 const update = async (executive) => {
-  const executive2 = await Executive.update({ bonus: "2000" }, {
+  const manager = await Manager.update({ employeeId: 3 }, {
     where: {
-      managerId: 2
+      employeeId: 2
     }
   });
 };
 
 const remove = async (id) => {
-  const executive2 = await Executive.destroy({
+  const manager = await Manager.destroy({
     where: {
-      managerId: 2
+      employeeUd: 2
     }
   });
 };
 
 const list = async () => {
-  const executive3= Executive.findAll()
+  const manager= Manager.findAll()
   // console.log(await executive3);
 };
 

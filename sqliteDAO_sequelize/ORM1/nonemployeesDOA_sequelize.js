@@ -6,8 +6,8 @@ const sequelize = new Sequelize({
   storage: resolve(__dirname, "../../test.db"),
 });
 
-const Executive = sequelize.define(
-  "orm1_executive",
+const NonEmployee = sequelize.define(
+  "orm1_nonemployee",
   {
     // Model attributes are defined here
     id: {
@@ -16,11 +16,14 @@ const Executive = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    managerId: {
+    personId: {
       type: DataTypes.INTEGER,
     },
-    bonus: {
+    company: {
       type: DataTypes.TEXT,
+    },
+    type: {
+      type: DataTypes.INTEGER,
     },
   },
   {
@@ -33,7 +36,7 @@ const Executive = sequelize.define(
 async function authenticate() {
   try {
     await sequelize.authenticate();
-    await Executive.sync({ force: true });
+    await NonEmployee.sync({ force: true });
     console.log("Connection has been established successfully.");
     create();
     // read();
@@ -48,38 +51,39 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
-  const executive1 = await Executive.create({
-    managerId: 2,
-    bonus: "2000",
+  const nonemployee = await NonEmployee.create({
+    personId: 2,
+    company: 'USA',
+    type: 'Rich Country'
   });
 };
 
 const read = async (id) => {
-  const executive = await Executive.findAll({
+  const nonemployee = await NonEmployee.findAll({
     where: {
-      managerId: 2
+      personId: 2
     }
   })
 };
 
 const update = async (executive) => {
-  const executive2 = await Executive.update({ bonus: "2000" }, {
+  const nonemployee = await NonEmployee.update({ company: 'EU' }, {
     where: {
-      managerId: 2
+      personId: 2
     }
   });
 };
 
 const remove = async (id) => {
-  const executive2 = await Executive.destroy({
+  const nonemployee = await NonEmployee.destroy({
     where: {
-      managerId: 2
+      personId: 2
     }
   });
 };
 
 const list = async () => {
-  const executive3= Executive.findAll()
+  const nonemployee= NonEmployee.findAll()
   // console.log(await executive3);
 };
 
