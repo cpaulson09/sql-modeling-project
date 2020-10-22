@@ -899,7 +899,6 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // managers[0].employeeId = 464
     // manager1DAOsqlite_knex.update(managers[0])
     // manager1DAOsqlite_knex.remove(24739)
-<<<<<<< HEAD
     // manager1DAOsqlite_knex.list()
 
     // executive1DAOsqlite_knex.create(executives[0])
@@ -965,7 +964,6 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // customer4DAOpostgres_knex.create(customers[0])
     // employee4DAOpostgres_knex.create(employees[0])
     // vendor4DAOpostgres_knex.create(vendors[0])
-=======
 
 
     
@@ -1002,4 +1000,3 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
 module.exports = {
     persons
 }
->>>>>>> 3a3888eaa588ad3301352b6aa4c9e2ae6b98b8c3
