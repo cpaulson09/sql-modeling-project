@@ -101,6 +101,11 @@ contractorsMongo = require("./mongoDAO_raw/contractor")
 customersMongo = require("./mongoDAO_raw/customer")
 vendorsMongo = require("./mongoDAO_raw/vendor")
 
+mongooseCompany = require('./mongooseDAO_raw/company')
+mongooseContractor = require('./mongooseDAO_raw/contractor')
+mongooseCustomer = require('./mongooseDAO_raw/customer')
+mongooseVendor = require('./mongooseDAO_raw/vendor')
+
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
 class Person {
@@ -990,60 +995,25 @@ executives[2].managerId = executives[2].id
     // }
     // run().catch(console.dir);
 
-    const mongoose = require('mongoose');
-    const employeeORM1 = require('./mongooseDAO_schemas/ORM1/employeeSchema')
-    const uri = "mongodb+srv://admin:ZQpYhv2b5d9Q5Q3@sql-modeling-project.kufz1.mongodb.net/" + encodeURI('orm1_employee') + "?retryWrites=true&w=majority";
-
-    async function runMongoose() {
-        console.clear();
-        try {
-            mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, uri_decode_auth: true })
-            .then(() => {
-                try {
-                    let createEmployee = new employeeORM1({
-                        "id": employees[0].id, 
-                        "firstName": employees[0].firstName,
-                        "middleName": employees[0].middleName,
-                        "lastName": employees[0].lastName,
-                        "dob": employees[0].dob,
-                        "phone": employees[0].phone,
-                        "email": employees[0].email,
-                        "streetAddress": employees[0].streetAddress,
-                        "city": employees[0].city,
-                        "state": employees[0].state,
-                        "zip": employees[0].zip
-                    });
-    
-                    createEmployee.save();
-                    console.log(createEmployee);
-                }
-                catch (err) {
-                    console.error(err);
-                }
-            })
-            .catch(err => {
-                console.error('Database connection error: ', err)
-            })
-        }
-        finally {
-            mongoose.disconnect()
-        }
+    runMongoose()
+    async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
+        mongooseCompany.create(employees, managers, executives);
+        mongooseContractor.create(contractors);
+        mongooseCustomer.create(customers);
+        mongooseVendor.create(vendors);
     }
-    runMongoose().catch(console.dir);
     
     // manager1DAOsqlite_knex.list()
-<<<<<<< HEAD
-=======
 
-mongoRun(customers, employees, vendors, managers, contractors, executives);
 
-async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
-    companiesMongo.create(employees, managers, executives)
-    contractorsMongo.create(contractors)
-    customersMongo.create(customers)
-    vendorsMongo.create(vendors)
-}
->>>>>>> 020d218582d6617bb469b3a0692b5d186b9bd982
+// mongoRun(customers, employees, vendors, managers, contractors, executives);
+
+// async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
+//     companiesMongo.create(employees, managers, executives)
+//     contractorsMongo.create(contractors)
+//     customersMongo.create(customers)
+//     vendorsMongo.create(vendors)
+// }
 
 
 
