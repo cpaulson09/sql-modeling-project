@@ -121,4 +121,4 @@ const list = async () => {
   console.log(await customer);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

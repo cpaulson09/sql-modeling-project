@@ -151,4 +151,4 @@ const list = async () => {
   // console.log(await person);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

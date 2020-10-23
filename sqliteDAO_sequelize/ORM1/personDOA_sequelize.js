@@ -113,6 +113,5 @@ const list = async () => {
 
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };
 
-// module.exports = { create, read, update, remove, list, Person };

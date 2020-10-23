@@ -81,14 +81,9 @@ const Person = sequelize.define('orm1_person', {
 async function authenticate() {
   try {
     await sequelize.authenticate();
-    await Customer.sync({ force: false });
-    await Person.sync({ force: false });
+    await Customer.sync({ force: true });
+    await Person.sync({ force: true });
     console.log("Connection has been established successfully.");
-    create();
-    // read();
-    // update();
-    // remove();
-    list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -96,39 +91,41 @@ async function authenticate() {
 
 authenticate();
 
-const create = async (executive = null) => {
+const create = async (contractor ) => {
+  console.log(contractor.id);
   const customer = await Customer.create({
-    personId: 8,
-    company: 'LMP',
-    type: 'Marketing'
+    id:contractor.id,
+    personId: contractor.id,
+    company: contractor.company,
+    type: 'contractor'
   });
 
   const person = await Person.create({
-    id: 8,
-    firstName: 'John',
-    lastName: 'Doe',
-    dob: new Date('October 6, 1995 03:24:00'),
-    phone: '123-123-2134',
-    email: 'LMPW@gamil.com',
-    streetAddress: '2 Roger ave',
-    city: 'tocoma',
-    state: 'LA',
-    zip: '99199'
+    id: contractor.id,
+    firstName: contractor.firstName,
+    lastName: contractor.lastName,
+    dob: contractor.dob,
+    phone: contractor.phone,
+    email: contractor.email,
+    streetAddress: contractor.streetAddress,
+    city: contractor.city,
+    state: contractor.state,
+    zip: contractor.zip
   });
 };
 
 const read = async (id) => {
   const customer = await Customer.findAll({
     where: {
-      personId: 8
+      personId: id
     }
   })
 };
 
-const update = async (executive) => {
+const update = async (contractor) => {
   const customer = await Customer.update({ company: 'LSP' }, {
     where: {
-      personId: 8
+      personId: contractor.id
     }
   });
 };
@@ -136,7 +133,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const customer = await Customer.destroy({
     where: {
-      personId: 8
+      personId: id
     }
   });
 };
@@ -144,8 +141,6 @@ const remove = async (id) => {
 const list = async () => {
   const nonemployee= Customer.findAll()
   const person = Person.findAll()
-  console.log(await nonemployee);
-  console.log(await person);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };
