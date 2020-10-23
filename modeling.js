@@ -49,7 +49,7 @@ customer4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/customerDAO4Sqlite_knex
 vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
 
 // SQLite sequelize
-const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
+// const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
 
 
 // PostgreSQL Raw DAOs
@@ -99,6 +99,11 @@ contractor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/contractorDAO4Pos
 customer4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/customerDAO4Postgres_knex')
 employee4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/employeeDAO4Postgres_knex')
 vendor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/vendorDAO4Postgres_knex')
+
+companiesMongo = require("./mongoDAO_raw/company")
+contractorsMongo = require("./mongoDAO_raw/contractor")
+customersMongo = require("./mongoDAO_raw/customer")
+vendorsMongo = require("./mongoDAO_raw/vendor")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -977,7 +982,7 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
         
     //         const collection = client.db("4660-Boiz").collection("orm1_employee");
     //         collection.insertOne({"yoma": "sup"});
-    //         console.log(await collection.findOne({"yoma": "sups"}))
+    //         console.log(await collection.findOne({"yoma": "sup"}))
         
     //         // const query = { "personId": 81167 }
     //         // const result = await collection.findOne(query);
@@ -990,7 +995,16 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // run().catch(console.dir);
 
     
-    manager1DAOsqlite_knex.list()
+    // manager1DAOsqlite_knex.list()
+
+mongoRun(customers, employees, vendors, managers, contractors, executives);
+
+async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
+    companiesMongo.create(employees, managers, executives)
+    contractorsMongo.create(contractors)
+    customersMongo.create(customers)
+    vendorsMongo.create(vendors)
+}
 
 
 
