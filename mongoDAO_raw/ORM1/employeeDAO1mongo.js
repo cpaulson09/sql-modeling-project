@@ -1,4 +1,3 @@
-// ORM 4 Mongo employee - CP
 const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://admin:ZQpYhv2b5d9Q5Q3@sql-modeling-project.kufz1.mongodb.net/<dbname>?retryWrites=true&w=majority";
 
@@ -9,9 +8,30 @@ const create = async (employee) => {
 
         await client.connect();
 
-        const collection = client.db("4660-Boiz").collection("orm1_employee")
+        const db = client.db("4660-Boiz")
 
-        await collection.insertOne(employee)
+        await db.collection('orm1_person').insertOne({
+            "id": employee.id,
+            "firstName": employee.firstName,
+            "middleName": employee.middleName,
+            "lastName": employee.lastName,
+            "dob": employee.dob,
+            "phone": employee.phone,
+            "email": employee.email,
+            "streetAddress": employee.streetAddress,
+            "city": employee.city,
+            "state": employee.state,
+            "zip": employee.zip,
+        })
+
+        await db.collection('orm1_employee').insertOne({
+            "personid": employee.id,
+            "department": employee.department,
+            "title": employee.title,
+            "salary": employee.salary,
+            "managerid": employee.managerId,
+            "companyId": employee.companyId
+        })
 
         await client.close();
 
@@ -29,11 +49,13 @@ const read = async (id) => {
 
         const collection = client.db("4660-Boiz").collection("orm1_employee")
 
-        let item = await collection.findOne({"id": id})
+        let item = await collection.findOne({"personid": id})
 
         console.log(item)
 
         await client.close();
+
+        return item
 
     } catch(err) {
         console.error(err)
@@ -47,11 +69,21 @@ const update = async (employee) => {
 
         await client.connect();
 
-        employee.firstName = "Nate"
-    
-        const collection = client.db("4660-Boiz").collection("orm1_employee")
+        const collection = client.db("4660-Boiz").collection("orm1_person")
 
-        const newDoc = { $set: employee }
+        const newDoc = { $set: {
+            "id": employee.id,
+            "firstName": "Nate",
+            "middleName": employee.middleName,
+            "lastName": employee.lastName,
+            "dob": employee.dob,
+            "phone": employee.phone,
+            "email": employee.email,
+            "streetAddress": employee.streetAddress,
+            "city": employee.city,
+            "state": employee.state,
+            "zip": employee.zip
+        } }
 
         const query = {"id": employee.id};
 
@@ -71,9 +103,10 @@ const remove = async (id) => {
 
         await client.connect();
 
-        const collection = client.db("4660-Boiz").collection("orm1_employee")
+        const db = client.db("4660-Boiz")
 
-        await collection.deleteOne({"id": id})
+        await db.collection("orm1_person").deleteOne({"id": id})
+        await db.collection("orm1_employee").deleteOne({"personid": id})
 
         await client.close();
 

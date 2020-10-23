@@ -8,11 +8,9 @@ const create = async (contractor) => {
 
         await client.connect();
 
-        const collection = client.db("4660-Boiz").collection("orm3_person")
+        const db = client.db("4660-Boiz")
 
-        contractor.type = "contractor"
-
-        await collection.insertOne(contractor)
+        await db.collection('orm3_person').insertOne(contractor)
 
         await client.close();
 
@@ -48,11 +46,9 @@ const update = async (contractor) => {
 
         await client.connect();
 
-        contractor.firstName = "Nate"
-    
         const collection = client.db("4660-Boiz").collection("orm3_person")
 
-        contractor.type = "contractor"
+        contractor.name = "Nate"
 
         const newDoc = { $set: contractor }
 
@@ -68,15 +64,15 @@ const update = async (contractor) => {
 }
 
 const remove = async (id) => {
-    
+
     try {
         const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
         await client.connect();
 
-        const collection = client.db("4660-Boiz").collection("orm3_person")
+        const db = client.db("4660-Boiz")
 
-        await collection.deleteOne({"id": id})
+        await db.collection("orm3_person").deleteOne({"id": id})
 
         await client.close();
 

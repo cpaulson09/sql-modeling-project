@@ -58,7 +58,6 @@ contractor4DAOPostgres = require("./postgresDAO_raw/ORM4/contractorDAO4Postgres"
 vendor4DAOPostgres = require("./postgresDAO_raw/ORM4/vendorDAO4Postgres")
 
 contractorDAO1Mongo = require("./mongoDAO_raw/ORM1/contractorDAO1mongo")
-customerDAO1Mongo = require("./mongoDAO_raw/ORM1/customerDAO1Mongo")
 employeeDAO1Mongo = require("./mongoDAO_raw/ORM1/employeeDAO1Mongo")
 executiveDAO1Mongo = require("./mongoDAO_raw/ORM1/executiveDAO1Mongo")
 managerDAO1Mongo = require("./mongoDAO_raw/ORM1/managerDAO1Mongo")
@@ -78,10 +77,10 @@ executiveDAO3Mongo = require("./mongoDAO_raw/ORM3/executiveDAO3Mongo")
 managerDAO3Mongo = require("./mongoDAO_raw/ORM3/managerDAO3Mongo")
 vendorDAO3Mongo = require("./mongoDAO_raw/ORM3/vendorDAO3Mongo")
 
-contractorDAO4Mongo = require("./mongoDAO_raw/ORM4/contractorDAO4Mongo")
-customerDAO4Mongo = require("./mongoDAO_raw/ORM4/customerDAO4Mongo")
-employeeDAO4Mongo = require("./mongoDAO_raw/ORM4/employeeDAO4Mongo")
-vendorDAO4Mongo = require("./mongoDAO_raw/ORM4/vendorDAO4Mongo")
+companiesMongo = require("./mongoDAO_raw/company")
+contractorsMongo = require("./mongoDAO_raw/contractor")
+customersMongo = require("./mongoDAO_raw/customer")
+vendorsMongo = require("./mongoDAO_raw/vendor")
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -911,71 +910,11 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
 mongoRun(customers, employees, vendors, managers, contractors, executives);
 
 async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
-    for (contractor of contractors) {
-        // await contractorDAO1Mongo.create(contractor)
-        // await contractorDAO1Mongo.read(contractor.id)
-        // await contractorDAO1Mongo.update(contractor)
-        // await contractorDAO1Mongo.remove(contractor.id)
 
-        // await contractorDAO2Mongo.create(contractor)
-        // await contractorDAO2Mongo.read(contractor.id)
-        // await contractorDAO2Mongo.update(contractor)
-        // await contractorDAO2Mongo.remove(contractor.id)
-
-        // await contractorDAO3Mongo.create(contractor)
-        // await contractorDAO3Mongo.read(contractor.id)
-        // await contractorDAO3Mongo.update(contractor)
-        // await contractorDAO3Mongo.remove(contractor.id)
-
-        // await contractorDAO4Mongo.create(contractor)
-        // await contractorDAO4Mongo.read(contractor.id)
-        // await contractorDAO4Mongo.update(contractor)
-        // await contractorDAO4Mongo.remove(contractor.id)
-    }
-
-    for (vendor of vendors) {
-        await vendorDAO1Mongo.create(vendor)
-        await vendorDAO1Mongo.read(vendor.id)
-        await vendorDAO1Mongo.update(vendor)
-        await vendorDAO1Mongo.remove(vendor.id)
-
-        // await vendorDAO2Mongo.create(vendor)
-        // await vendorDAO2Mongo.read(vendor.id)
-        // await vendorDAO2Mongo.update(vendor)
-        // await vendorDAO2Mongo.remove(vendor.id)
-
-        // await vendorDAO3Mongo.create(vendor)
-        // await vendorDAO3Mongo.read(vendor.id)
-        // await vendorDAO3Mongo.update(vendor)
-        // await vendorDAO3Mongo.remove(vendor.id)
-
-        // await vendorDAO4Mongo.create(vendor)
-        // await vendorDAO4Mongo.read(vendor.id)
-        // await vendorDAO4Mongo.update(vendor)
-        // await vendorDAO4Mongo.remove(vendor.id)
-    }
-
-    for (employee of employees) {
-        // await employeeDAO1Mongo.create(employee)
-        // await employeeDAO1Mongo.read(employee.id)
-        // await employeeDAO1Mongo.update(employee)
-        // await employeeDAO1Mongo.remove(employee.id)
-
-        // await employeeDAO2Mongo.create(employee)
-        // await employeeDAO2Mongo.read(employee.id)
-        // await employeeDAO2Mongo.update(employee)
-        // await employeeDAO2Mongo.remove(employee.id)
-
-        // await employeeDAO3Mongo.create(employee)
-        // await employeeDAO3Mongo.read(employee.id)
-        // await employeeDAO3Mongo.update(employee)
-        // await employeeDAO3Mongo.remove(employee.id)
-
-        // await employeeDAO4Mongo.create(employee)
-        // await employeeDAO4Mongo.read(employee.id)
-        // await employeeDAO4Mongo.update(employee)
-        // await employeeDAO4Mongo.remove(employee.id)
-    }
+    companiesMongo.create(employees, managers, executives)
+    contractorsMongo.create(contractors)
+    customersMongo.create(customers)
+    vendorsMongo.create(vendors)
 }
 
 
