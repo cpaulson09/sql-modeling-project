@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
 
 const Customer = sequelize.define(
@@ -16,13 +15,13 @@ const Customer = sequelize.define(
       autoIncrement: true,
       allowNull: false
     },
-    firstName: {
+    firstname: {
       type: DataTypes.STRING,
     },
-    middleName: {
+    middlename: {
       type: DataTypes.STRING,
   },
-    lastName: {
+    lastname: {
       type: DataTypes.STRING,
     },
     dob: {
@@ -34,7 +33,7 @@ const Customer = sequelize.define(
     email: {
       type: DataTypes.STRING,
     },
-    streetAddress: {
+    streetaddress: {
       type: DataTypes.STRING,
     },
     city: {
@@ -77,12 +76,12 @@ const create = async (executive = null) => {
 
   try {
   const customer = await Customer.create({
-    firstName: 'Joseph',
-    lastName: 'Smith',
+    firstname: 'Joseph',
+    lastname: 'Smith',
     dob: new Date('July 30, 1998 03:24:00'),
     phone: '123-123-2134',
     email: 'jsW@gamil.com',
-    streetAddress: '2 stuff ave',
+    streetaddress: '2 stuff ave',
     city: 'Palmyra',
     state: 'NY',
     zip: '11923',
@@ -96,7 +95,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const customer = await Customer.findAll({
     where: {
-      firstName: 'Joseph'
+      firstname: 'Joseph'
     }
   })
 };
@@ -104,7 +103,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const customer = await Customer.update({ company: "and Jesus..." }, {
     where: {
-      firstName: 'Joseph'
+      firstname: 'Joseph'
     }
   });
 };
@@ -112,7 +111,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const customer = await Customer.destroy({
     where: {
-      lastName: 'Smith'
+      lastname: 'Smith'
     }
   });
 };

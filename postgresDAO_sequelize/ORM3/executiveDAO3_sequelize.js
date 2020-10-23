@@ -1,9 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
 
 
@@ -14,13 +13,13 @@ const Person = sequelize.define('orm3_person', {
     autoIncrement: true,
     allowNull: false
   },
-  firstName: {
+  firstname: {
     type: DataTypes.STRING,
   },
-  middleName: {
+  middlename: {
     type: DataTypes.STRING,
 },
-  lastName: {
+  lastname: {
     type: DataTypes.STRING,
   },
   type: {
@@ -35,7 +34,7 @@ const Person = sequelize.define('orm3_person', {
   email: {
     type: DataTypes.STRING,
   },
-  streetAddress: {
+  streetaddress: {
     type: DataTypes.STRING,
   },
   city: {
@@ -47,7 +46,7 @@ const Person = sequelize.define('orm3_person', {
   zip: {
     type: DataTypes.STRING,
   },
-  companyId: {
+  companyid: {
     type: DataTypes.INTEGER,
   },
   department: {
@@ -59,7 +58,7 @@ const Person = sequelize.define('orm3_person', {
   salary: {
     type: DataTypes.STRING,
   },
-  managerId: {
+  managerid: {
     type: DataTypes.INTEGER,
   },
   bonus: {
@@ -68,7 +67,7 @@ const Person = sequelize.define('orm3_person', {
   company: {
     type: DataTypes.STRING,
   },
-  totalVendorMoney: {
+  totalvendormoney: {
     type: DataTypes.STRING,
   },
 }, {
@@ -99,24 +98,24 @@ authenticate();
 
 const create = async (executive = null) => {
   const executivedb = await Person.create({
-    firstName: 'Ian',
-    lastName: 'Smith',
+    firstname: 'Ian',
+    lastname: 'Smith',
     dob: new Date('August 30, 1998 03:24:00'),
     phone: '123-123-2134',
     email: 'jsW@gamil.com',
-    streetAddress: '2 stuff ave',
+    streetaddress: '2 stuff ave',
     city: 'Palmyra',
     state: 'NY',
     zip: '11923',
     company: null,
     department: 'Engineer',
     title: 'SWE',
-    companyId: 2,
+    companyid: 2,
     mangerId: 6 ,
     bonus: null,
     salary: '100,000',
     type: 'executive',
-    totalVendorMoney: '60,000'
+    totalvendormoney: '60,000'
 
   });
 };
@@ -124,7 +123,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const executive = await Person.findAll({
     where: {
-      firstName: 'Ian'
+      firstname: 'Ian'
     }
   })
 };
@@ -132,7 +131,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const executivedb = await Person.update({ company: 'and Jesus x2' }, {
     where: {
-      firstName:'Ian' 
+      firstname:'Ian' 
     }
   });
 };
@@ -140,7 +139,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const executive = await Person.destroy({
     where: {
-      lastName: 'Smith'
+      lastname: 'Smith'
     }
   });
 };

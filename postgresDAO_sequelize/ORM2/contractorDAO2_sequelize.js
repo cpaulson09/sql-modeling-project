@@ -1,9 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
 
 const Contractor = sequelize.define(
@@ -16,13 +14,13 @@ const Contractor = sequelize.define(
       autoIncrement: true,
       allowNull: false
     },
-    firstName: {
+    firstname: {
       type: DataTypes.STRING,
     },
-    middleName: {
+    middlename: {
       type: DataTypes.STRING,
   },
-    lastName: {
+    lastname: {
       type: DataTypes.STRING,
     },
     dob: {
@@ -34,7 +32,7 @@ const Contractor = sequelize.define(
     email: {
       type: DataTypes.STRING,
     },
-    streetAddress: {
+    streetaddress: {
       type: DataTypes.STRING,
     },
     city: {
@@ -77,12 +75,13 @@ const create = async (executive = null) => {
 
   try {
   const contractor = await Contractor.create({
-    firstName: 'Joseph',
-    lastName: 'Smith',
+    id:100,
+    firstname: 'Joseph',
+    lastname: 'Smith',
     dob: new Date('July 30, 1998 03:24:00'),
     phone: '123-123-2134',
     email: 'jsW@gamil.com',
-    streetAddress: '2 stuff ave',
+    streetaddress: '2 stuff ave',
     city: 'Palmyra',
     state: 'NY',
     zip: '11923',
@@ -96,7 +95,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const contractor = await Contractor.findAll({
     where: {
-      firstName: 'Joseph'
+      firstname: 'Joseph'
     }
   })
 };
@@ -104,7 +103,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const contractor = await Contractor.update({ company: "and Jesus..." }, {
     where: {
-      firstName: 'Joseph'
+      firstname: 'Joseph'
     }
   });
 };
@@ -112,7 +111,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const contractor = await Contractor.destroy({
     where: {
-      lastName: 'Smith'
+      lastname: 'Smith'
     }
   });
 };

@@ -1,9 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
 
 const Customer = sequelize.define(
@@ -16,7 +14,7 @@ const Customer = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    personId: {
+    personid: {
       type: DataTypes.INTEGER,
     },
     company: {
@@ -38,13 +36,13 @@ const Person = sequelize.define('orm1_person', {
     autoIncrement: true,
     allowNull: false
   },
-  firstName: {
+  firstname: {
     type: DataTypes.STRING,
   },
-  middleName: {
+  middlename: {
     type: DataTypes.STRING,
 },
-  lastName: {
+  lastname: {
     type: DataTypes.STRING,
   },
   dob: {
@@ -56,7 +54,7 @@ const Person = sequelize.define('orm1_person', {
   email: {
     type: DataTypes.STRING,
   },
-  streetAddress: {
+  streetaddress: {
     type: DataTypes.STRING,
   },
   city: {
@@ -97,16 +95,18 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
+  try {
   const customer = await Customer.create({
-    personId: 8,
+    id:14,
+    personid: 8,
     company: 'LMP',
     type: 'Marketing'
   });
 
   const person = await Person.create({
     id: 8,
-    firstName: 'John',
-    lastName: 'Doe',
+    firstname: 'John',
+    lastname: 'Doe',
     dob: new Date('October 6, 1995 03:24:00'),
     phone: '123-123-2134',
     email: 'LMPW@gamil.com',
@@ -115,12 +115,15 @@ const create = async (executive = null) => {
     state: 'LA',
     zip: '99199'
   });
+} catch(err) {
+  console.log('Cannot not add vendor', err)
+}
 };
 
 const read = async (id) => {
   const customer = await Customer.findAll({
     where: {
-      personId: 8
+      personid: 8
     }
   })
 };
@@ -128,7 +131,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const customer = await Customer.update({ company: 'LSP' }, {
     where: {
-      personId: 8
+      personid: 8
     }
   });
 };
@@ -136,7 +139,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const customer = await Customer.destroy({
     where: {
-      personId: 8
+      personid: 8
     }
   });
 };

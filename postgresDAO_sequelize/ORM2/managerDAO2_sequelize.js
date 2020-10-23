@@ -16,7 +16,7 @@ const Manager = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    employeeId: {
+    employeeid: {
       type: DataTypes.INTEGER,
     },
   },
@@ -46,7 +46,7 @@ authenticate();
 
 const create = async (executive = null) => {
   const manager = await Manager.create({
-    employeeId: 2,
+    employeeid: 2,
   });
 };
 
@@ -59,9 +59,9 @@ const read = async (id) => {
 };
 
 const update = async (executive) => {
-  const manager = await Manager.update({ employeeId: 3 }, {
+  const manager = await Manager.update({ employeeid: 3 }, {
     where: {
-      employeeId: 2
+      employeeid: 2
     }
   });
 };

@@ -4,6 +4,7 @@ const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLH
   host: 'lallah.db.elephantsql.com',
   dialect:  'postgres'
 });
+
 const Customer = sequelize.define(
   "orm1_nonemployee",
   {
@@ -37,13 +38,13 @@ const Person = sequelize.define('orm1_person', {
     autoIncrement: true,
     allowNull: false
   },
-  firstName: {
+  firstname: {
     type: DataTypes.STRING,
   },
-  middleName: {
+  middlename: {
     type: DataTypes.STRING,
 },
-  lastName: {
+  lastname: {
     type: DataTypes.STRING,
   },
   dob: {
@@ -55,7 +56,7 @@ const Person = sequelize.define('orm1_person', {
   email: {
     type: DataTypes.STRING,
   },
-  streetAddress: {
+  streetaddress: {
     type: DataTypes.STRING,
   },
   city: {
@@ -84,10 +85,10 @@ async function authenticate() {
     // await Person.sync({ force: true });
     console.log("Connection has been established successfully.");
     // create();
-    read();
+    // read();
     // update();
     // remove();
-    // list();
+    list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -96,21 +97,27 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
+  try {
   const customer = await Customer.create({
     id: 12,
     personid: 8,
     company: 'LMP',
     type: 'Marketing'
   });
+}
+catch(err) {
+  console.log('Cannot create customer', err)
+}
 
   const person = await Person.create({
     id: 12,
-    firstName: 'John',
-    lastName: 'Doe',
+    firstname: 'John',
+    middlename: '',
+    lastname: 'Doe',
     dob: new Date('October 6, 1995 03:24:00'),
     phone: '123-123-2134',
     email: 'LMPW@gamil.com',
-    streetAddress: '2 Roger ave',
+    streetaddress: '2 Roger ave',
     city: 'tocoma',
     state: 'LA',
     zip: '99199'
@@ -145,7 +152,7 @@ const list = async () => {
   const nonemployee= Customer.findAll()
   const person = Person.findAll()
   // console.log(await nonemployee);
-  console.log(await person);
+  // console.log(await person);
 };
 
 // module.exports = { create, read, update, remove, list }

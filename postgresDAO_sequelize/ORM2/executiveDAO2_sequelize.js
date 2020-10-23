@@ -16,7 +16,7 @@ const Executive = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    managerId: {
+    managerid: {
       type: DataTypes.INTEGER,
     },
     bonus: {
@@ -49,7 +49,7 @@ authenticate();
 
 const create = async (executive = null) => {
   const executive1 = await Executive.create({
-    managerId: 2,
+    managerid: 2,
     bonus: "2000",
   });
 };
@@ -57,7 +57,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const executive = await Executive.findAll({
     where: {
-      managerId: 2
+      managerid: 2
     }
   })
 };
@@ -65,7 +65,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const executive2 = await Executive.update({ bonus: "2000" }, {
     where: {
-      managerId: 2
+      managerid: 2
     }
   });
 };
@@ -73,7 +73,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const executive2 = await Executive.destroy({
     where: {
-      managerId: 2
+      managerid: 2
     }
   });
 };

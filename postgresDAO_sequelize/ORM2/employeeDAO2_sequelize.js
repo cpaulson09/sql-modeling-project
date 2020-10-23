@@ -1,11 +1,10 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { resolve } = require("path");
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: resolve(__dirname, "../../test.db")
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
-
 
 const Employee = sequelize.define('orm2_employee', {
   // Model attributes are defined here
@@ -15,7 +14,7 @@ const Employee = sequelize.define('orm2_employee', {
     autoIncrement: true,
     allowNull: false,
   },
-  personId: {
+  personid: {
     type: DataTypes.INTEGER,
     // allowNull defaults to true 
   },
@@ -31,7 +30,7 @@ const Employee = sequelize.define('orm2_employee', {
   salary: {
     type: DataTypes.STRING,
   },
-  managerId: {
+  managerid: {
     type: DataTypes.INTEGER,
   },
 }, {
@@ -58,19 +57,19 @@ authenticate();
 
 const create = async (executive = null) => {
   const employee = await Employee.create({
-    personId: 2,
+    personid: 2,
     company: 'Desani',
     department: 'Salt Water',
     title: 'Take my money',
     salary: '99,000',
-    managerId:3
+    managerid:3
   });
 };
 
 const read = async (id) => {
   const employee = await Employee.findAll({
     where: {
-      managerId: 3
+      managerid: 3
     }
   })
 };
@@ -78,7 +77,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const employee = await Employee.update({ department: "Electrolytes" }, {
     where: {
-      managerId: 3
+      managerid: 3
     }
   });
 };
@@ -86,7 +85,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const employee = await Employee.destroy({
     where: {
-      managerId: 3
+      managerid: 3
     }
   });
 };

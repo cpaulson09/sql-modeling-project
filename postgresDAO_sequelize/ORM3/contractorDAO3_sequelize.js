@@ -1,11 +1,9 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const { Sequelize, DataTypes } = require("sequelize");
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
-
 
 const Person = sequelize.define('orm3_person', {
   id: {
@@ -14,13 +12,13 @@ const Person = sequelize.define('orm3_person', {
     autoIncrement: true,
     allowNull: false
   },
-  firstName: {
+  firstname: {
     type: DataTypes.STRING,
   },
-  middleName: {
+  middlename: {
     type: DataTypes.STRING,
 },
-  lastName: {
+  lastname: {
     type: DataTypes.STRING,
   },
   type: {
@@ -35,7 +33,7 @@ const Person = sequelize.define('orm3_person', {
   email: {
     type: DataTypes.STRING,
   },
-  streetAddress: {
+  streetaddress: {
     type: DataTypes.STRING,
   },
   city: {
@@ -47,7 +45,7 @@ const Person = sequelize.define('orm3_person', {
   zip: {
     type: DataTypes.STRING,
   },
-  companyId: {
+  companyid: {
     type: DataTypes.INTEGER,
   },
   department: {
@@ -59,7 +57,7 @@ const Person = sequelize.define('orm3_person', {
   salary: {
     type: DataTypes.STRING,
   },
-  managerId: {
+  managerid: {
     type: DataTypes.INTEGER,
   },
   bonus: {
@@ -68,7 +66,7 @@ const Person = sequelize.define('orm3_person', {
   company: {
     type: DataTypes.STRING,
   },
-  totalVendorMoney: {
+  totalvendormoney: {
     type: DataTypes.STRING,
   },
   
@@ -100,24 +98,24 @@ authenticate();
 
 const create = async (executive = null) => {
   const contractor = await Person.create({
-    firstName: 'Joseph',
-    lastName: 'Smith',
+    firstname: 'Joseph',
+    lastname: 'Smith',
     dob: new Date('July 30, 1998 03:24:00'),
     phone: '123-123-2134',
     email: 'jsW@gamil.com',
-    streetAddress: '2 stuff ave',
+    streetaddress: '2 stuff ave',
     city: 'Palmyra',
     state: 'NY',
     zip: '11923',
     company: 'God',
     department: null,
     title: null,
-    companyId: null,
+    companyid: null,
     mangerId: null ,
     bonus: null,
     salary: null,
     type: 'contractor',
-    totalVendorMoney: '60,000'
+    totalvendormoney: '60,000'
 
   });
 };
@@ -125,7 +123,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const contractor = await Person.findAll({
     where: {
-      firstName: 'Joseph'
+      firstname: 'Joseph'
     }
   })
 };
@@ -133,7 +131,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const contractor = await Person.update({ company: 'and Jesus x2' }, {
     where: {
-      firstName:'Joseph' 
+      firstname:'Joseph' 
     }
   });
 };
@@ -141,7 +139,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const contractor = await Person.destroy({
     where: {
-      lastName: 'Smith'
+      lastname: 'Smith'
     }
   });
 };

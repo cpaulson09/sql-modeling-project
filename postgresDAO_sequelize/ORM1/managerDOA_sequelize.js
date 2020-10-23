@@ -1,11 +1,8 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
-
 const Manager = sequelize.define(
   "orm1_manager",
   {
@@ -16,7 +13,7 @@ const Manager = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    employeeId: {
+    employeeid: {
       type: DataTypes.INTEGER,
     },
   },
@@ -46,7 +43,7 @@ authenticate();
 
 const create = async (executive = null) => {
   const manager = await Manager.create({
-    employeeId: 2,
+    employeeid: 2,
   });
 };
 
@@ -59,9 +56,9 @@ const read = async (id) => {
 };
 
 const update = async (executive) => {
-  const manager = await Manager.update({ employeeId: 3 }, {
+  const manager = await Manager.update({ employeeid: 3 }, {
     where: {
-      employeeId: 2
+      employeeid: 2
     }
   });
 };
