@@ -83,8 +83,8 @@ async function authenticate() {
     // await Customer.sync({ force: true });
     // await Person.sync({ force: true });
     console.log("Connection has been established successfully.");
-    create();
-    // read();
+    // create();
+    read();
     // update();
     // remove();
     // list();
@@ -102,51 +102,50 @@ const create = async (executive = null) => {
     company: 'LMP',
     type: 'Marketing'
   });
-}
 
-//   const person = await Person.create({
-//     id: 8,
-//     firstName: 'John',
-//     lastName: 'Doe',
-//     dob: new Date('October 6, 1995 03:24:00'),
-//     phone: '123-123-2134',
-//     email: 'LMPW@gamil.com',
-//     streetAddress: '2 Roger ave',
-//     city: 'tocoma',
-//     state: 'LA',
-//     zip: '99199'
-//   });
-// };
+  const person = await Person.create({
+    id: 12,
+    firstName: 'John',
+    lastName: 'Doe',
+    dob: new Date('October 6, 1995 03:24:00'),
+    phone: '123-123-2134',
+    email: 'LMPW@gamil.com',
+    streetAddress: '2 Roger ave',
+    city: 'tocoma',
+    state: 'LA',
+    zip: '99199'
+  });
+};
 
-// const read = async (id) => {
-//   const customer = await Customer.findAll({
-//     where: {
-//       personId: 8
-//     }
-//   })
-// };
+const read = async (id) => {
+  const customer = await Customer.findAll({
+    where: {
+      personid: 12
+    }
+  })
+};
 
-// const update = async (executive) => {
-//   const customer = await Customer.update({ company: 'LSP' }, {
-//     where: {
-//       personId: 8
-//     }
-//   });
-// };
+const update = async (executive) => {
+  const customer = await Customer.update({ company: 'LSP' }, {
+    where: {
+      personid: 8
+    }
+  });
+};
 
-// const remove = async (id) => {
-//   const customer = await Customer.destroy({
-//     where: {
-//       personId: 8
-//     }
-//   });
-// };
+const remove = async (id) => {
+  const customer = await Customer.destroy({
+    where: {
+      personid: 8
+    }
+  });
+};
 
-// const list = async () => {
-//   const nonemployee= Customer.findAll()
-//   const person = Person.findAll()
-//   // console.log(await nonemployee);
-//   console.log(await person);
-// };
+const list = async () => {
+  const nonemployee= Customer.findAll()
+  const person = Person.findAll()
+  // console.log(await nonemployee);
+  console.log(await person);
+};
 
 // module.exports = { create, read, update, remove, list }

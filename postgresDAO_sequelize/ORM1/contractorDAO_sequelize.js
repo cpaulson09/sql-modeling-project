@@ -81,9 +81,9 @@ async function authenticate() {
     // await Customer.sync({ force: false });
     // await Person.sync({ force: false });
     console.log("Connection has been established successfully.");
-    create();
+    // create();
     // read();
-    // update();
+    update();
     // remove();
     list();
   } catch (error) {
