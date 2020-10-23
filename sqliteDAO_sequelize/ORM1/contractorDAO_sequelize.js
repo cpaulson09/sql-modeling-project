@@ -81,14 +81,9 @@ const Person = sequelize.define('orm1_person', {
 async function authenticate() {
   try {
     await sequelize.authenticate();
-    await Customer.sync({ force: false });
-    await Person.sync({ force: false });
+    await Customer.sync({ force: true });
+    await Person.sync({ force: true });
     console.log("Connection has been established successfully.");
-    create();
-    // read();
-    // update();
-    // remove();
-    list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -97,7 +92,9 @@ async function authenticate() {
 authenticate();
 
 const create = async (contractor ) => {
+  console.log(contractor.id);
   const customer = await Customer.create({
+    id:contractor.id,
     personId: contractor.id,
     company: contractor.company,
     type: 'contractor'
