@@ -1,63 +1,99 @@
-const { Sequelize } = require("sequelize");
-
+const { Sequelize, DataTypes } = require("sequelize");
+const { resolve } = require("path");
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
-  storage: '../../../sqlite.db'
+  storage: resolve(__dirname, "../../test.db")
 });
 
 
-(async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-})()
-
-sequelize.define('Employee', {
+const Employee = sequelize.define('orm1_employee', {
   // Model attributes are defined here
   id: {
-    type: DataTypes.Integer,
-    allowNull: false
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
+    allowNull: false,
   },
   personId: {
-    type: DataTypes.Integer,
+    type: DataTypes.INTEGER,
     // allowNull defaults to true 
   },
   company: {
     type: DataTypes.STRING,
-    allowNull: false
   },
   department: {
     type: DataTypes.STRING,
-    allowNull: false
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false
   },
   salary: {
     type: DataTypes.STRING,
-    allowNull: false
   },
   managerId: {
-    type: DataTypes.Integer,
-    allowNull: false
+    type: DataTypes.INTEGER,
   },
 }, {
   // Other model options go here
 });
 
-const create = async (executive) => {};
+//test function to authenticate and create the function
+async function authenticate() {
+  try {
+    await sequelize.authenticate();
+    await Employee.sync({ force: true });
+    console.log("Connection has been established successfully.");
+    create();
+    // read();
+    // update();
+    // remove();
+    list();
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+}
 
-const read = async (id) => {};
+authenticate();
 
-const update = async (executive) => {};
+const create = async (executive = null) => {
+  const employee = await Employee.create({
+    personId: 2,
+    company: 'Desani',
+    department: 'Salt Water',
+    title: 'Take my money',
+    salary: '99,000',
+    managerId:3
+  });
+};
 
-const remove = async (id) => {};
+const read = async (id) => {
+  const employee = await Employee.findAll({
+    where: {
+      managerId: 3
+    }
+  })
+};
 
-const list = async () => {}
+const update = async (executive) => {
+  const employee = await Employee.update({ department: "Electrolytes" }, {
+    where: {
+      managerId: 3
+    }
+  });
+};
 
-module.exports = { create, read, update, remove, list };
+const remove = async (id) => {
+  const employee = await Employee.destroy({
+    where: {
+      managerId: 3
+    }
+  });
+};
+
+const list = async () => {
+  const employee= Employee.findAll()
+  console.log(await employee);
+};
+
+// module.exports = { create, read, update, remove, list };
