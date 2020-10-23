@@ -96,39 +96,39 @@ async function authenticate() {
 
 authenticate();
 
-const create = async (executive = null) => {
+const create = async (contractor ) => {
   const customer = await Customer.create({
-    personId: 8,
-    company: 'LMP',
-    type: 'Marketing'
+    personId: contractor.id,
+    company: contractor.company,
+    type: 'contractor'
   });
 
   const person = await Person.create({
-    id: 8,
-    firstName: 'John',
-    lastName: 'Doe',
-    dob: new Date('October 6, 1995 03:24:00'),
-    phone: '123-123-2134',
-    email: 'LMPW@gamil.com',
-    streetAddress: '2 Roger ave',
-    city: 'tocoma',
-    state: 'LA',
-    zip: '99199'
+    id: contractor.id,
+    firstName: contractor.firstName,
+    lastName: contractor.lastName,
+    dob: contractor.dob,
+    phone: contractor.phone,
+    email: contractor.email,
+    streetAddress: contractor.streetAddress,
+    city: contractor.city,
+    state: contractor.state,
+    zip: contractor.zip
   });
 };
 
 const read = async (id) => {
   const customer = await Customer.findAll({
     where: {
-      personId: 8
+      personId: id
     }
   })
 };
 
-const update = async (executive) => {
+const update = async (contractor) => {
   const customer = await Customer.update({ company: 'LSP' }, {
     where: {
-      personId: 8
+      personId: contractor.id
     }
   });
 };
@@ -136,7 +136,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const customer = await Customer.destroy({
     where: {
-      personId: 8
+      personId: id
     }
   });
 };
@@ -144,8 +144,6 @@ const remove = async (id) => {
 const list = async () => {
   const nonemployee= Customer.findAll()
   const person = Person.findAll()
-  console.log(await nonemployee);
-  console.log(await person);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

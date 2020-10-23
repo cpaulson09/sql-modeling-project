@@ -120,4 +120,4 @@ const list = async () => {
   console.log(await contractor);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

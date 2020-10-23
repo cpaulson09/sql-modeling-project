@@ -148,4 +148,4 @@ const list = async () => {
   console.log(await executive);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

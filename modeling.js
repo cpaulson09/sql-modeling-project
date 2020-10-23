@@ -5,105 +5,107 @@ const { Pool, Client } = require("pg")
 const { Sequelize } = require("sequelize");
 
 
-// SQLite Raw DAO
-employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
-manager1DAO = require("./sqliteDAO_raw/ORM1/managerDAO1Sqlite")
-executive1DAO = require("./sqliteDAO_raw/ORM1/executiveDAO1Sqlite")
-vendor1DAO = require("./sqliteDAO_raw/ORM1/vendorDAO1Sqlite")
-contractor1DAO = require("./sqliteDAO_raw/ORM1/contractorDAO1Sqlite")
-customer1DAO = require("./sqliteDAO_raw/ORM1/customerDAO1Sqlite")
-employee2DAO = require("./sqliteDAO_raw/ORM2/employeeDAO2Sqlite")
-customer2DAO = require("./sqliteDAO_raw/ORM2/customerDAO2Sqlite")
-manager2DAO = require("./sqliteDAO_raw/ORM2/managerDAO2Sqlite")
-contractor2DAO = require("./sqliteDAO_raw/ORM2/contractorDAO2Sqlite")
-vendor2DAO = require("./sqliteDAO_raw/ORM2/vendorDAO2Sqlite")
-executive2DAO = require("./sqliteDAO_raw/ORM2/executiveDAO2Sqlite")
-manager3DAO = require("./sqliteDAO_raw/ORM3/managerDAO3Sqlite")
-executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
-vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
-customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
-customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
+// // SQLite Raw DAO
+// employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
+// manager1DAO = require("./sqliteDAO_raw/ORM1/managerDAO1Sqlite")
+// executive1DAO = require("./sqliteDAO_raw/ORM1/executiveDAO1Sqlite")
+// vendor1DAO = require("./sqliteDAO_raw/ORM1/vendorDAO1Sqlite")
+// contractor1DAO = require("./sqliteDAO_raw/ORM1/contractorDAO1Sqlite")
+// customer1DAO = require("./sqliteDAO_raw/ORM1/customerDAO1Sqlite")
+// employee2DAO = require("./sqliteDAO_raw/ORM2/employeeDAO2Sqlite")
+// customer2DAO = require("./sqliteDAO_raw/ORM2/customerDAO2Sqlite")
+// manager2DAO = require("./sqliteDAO_raw/ORM2/managerDAO2Sqlite")
+// contractor2DAO = require("./sqliteDAO_raw/ORM2/contractorDAO2Sqlite")
+// vendor2DAO = require("./sqliteDAO_raw/ORM2/vendorDAO2Sqlite")
+// executive2DAO = require("./sqliteDAO_raw/ORM2/executiveDAO2Sqlite")
+// manager3DAO = require("./sqliteDAO_raw/ORM3/managerDAO3Sqlite")
+// executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
+// vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
+// customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
+// customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
 
-// SQLite Knex DAO
-employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
-manager1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/managerDAO1Sqlite_knex')
-executive1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/executiveDAO1Sqlite_knex')
-customer1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/customerDAO1Sqlite_knex')
-vendor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/vendorDAO1Sqlite_knex')
-contractor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/contractorDAO1Sqlite_knex')
-employee2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/employeeDAO2Sqlite_knex')
-contractor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/contractorDAO2Sqlite_knex')
-customer2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/customerDAO2Sqlite_knex')
-vendor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/vendorDAO2Sqlite_knex')
-manager2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/managerDAO2Sqlite_knex')
-executive2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/executiveDAO2Sqlite_knex')
-employee3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/employeeDAO3Sqlite_knex')
-manager3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/managerDAO3Sqlite_knex')
-executive3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/executiveDAO3Sqlite_knex')
-customer3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/customerDAO3Sqlite_knex')
-contractor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/contractorDAO3Sqlite_knex')
-vendor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/vendorDAO3Sqlite_knex')
-employee4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/employeeDAO4Sqlite_knex')
-contractor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/contractorDAO4Sqlite_knex')
-customer4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/customerDAO4Sqlite_knex')
-vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
+// // SQLite Knex DAO
+// employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
+// manager1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/managerDAO1Sqlite_knex')
+// executive1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/executiveDAO1Sqlite_knex')
+// customer1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/customerDAO1Sqlite_knex')
+// vendor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/vendorDAO1Sqlite_knex')
+// contractor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/contractorDAO1Sqlite_knex')
+// employee2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/employeeDAO2Sqlite_knex')
+// contractor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/contractorDAO2Sqlite_knex')
+// customer2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/customerDAO2Sqlite_knex')
+// vendor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/vendorDAO2Sqlite_knex')
+// manager2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/managerDAO2Sqlite_knex')
+// executive2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/executiveDAO2Sqlite_knex')
+// employee3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/employeeDAO3Sqlite_knex')
+// manager3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/managerDAO3Sqlite_knex')
+// executive3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/executiveDAO3Sqlite_knex')
+// customer3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/customerDAO3Sqlite_knex')
+// contractor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/contractorDAO3Sqlite_knex')
+// vendor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/vendorDAO3Sqlite_knex')
+// employee4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/employeeDAO4Sqlite_knex')
+// contractor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/contractorDAO4Sqlite_knex')
+// customer4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/customerDAO4Sqlite_knex')
+// vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
 
-// SQLite sequelize
-// const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
+// // SQLite sequelize
+// // const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
 
 
-// PostgreSQL Raw DAOs
-employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
-manager1DAOPostgres = require("./postgresDAO_raw/ORM1/managerDAO1Postgres")
-executive1DAOPostgres = require("./postgresDAO_raw/ORM1/executiveDAO1Postgres")
-customer1DAOPostgres = require("./postgresDAO_raw/ORM1/customerDAO1Postgres")
-contractor1DAOPostgres = require("./postgresDAO_raw/ORM1/contractorDAO1Postgres")
-vendor1DAOPostgres = require("./postgresDAO_raw/ORM1/vendorDAO1Postgres")
-employee2DAOpostgres = require('./postgresDAO_raw/ORM2/employeeDAO2Postgres')
-customer2DAOpostgres = require("./postgresDAO_raw/ORM2/customerDAO2Postgres")
-executive2DAOpostgres = require("./postgresDAO_raw/ORM2/executiveDAO2Postgres")
-contractor2DAOpostgres = require('./postgresDAO_raw/ORM2/contractorDAO2Postgres')
-manager2DAOpostgres = require('./postgresDAO_raw/ORM2/managerDAO2Postgres')
-vendor2DAOPostgres = require("./postgresDAO_raw/ORM2/vendorDAO2Postgres")
-contractor3DAOPostgres = require("./postgresDAO_raw/ORM3/contractorDAO3Postgres")
-customer3DAOPostgres = require("./postgresDAO_raw/ORM3/customerDAO3Postgres")
-vendor3DAOPostgres = require("./postgresDAO_raw/ORM3/vendorDAO3Postgres")
-executive3DAOPostgres = require("./postgresDAO_raw/ORM3/executiveDAO3Postgres")
-manager3DAOPostgres = require("./postgresDAO_raw/ORM3/managerDAO3Postgres")
-employee3DAOPostgres = require("./postgresDAO_raw/ORM3/employeeDAO3Postgres")
-employee4DAOPostgres = require("./postgresDAO_raw/ORM4/employeeDAO4Postgres")
-customer4DAOPostgres = require("./postgresDAO_raw/ORM4/customerDAO4Postgres")
-contractor4DAOPostgres = require("./postgresDAO_raw/ORM4/contractorDAO4Postgres")
-vendor4DAOPostgres = require("./postgresDAO_raw/ORM4/vendorDAO4Postgres")
+// // PostgreSQL Raw DAOs
+// employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
+// manager1DAOPostgres = require("./postgresDAO_raw/ORM1/managerDAO1Postgres")
+// executive1DAOPostgres = require("./postgresDAO_raw/ORM1/executiveDAO1Postgres")
+// customer1DAOPostgres = require("./postgresDAO_raw/ORM1/customerDAO1Postgres")
+// contractor1DAOPostgres = require("./postgresDAO_raw/ORM1/contractorDAO1Postgres")
+// vendor1DAOPostgres = require("./postgresDAO_raw/ORM1/vendorDAO1Postgres")
+// employee2DAOpostgres = require('./postgresDAO_raw/ORM2/employeeDAO2Postgres')
+// customer2DAOpostgres = require("./postgresDAO_raw/ORM2/customerDAO2Postgres")
+// executive2DAOpostgres = require("./postgresDAO_raw/ORM2/executiveDAO2Postgres")
+// contractor2DAOpostgres = require('./postgresDAO_raw/ORM2/contractorDAO2Postgres')
+// manager2DAOpostgres = require('./postgresDAO_raw/ORM2/managerDAO2Postgres')
+// vendor2DAOPostgres = require("./postgresDAO_raw/ORM2/vendorDAO2Postgres")
+// contractor3DAOPostgres = require("./postgresDAO_raw/ORM3/contractorDAO3Postgres")
+// customer3DAOPostgres = require("./postgresDAO_raw/ORM3/customerDAO3Postgres")
+// vendor3DAOPostgres = require("./postgresDAO_raw/ORM3/vendorDAO3Postgres")
+// executive3DAOPostgres = require("./postgresDAO_raw/ORM3/executiveDAO3Postgres")
+// manager3DAOPostgres = require("./postgresDAO_raw/ORM3/managerDAO3Postgres")
+// employee3DAOPostgres = require("./postgresDAO_raw/ORM3/employeeDAO3Postgres")
+// employee4DAOPostgres = require("./postgresDAO_raw/ORM4/employeeDAO4Postgres")
+// customer4DAOPostgres = require("./postgresDAO_raw/ORM4/customerDAO4Postgres")
+// contractor4DAOPostgres = require("./postgresDAO_raw/ORM4/contractorDAO4Postgres")
+// vendor4DAOPostgres = require("./postgresDAO_raw/ORM4/vendorDAO4Postgres")
 
-// PostgreSQL Knex DAOs
-employee1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/employeeDAO1Postgres_knex')
-manager1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/managerDAO1Postgres_knex')
-executive1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/executiveDAO1Postgres_knex')
-customer1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/customerDAOPostgres_knex')
-contractor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/contractorDAO1Postgres_knex')
-vendor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/vendorDAO1Postgres_knex')
-contractor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/contractorDAO2Postgres_knex')
-customer2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/customerDAO2Postgres_knex')
-employee2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/employeeDAO2Postgres_knex')
-executive2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/executiveDAO2Postgres_knex')
-manager2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/managerDAO2Postgres_knex.js')
-vendor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/vendorDAO2Postgres_knex')
-contractor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/contractorDAO3Postgres_knex')
-customer3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/customerDAO3Postgres_knex')
-employee3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/employeeDAO3Postgres_knex')
-manager3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/managerDAO3Postgres_knex')
-vendor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/vendorDAO3Postgres_knex')
-executive3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/executiveDAO3Postgres_knex')
-contractor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/contractorDAO4Postgres_knex')
-customer4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/customerDAO4Postgres_knex')
-employee4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/employeeDAO4Postgres_knex')
-vendor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/vendorDAO4Postgres_knex')
+// // PostgreSQL Knex DAOs
+// employee1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/employeeDAO1Postgres_knex')
+// manager1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/managerDAO1Postgres_knex')
+// executive1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/executiveDAO1Postgres_knex')
+// customer1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/customerDAOPostgres_knex')
+// contractor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/contractorDAO1Postgres_knex')
+// vendor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/vendorDAO1Postgres_knex')
+// contractor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/contractorDAO2Postgres_knex')
+// customer2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/customerDAO2Postgres_knex')
+// employee2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/employeeDAO2Postgres_knex')
+// executive2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/executiveDAO2Postgres_knex')
+// manager2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/managerDAO2Postgres_knex.js')
+// vendor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/vendorDAO2Postgres_knex')
+// contractor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/contractorDAO3Postgres_knex')
+// customer3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/customerDAO3Postgres_knex')
+// employee3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/employeeDAO3Postgres_knex')
+// manager3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/managerDAO3Postgres_knex')
+// vendor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/vendorDAO3Postgres_knex')
+// executive3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/executiveDAO3Postgres_knex')
+// contractor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/contractorDAO4Postgres_knex')
+// customer4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/customerDAO4Postgres_knex')
+// employee4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/employeeDAO4Postgres_knex')
+// vendor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/vendorDAO4Postgres_knex')
 
-companiesMongo = require("./mongoDAO_raw/company")
-contractorsMongo = require("./mongoDAO_raw/contractor")
-customersMongo = require("./mongoDAO_raw/customer")
-vendorsMongo = require("./mongoDAO_raw/vendor")
+// companiesMongo = require("./mongoDAO_raw/company")
+// contractorsMongo = require("./mongoDAO_raw/contractor")
+// customersMongo = require("./mongoDAO_raw/customer")
+// vendorsMongo = require("./mongoDAO_raw/vendor")
+
+
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -534,21 +536,21 @@ for (let i = 0; i < 20; i++) {
 }
 
 // 4 - modify the objects
-for (employee of employees) {
-    employee.managerId =
-        managers[Math.floor(Math.random() * managers.length)].id
-}
-managers[0].managerId = executives[0].id
-managers[1].managerId = executives[0].id
+// for (employee of employees) {
+//     employee.managerId =
+//         managers[Math.floor(Math.random() * managers.length)].id
+// }
+// managers[0].managerId = executives[0].id
+// managers[1].managerId = executives[0].id
 
-managers[2].managerId = executives[1].id
-managers[3].managerId = executives[1].id
-managers[4].managerId = executives[1].id
+// managers[2].managerId = executives[1].id
+// managers[3].managerId = executives[1].id
+// managers[4].managerId = executives[1].id
 
-executives[0].managerId = executives[2].id
-executives[1].managerId = executives[2].id
+// executives[0].managerId = executives[2].id
+// executives[1].managerId = executives[2].id
 
-executives[2].managerId = executives[2].id
+// executives[2].managerId = executives[2].id
 
 // console.log(vendors)
 // console.log(customers)
@@ -1008,9 +1010,59 @@ async function mongoRun(customers, employees, vendors, managers, contractors, ex
 
 
 
-    // ===================== SQLITE Sequilize ======================== //
-// executiveDAOsqlite_sequelize();
+    // ===================== SQLITE Sequelize ======================== //
+// ============================ Sequelize Sqlite imports ================================ //
+const contractorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
+const customerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
+const employeesDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeesDAO_sequelize')
+const managerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDAO_sequelize')
+const vendorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
 
-module.exports = {
-    persons
-}
+contractorDAOSqlite_sequelize.create(contractor)
+const contractorDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
+const customerDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO2Sqlite_sequelize')
+const employeeAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
+const executiveDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/executiveDAO2Sqlite_sequelize')
+const managerDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDAO2Sqlite_sequelize')
+const vendorDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO2Sqlite_sequelize')
+
+const vendorDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO3Sqlite_sequelize')
+const contractorDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO3Sqlite_sequelize')
+const employeeDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDAO3Sqlite_sequelize')
+const managerDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDAO3Sqlite_sequelize')
+const executiveDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/executiveDAO3Sqlite_sequelize')
+const customerDAO3Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO3Sqlite_sequelize')
+
+const vendorDAO4Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO4Sqlite_sequelize')
+const contractorDAO4Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO4Sqlite_sequelize')
+const employeeDAO4Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDAO4Sqlite_sequelize')
+const customerDAO4Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO4Sqlite_sequelize')
+
+
+// ============================ Sequelize Postgres imports ================================ //
+const contractorDAO_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
+const customerDAO_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
+const employeesDAO_sequelize =require('./sqliteDAO_sequelize/ORM1/employeesDAO_sequelize')
+const managerDAO_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDAO_sequelize')
+const vendorDAO_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
+
+const contractorDAO2_sequelize =require('./postgresDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
+const customerDAO2_sequelize =require('./postgresDAO_sequelize/ORM1/customerDAO2Sqlite_sequelize')
+const employeeAO2_sequelize =require('./postgresDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
+const executiveDAO2_sequelize =require('./postgresDAO_sequelize/ORM1/executiveDAO2Sqlite_sequelize')
+const managerDAO2_sequelize =require('./postgresDAO_sequelize/ORM1/managerDAO2Sqlite_sequelize')
+const vendorDAO2_sequelize =require('./postgresDAO_sequelize/ORM1/vendorDAO2Sqlite_sequelize')
+
+const vendorDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/vendorDAO3Sqlite_sequelize')
+const contractorDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/contractorDAO3Sqlite_sequelize')
+const employeeDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/employeeDAO3Sqlite_sequelize')
+const managerDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/managerDAO3Sqlite_sequelize')
+const executiveDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/executiveDAO3Sqlite_sequelize')
+const customerDAO3_sequelize =require('./postgresDAO_sequelize/ORM1/customerDAO3Sqlite_sequelize')
+
+const vendorDAO4_sequelize =require('./postgresDAO_sequelize/ORM1/vendorDAO4Sqlite_sequelize')
+const contractorDAO4_sequelize =require('./postgresDAO_sequelize/ORM1/contractorDAO4Sqlite_sequelize')
+const employeeDAO4_sequelize =require('./postgresDAO_sequelize/ORM1/employeeDAO4Sqlite_sequelize')
+const customerDAO4_sequelize =require('./postgresDAO_sequelize/ORM1/customerDAO4Sqlite_sequelize')
+
+
