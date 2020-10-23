@@ -144,4 +144,4 @@ const list = async () => {
   console.log(await employee);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

@@ -1,11 +1,9 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
 
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: resolve(__dirname, "../../test.db")
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
-
 
 const Employee = sequelize.define('orm1_employee', {
   // Model attributes are defined here
@@ -15,7 +13,7 @@ const Employee = sequelize.define('orm1_employee', {
     autoIncrement: true,
     allowNull: false,
   },
-  personId: {
+  personid: {
     type: DataTypes.INTEGER,
     // allowNull defaults to true 
   },
@@ -31,7 +29,7 @@ const Employee = sequelize.define('orm1_employee', {
   salary: {
     type: DataTypes.STRING,
   },
-  managerId: {
+  managerid: {
     type: DataTypes.INTEGER,
   },
 }, {
@@ -44,10 +42,10 @@ async function authenticate() {
     await sequelize.authenticate();
     await Employee.sync({ force: true });
     console.log("Connection has been established successfully.");
-    create();
+    // create();
     // read();
     // update();
-    // remove();
+    remove();
     list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
@@ -57,20 +55,24 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
+  try {
   const employee = await Employee.create({
-    personId: 2,
+    personid: 2,
     company: 'Desani',
     department: 'Salt Water',
     title: 'Take my money',
     salary: '99,000',
-    managerId:3
+    managerid:3
   });
+} catch(err) {
+  console.log('Cannot create employee', err)
+}
 };
 
 const read = async (id) => {
   const employee = await Employee.findAll({
     where: {
-      managerId: 3
+      managerid: 3
     }
   })
 };
@@ -78,7 +80,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const employee = await Employee.update({ department: "Electrolytes" }, {
     where: {
-      managerId: 3
+      managerid: 3
     }
   });
 };
@@ -86,7 +88,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const employee = await Employee.destroy({
     where: {
-      managerId: 3
+      managerid: 3
     }
   });
 };
@@ -96,4 +98,4 @@ const list = async () => {
   console.log(await employee);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

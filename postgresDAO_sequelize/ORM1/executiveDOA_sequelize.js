@@ -1,9 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
-const { resolve } = require("path");
-
-const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: resolve(__dirname, "../../test.db"),
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
 });
 
 const Executive = sequelize.define(
@@ -16,7 +14,7 @@ const Executive = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    managerId: {
+    managerid: {
       type: DataTypes.INTEGER,
     },
     bonus: {
@@ -35,10 +33,10 @@ async function authenticate() {
     await sequelize.authenticate();
     await Executive.sync({ force: true });
     console.log("Connection has been established successfully.");
-    create();
+    // create();
     // read();
     // update();
-    // remove();
+    remove();
     list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
@@ -49,7 +47,7 @@ authenticate();
 
 const create = async (executive = null) => {
   const executive1 = await Executive.create({
-    managerId: 2,
+    managerid: 2,
     bonus: "2000",
   });
 };
@@ -57,7 +55,7 @@ const create = async (executive = null) => {
 const read = async (id) => {
   const executive = await Executive.findAll({
     where: {
-      managerId: 2
+      managerid: 2
     }
   })
 };
@@ -65,7 +63,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const executive2 = await Executive.update({ bonus: "2000" }, {
     where: {
-      managerId: 2
+      managerid: 2
     }
   });
 };
@@ -73,7 +71,7 @@ const update = async (executive) => {
 const remove = async (id) => {
   const executive2 = await Executive.destroy({
     where: {
-      managerId: 2
+      managerid: 2
     }
   });
 };
@@ -83,4 +81,4 @@ const list = async () => {
   // console.log(await executive3);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };

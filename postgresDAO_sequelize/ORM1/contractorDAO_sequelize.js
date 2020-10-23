@@ -1,7 +1,10 @@
 const { Sequelize, DataTypes } = require("sequelize");
 
 
-const sequelize = new Sequelize('postgres://chdnzkgx:4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt:5432/chdnzkgx')
+const sequelize = new Sequelize('chdnzkgx', 'chdnzkgx', '4-LsufrBMT9pT2FDm7xWJLHy1roMGrGt', {
+  host: 'lallah.db.elephantsql.com',
+  dialect:  'postgres'
+});
 
 const Customer = sequelize.define(
   "orm1_nonemployee",
@@ -13,7 +16,7 @@ const Customer = sequelize.define(
       autoIncrement: true,
       allowNull: false,
     },
-    personId: {
+    personid: {
       type: DataTypes.INTEGER,
     },
     company: {
@@ -35,13 +38,13 @@ const Person = sequelize.define('orm1_person', {
     autoIncrement: true,
     allowNull: false
   },
-  firstName: {
+  firstname: {
     type: DataTypes.STRING,
   },
-  middleName: {
+  middlename: {
     type: DataTypes.STRING,
 },
-  lastName: {
+  lastname: {
     type: DataTypes.STRING,
   },
   dob: {
@@ -53,7 +56,7 @@ const Person = sequelize.define('orm1_person', {
   email: {
     type: DataTypes.STRING,
   },
-  streetAddress: {
+  streetaddress: {
     type: DataTypes.STRING,
   },
   city: {
@@ -81,11 +84,11 @@ async function authenticate() {
     // await Customer.sync({ force: false });
     // await Person.sync({ force: false });
     console.log("Connection has been established successfully.");
-    create();
+    // create();
     // read();
     // update();
-    // remove();
-    list();
+    remove();
+    // list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -94,30 +97,35 @@ async function authenticate() {
 authenticate();
 
 const create = async (executive = null) => {
+  try {
   const customer = await Customer.create({
-    personId: 8,
-    company: 'LMP',
-    type: 'Marketing'
+    id:13,
+    personid: 10,
+    company: 'LMS',
+    type: 'Marketing Contractor'
   });
 
   const person = await Person.create({
     id: 8,
-    firstName: 'John',
-    lastName: 'Doe',
+    firstname: 'John',
+    lastname: 'Doe',
     dob: new Date('October 6, 1995 03:24:00'),
     phone: '123-123-2134',
     email: 'LMPW@gamil.com',
-    streetAddress: '2 Roger ave',
+    streetaddress: '2 Roger ave',
     city: 'tocoma',
     state: 'LA',
     zip: '99199'
   });
+} catch(err) {
+  console.log('Cannot add contractor', err)
+}
 };
 
 const read = async (id) => {
   const customer = await Customer.findAll({
     where: {
-      personId: 8
+      personid: 10
     }
   })
 };
@@ -125,7 +133,7 @@ const read = async (id) => {
 const update = async (executive) => {
   const customer = await Customer.update({ company: 'LSP' }, {
     where: {
-      personId: 8
+      personid: 10
     }
   });
 };
@@ -133,16 +141,16 @@ const update = async (executive) => {
 const remove = async (id) => {
   const customer = await Customer.destroy({
     where: {
-      personId: 8
+      personid: 13
     }
   });
 };
 
 const list = async () => {
   const nonemployee= Customer.findAll()
-  // const person = Person.findAll()
+  const person = Person.findAll()
   // console.log(await nonemployee);
-  console.log(await person);
+  // console.log(await person);
 };
 
-// module.exports = { create, read, update, remove, list };
+module.exports = { create, read, update, remove, list };
