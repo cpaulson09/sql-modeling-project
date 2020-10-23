@@ -109,7 +109,7 @@ const remove = async (id) => {
 
 const list = async () => {
   const person= Person.findAll()
-  console.log(await person);
+  // console.log(await person);
 
 };
 

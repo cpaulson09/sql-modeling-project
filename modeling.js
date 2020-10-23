@@ -4,6 +4,18 @@ const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
 const { Sequelize } = require("sequelize");
 
+// Architecture/order of this file
+//  - "require()" for all ORM DAOs/views
+//  - Set up classes, insert into arrays, modify them
+//      - Testing SQLITE Raw DAO
+//      - Testing Postgres Raw DAO
+//      - Testing SQLITE Knex DAO
+//      - Testing Postgres Knex DAO
+//      - Sequelize
+
+// Views for ORM3
+sqlite_raw_views = require('./sqliteDAO_raw/ORM3/views_ORM3')
+postgres_raw_views = require('./postgresDAO_raw/ORM3/views_ORM3')
 
 // SQLite Raw DAO
 employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
@@ -49,7 +61,7 @@ customer4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/customerDAO4Sqlite_knex
 vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
 
 // SQLite sequelize
-const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
+// const executiveDAOsqlite_sequelize = require('./sqliteDAO_sequelize/ORM1/executiveDOA_sequelize')
 
 
 // PostgreSQL Raw DAOs
@@ -554,6 +566,7 @@ executives[2].managerId = executives[2].id
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+// CONNECTION TO SQLITE 
 // let db = new sqlite.Database("sqlite.db", (err) => {
 //     if (err) {
 //         console.error(err.message)
@@ -562,14 +575,15 @@ executives[2].managerId = executives[2].id
 // })
 
 
+// FUNCTION for POSTGRES TESTING
 // customers, employees, vendors, managers, contractors, executives
-// postgresRun(customers, employees, vendors, managers, contractors, executives);
-// return;
+postgresRun(customers, employees, vendors, managers, contractors, executives)
+return;
 
-// ================== DAOs ===================================================
-// ===========================================================================
+// ================== DAOs =====================================================================================================
+// =============================================================================================================================
 
-// ============ TESTING  SQLite========================
+// ============ TESTING  SQLite Raw ========================
 
 // ORM 1 Employee testing - - - - - - - -
 // employee1DAO.create(employees[0], db)
@@ -785,6 +799,10 @@ executives[2].managerId = executives[2].id
 //     executive1DAO.create(managers, db)
 // }
 
+// sqlite_raw_views.generateViews(db)
+
+
+// CONNECTION TO SQLITE
 // db.close((err) => {
 //     if (err) {
 //         console.error(err.message)
@@ -792,10 +810,13 @@ executives[2].managerId = executives[2].id
 //     console.log("closing sqlite database\n")
 // })
 
-// client.end();
 
+// ========================== TEST POSTGRES Raw DAO's here =================================================================================================
 async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
     // Postgres testing - - - - - - - -
+    console.log()
+    await postgres_raw_views.generateViews()
+
 
     // await vendor4DAOPostgres.create(vendors[0])
 
@@ -877,15 +898,18 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // for (customer of customers) {
         // await customer2DAOpostgres.create(customer)
         // await customer2DAOpostgres.read(customer.id)
-    }
+}
+
+
+
     // for (employee of employees) {
     //     await employee3DAOpostgres.create(employee)
     // }
     //etc.....
 
 
-    // ============ SQLite Knex Testing ===================
-    // ====================================================
+    // ============ SQLite Knex Testing =======================================================================================================================
+    // ========================================================================================================================================================
 
     // employee1DAOsqlite_knex.create(employees[0])
     // employees[0].department = "Connor"
@@ -930,8 +954,8 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // employee4DAOsqlite_knex.create(employees[0])
 
 
-    // ========== Postgres Knex DAOs ====================
-    // ==================================================
+    // ========== Postgres Knex DAOs ========================================================================================================================
+    // ======================================================================================================================================================
 
     // employee1DAOpostgres_knex.create(employees[0])
     // employee1DAOpostgres_knex.remove(57245)
@@ -990,13 +1014,13 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // run().catch(console.dir);
 
     
-    manager1DAOsqlite_knex.list()
+    //manager1DAOsqlite_knex.list()
 
 
 
     // ===================== SQLITE Sequilize ======================== //
 // executiveDAOsqlite_sequelize();
 
-module.exports = {
-    persons
-}
+// module.exports = {
+//     persons
+// }

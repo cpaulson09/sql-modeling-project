@@ -39,7 +39,7 @@ async function authenticate() {
     // read();
     // update();
     // remove();
-    list();
+    // list();
   } catch (error) {
     console.error("Unable to connect to the database:", error);
   }
@@ -78,9 +78,9 @@ const remove = async (id) => {
   });
 };
 
-const list = async () => {
-  const executive3= Executive.findAll()
-  // console.log(await executive3);
-};
+// const list = async () => {
+//   const executive3= Executive.findAll()
+//   // console.log(await executive3);
+// };
 
 // module.exports = { create, read, update, remove, list };

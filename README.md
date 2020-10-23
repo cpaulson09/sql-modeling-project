@@ -7,7 +7,8 @@ Breck, Connor, Gracias, Nate
 npm install sqlite3  
 npm install pg  
 npm install faker  
-npm install knex
+npm install knex  
+npm install sequelize
 
 
 ### DBs
