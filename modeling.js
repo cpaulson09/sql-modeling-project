@@ -5,6 +5,103 @@ const { Pool, Client } = require("pg")
 const { Sequelize } = require("sequelize");
 
 
+<<<<<<< HEAD
+// SQLite Raw DAO
+employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
+manager1DAO = require("./sqliteDAO_raw/ORM1/managerDAO1Sqlite")
+executive1DAO = require("./sqliteDAO_raw/ORM1/executiveDAO1Sqlite")
+vendor1DAO = require("./sqliteDAO_raw/ORM1/vendorDAO1Sqlite")
+contractor1DAO = require("./sqliteDAO_raw/ORM1/contractorDAO1Sqlite")
+customer1DAO = require("./sqliteDAO_raw/ORM1/customerDAO1Sqlite")
+employee2DAO = require("./sqliteDAO_raw/ORM2/employeeDAO2Sqlite")
+customer2DAO = require("./sqliteDAO_raw/ORM2/customerDAO2Sqlite")
+manager2DAO = require("./sqliteDAO_raw/ORM2/managerDAO2Sqlite")
+contractor2DAO = require("./sqliteDAO_raw/ORM2/contractorDAO2Sqlite")
+vendor2DAO = require("./sqliteDAO_raw/ORM2/vendorDAO2Sqlite")
+executive2DAO = require("./sqliteDAO_raw/ORM2/executiveDAO2Sqlite")
+manager3DAO = require("./sqliteDAO_raw/ORM3/managerDAO3Sqlite")
+executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
+vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
+customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
+customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
+
+// SQLite Knex DAO
+employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
+manager1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/managerDAO1Sqlite_knex')
+executive1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/executiveDAO1Sqlite_knex')
+customer1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/customerDAO1Sqlite_knex')
+vendor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/vendorDAO1Sqlite_knex')
+contractor1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/contractorDAO1Sqlite_knex')
+employee2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/employeeDAO2Sqlite_knex')
+contractor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/contractorDAO2Sqlite_knex')
+customer2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/customerDAO2Sqlite_knex')
+vendor2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/vendorDAO2Sqlite_knex')
+manager2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/managerDAO2Sqlite_knex')
+executive2DAOsqlite_knex = require('./sqliteDAO_knex/ORM2/executiveDAO2Sqlite_knex')
+employee3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/employeeDAO3Sqlite_knex')
+manager3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/managerDAO3Sqlite_knex')
+executive3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/executiveDAO3Sqlite_knex')
+customer3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/customerDAO3Sqlite_knex')
+contractor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/contractorDAO3Sqlite_knex')
+vendor3DAOsqlite_knex = require('./sqliteDAO_knex/ORM3/vendorDAO3Sqlite_knex')
+employee4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/employeeDAO4Sqlite_knex')
+contractor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/contractorDAO4Sqlite_knex')
+customer4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/customerDAO4Sqlite_knex')
+vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
+
+// PostgreSQL Raw DAOs
+employee1DAOPostgres = require("./postgresDAO_raw/ORM1/employeeDAO1Postgres")
+manager1DAOPostgres = require("./postgresDAO_raw/ORM1/managerDAO1Postgres")
+executive1DAOPostgres = require("./postgresDAO_raw/ORM1/executiveDAO1Postgres")
+customer1DAOPostgres = require("./postgresDAO_raw/ORM1/customerDAO1Postgres")
+contractor1DAOPostgres = require("./postgresDAO_raw/ORM1/contractorDAO1Postgres")
+vendor1DAOPostgres = require("./postgresDAO_raw/ORM1/vendorDAO1Postgres")
+employee2DAOpostgres = require('./postgresDAO_raw/ORM2/employeeDAO2Postgres')
+customer2DAOpostgres = require("./postgresDAO_raw/ORM2/customerDAO2Postgres")
+executive2DAOpostgres = require("./postgresDAO_raw/ORM2/executiveDAO2Postgres")
+contractor2DAOpostgres = require('./postgresDAO_raw/ORM2/contractorDAO2Postgres')
+manager2DAOpostgres = require('./postgresDAO_raw/ORM2/managerDAO2Postgres')
+vendor2DAOPostgres = require("./postgresDAO_raw/ORM2/vendorDAO2Postgres")
+contractor3DAOPostgres = require("./postgresDAO_raw/ORM3/contractorDAO3Postgres")
+customer3DAOPostgres = require("./postgresDAO_raw/ORM3/customerDAO3Postgres")
+vendor3DAOPostgres = require("./postgresDAO_raw/ORM3/vendorDAO3Postgres")
+executive3DAOPostgres = require("./postgresDAO_raw/ORM3/executiveDAO3Postgres")
+manager3DAOPostgres = require("./postgresDAO_raw/ORM3/managerDAO3Postgres")
+employee3DAOPostgres = require("./postgresDAO_raw/ORM3/employeeDAO3Postgres")
+employee4DAOPostgres = require("./postgresDAO_raw/ORM4/employeeDAO4Postgres")
+customer4DAOPostgres = require("./postgresDAO_raw/ORM4/customerDAO4Postgres")
+contractor4DAOPostgres = require("./postgresDAO_raw/ORM4/contractorDAO4Postgres")
+vendor4DAOPostgres = require("./postgresDAO_raw/ORM4/vendorDAO4Postgres")
+
+// PostgreSQL Knex DAOs
+employee1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/employeeDAO1Postgres_knex')
+manager1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/managerDAO1Postgres_knex')
+executive1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/executiveDAO1Postgres_knex')
+customer1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/customerDAOPostgres_knex')
+contractor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/contractorDAO1Postgres_knex')
+vendor1DAOpostgres_knex = require('./postgresDAO_knex/ORM1/vendorDAO1Postgres_knex')
+contractor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/contractorDAO2Postgres_knex')
+customer2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/customerDAO2Postgres_knex')
+employee2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/employeeDAO2Postgres_knex')
+executive2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/executiveDAO2Postgres_knex')
+manager2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/managerDAO2Postgres_knex.js')
+vendor2DAOpostgres_knex = require('./postgresDAO_knex/ORM2/vendorDAO2Postgres_knex')
+contractor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/contractorDAO3Postgres_knex')
+customer3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/customerDAO3Postgres_knex')
+employee3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/employeeDAO3Postgres_knex')
+manager3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/managerDAO3Postgres_knex')
+vendor3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/vendorDAO3Postgres_knex')
+executive3DAOpostgres_knex = require('./postgresDAO_knex/ORM3/executiveDAO3Postgres_knex')
+contractor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/contractorDAO4Postgres_knex')
+customer4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/customerDAO4Postgres_knex')
+employee4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/employeeDAO4Postgres_knex')
+vendor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/vendorDAO4Postgres_knex')
+
+companiesMongo = require("./mongoDAO_raw/company")
+contractorsMongo = require("./mongoDAO_raw/contractor")
+customersMongo = require("./mongoDAO_raw/customer")
+vendorsMongo = require("./mongoDAO_raw/vendor")
+=======
 // // SQLite Raw DAO
 // employee1DAO = require("./sqliteDAO_raw/ORM1/employeeDAO1Sqlite")
 // manager1DAO = require("./sqliteDAO_raw/ORM1/managerDAO1Sqlite")
@@ -106,6 +203,12 @@ const { Sequelize } = require("sequelize");
 // vendorsMongo = require("./mongoDAO_raw/vendor")
 
 
+>>>>>>> 3639d88b067e46a59bd1e61a6849044da70650db
+
+mongooseCompany = require('./mongooseDAO_raw/company')
+mongooseContractor = require('./mongooseDAO_raw/contractor')
+mongooseCustomer = require('./mongooseDAO_raw/customer')
+mongooseVendor = require('./mongooseDAO_raw/vendor')
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -801,90 +904,90 @@ for (let i = 0; i < 20; i++) {
 
 // client.end();
 
-async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
+// async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
     // Postgres testing - - - - - - - -
 
-    // await vendor4DAOPostgres.create(vendors[0])
+//     // await vendor4DAOPostgres.create(vendors[0])
 
-    //await contractor4DAOPostgres.create(contractors[0])
+//     //await contractor4DAOPostgres.create(contractors[0])
 
-    // await customer4DAOPostgres.create(customers[0])
+//     // await customer4DAOPostgres.create(customers[0])
 
-    // await employee4DAOPostgres.create(employees[0])
+//     // await employee4DAOPostgres.create(employees[0])
 
-    // await employee3DAOPostgres.create(employees[0])
-    // await employee3DAOPostgres.read(employees[0].id)
+//     // await employee3DAOPostgres.create(employees[0])
+//     // await employee3DAOPostgres.read(employees[0].id)
 
-    // await manager3DAOPostgres.create(managers[0])
+//     // await manager3DAOPostgres.create(managers[0])
 
-    // await executive3DAOPostgres.create(executives[0])
+//     // await executive3DAOPostgres.create(executives[0])
 
-    // await vendor3DAOPostgres.create(vendors[0])
-    // vendors[0].lastName = 'Paulson'
-    // await vendor3DAOPostgres.update(vendors[0])
-    // await vendor3DAOPostgres.read(vendors[0].id)
-    // await vendor3DAOPostgres.list()
+//     // await vendor3DAOPostgres.create(vendors[0])
+//     // vendors[0].lastName = 'Paulson'
+//     // await vendor3DAOPostgres.update(vendors[0])
+//     // await vendor3DAOPostgres.read(vendors[0].id)
+//     // await vendor3DAOPostgres.list()
 
-    // await customer3DAOPostgres.create(customers[0])
-    // customers[0].lastName = 'Paulson'
-    // await customer3DAOPostgres.update(customers[0])
-    // await customer3DAOPostgres.read(customers[0].id)
-    // await customer3DAOPostgres.list()
+//     // await customer3DAOPostgres.create(customers[0])
+//     // customers[0].lastName = 'Paulson'
+//     // await customer3DAOPostgres.update(customers[0])
+//     // await customer3DAOPostgres.read(customers[0].id)
+//     // await customer3DAOPostgres.list()
 
-    //await customer1DAOPostgres.create(customers[0])
+//     //await customer1DAOPostgres.create(customers[0])
 
-    // await executive1DAOPostgres.create(executives[0])
-    // await executive1DAOPostgres.read(executives[0].id)
-    // executives[0].bonus = "4"
-    // console.log(executives[0])
-    // await executive1DAOPostgres.update(executives[0])
-    // await executive1DAOPostgres.remove(62455)
-    // await executive1DAOPostgres.list()
+//     // await executive1DAOPostgres.create(executives[0])
+//     // await executive1DAOPostgres.read(executives[0].id)
+//     // executives[0].bonus = "4"
+//     // console.log(executives[0])
+//     // await executive1DAOPostgres.update(executives[0])
+//     // await executive1DAOPostgres.remove(62455)
+//     // await executive1DAOPostgres.list()
 
-    // await manager1DAOPostgres.create(managers[0])
-    // await manager1DAOPostgres.read(managers[0].id)
-    // managers[0].employeeId = 4
-    // await manager1DAOPostgres.update(managers[0])
-    // await manager1DAOPostgres.remove(62455)
-    // await manager1DAOPostgres.list()
-
-
-    // await employee1DAOPostgres.create(employees[0])
-    // employees[0].department = 'ConnorP'
-    // console.log(employees[0])
-    // await employee1DAOPostgres.update(employees[0])
-    // await employee1DAOPostgres.list()
-    // await employee1DAOPostgres.read(employees[0].id)
-
-    //await executive2DAOpostgres.create(executives[0])
-    //await manager2DAOpostgres.create(managers[0])
-    // managers[0].employeeId = '3456'
-    // await manager2DAOpostgres.update()
-    // await manager2DAOpostgres.read(managers[0].id)
+//     // await manager1DAOPostgres.create(managers[0])
+//     // await manager1DAOPostgres.read(managers[0].id)
+//     // managers[0].employeeId = 4
+//     // await manager1DAOPostgres.update(managers[0])
+//     // await manager1DAOPostgres.remove(62455)
+//     // await manager1DAOPostgres.list()
 
 
-    // await executive2DAOpostgres.create(executives[0])
-    // await executive2DAOpostgres.read(executives[0].id)
-    // await executive2DAOpostgres.update()
+//     // await employee1DAOPostgres.create(employees[0])
+//     // employees[0].department = 'ConnorP'
+//     // console.log(employees[0])
+//     // await employee1DAOPostgres.update(employees[0])
+//     // await employee1DAOPostgres.list()
+//     // await employee1DAOPostgres.read(employees[0].id)
+
+//     //await executive2DAOpostgres.create(executives[0])
+//     //await manager2DAOpostgres.create(managers[0])
+//     // managers[0].employeeId = '3456'
+//     // await manager2DAOpostgres.update()
+//     // await manager2DAOpostgres.read(managers[0].id)
 
 
-    // await contractor2DAOpostgres.create(contractors[0])
-    // contractors[0].firstName = 'Conman'
-    // await contractor2DAOpostgres.update(contractors[0])
-    // await contractor2DAOpostgres.read(contractors[0].id)
+//     // await executive2DAOpostgres.create(executives[0])
+//     // await executive2DAOpostgres.read(executives[0].id)
+//     // await executive2DAOpostgres.update()
 
 
-    // await employee2DAOpostgres.create(employees[0])
-    // employees[0].firstName = 'Conman'
-    // await employee2DAOpostgres.update(employees[0])
-    // await employee2DAOpostgres.read(employees[0].id)
-    // // console.log(employees[0])
+//     // await contractor2DAOpostgres.create(contractors[0])
+//     // contractors[0].firstName = 'Conman'
+//     // await contractor2DAOpostgres.update(contractors[0])
+//     // await contractor2DAOpostgres.read(contractors[0].id)
 
 
-    // for (customer of customers) {
-        // await customer2DAOpostgres.create(customer)
-        // await customer2DAOpostgres.read(customer.id)
-    }
+//     // await employee2DAOpostgres.create(employees[0])
+//     // employees[0].firstName = 'Conman'
+//     // await employee2DAOpostgres.update(employees[0])
+//     // await employee2DAOpostgres.read(employees[0].id)
+//     // // console.log(employees[0])
+
+
+//     // for (customer of customers) {
+//         // await customer2DAOpostgres.create(customer)
+//         // await customer2DAOpostgres.read(customer.id)
+//     }
     // for (employee of employees) {
     //     await employee3DAOpostgres.create(employee)
     // }
@@ -996,17 +1099,25 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // }
     // run().catch(console.dir);
 
+    runMongoose()
+    async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
+        mongooseCompany.create(employees, managers, executives);
+        mongooseContractor.create(contractors);
+        mongooseCustomer.create(customers);
+        mongooseVendor.create(vendors);
+    }
     
     // manager1DAOsqlite_knex.list()
 
-mongoRun(customers, employees, vendors, managers, contractors, executives);
 
-async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
-    companiesMongo.create(employees, managers, executives)
-    contractorsMongo.create(contractors)
-    customersMongo.create(customers)
-    vendorsMongo.create(vendors)
-}
+// mongoRun(customers, employees, vendors, managers, contractors, executives);
+
+// async function mongoRun(customers, employees, vendors, managers, contractors, executives) {
+//     companiesMongo.create(employees, managers, executives)
+//     contractorsMongo.create(contractors)
+//     customersMongo.create(customers)
+//     vendorsMongo.create(vendors)
+// }
 
 
 
