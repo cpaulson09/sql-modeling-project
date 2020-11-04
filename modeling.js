@@ -38,6 +38,7 @@ executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
 vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
 customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
 customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
+contractor4DAO = require("./sqliteDAO_raw/ORM4/contractorDAO4Sqlite")
 
 // SQLite Knex DAO
 employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
@@ -643,12 +644,12 @@ client.get("hello", redis.print)
 
 
 // CONNECTION TO SQLITE 
-// let db = new sqlite.Database("sqlite.db", (err) => {
-//     if (err) {
-//         console.error(err.message)
-//     }
-//     console.log("\nconnected to db")
-// })
+let db = new sqlite.Database("sqlite.db", (err) => {
+    if (err) {
+        console.error(err.message)
+    }
+    console.log("\nconnected to db")
+})
 
 
 // FUNCTION for POSTGRES TESTING
@@ -858,7 +859,7 @@ client.get("hello", redis.print)
 
 // ORM 4 contractor testing - - - - - - - -
 // contractor4DAO.create(managers[0], db);
-// contractor4DAO.read(managers[0].id, db);
+contractor4DAO.read(managers[0].id, db);
 // contractors[0].firstName = "Breck";
 // contractor4DAO.update(managers[0], db);
 // contractor4DAO.remove(73627, db);
@@ -888,11 +889,11 @@ client.get("hello", redis.print)
 
 
 // ========================== TEST POSTGRES Raw DAO's here =================================================================================================
-async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
 // async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
-    // Postgres testing - - - - - - - -
-    console.log()
-    //await postgres_raw_views.generateViews()
+// // async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
+//     // Postgres testing - - - - - - - -
+//     console.log()
+//     await postgres_raw_views.generateViews()
 
 
 //     // await vendor4DAOPostgres.create(vendors[0])
@@ -975,7 +976,7 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // for (customer of customers) {
         // await customer2DAOpostgres.create(customer)
         // await customer2DAOpostgres.read(customer.id)
-}
+// }
 
 
 

@@ -12,6 +12,7 @@ npm install sequelize
 npm install mongo  
 npm install mongoose validation  
 npm install redis  
+npm install mongodb  
 
 ## Instructions
 Main file is `modeling.js`, all the ORMS and their respective DAO's are referenced in there.  
