@@ -7,9 +7,6 @@ client.on("error", err => {
 client.set('hello', "world")
 client.get('hello', redis.print)
 
-<<<<<<< HEAD
-client.quit()
-=======
 
 // client.hgetall("id:{id}", redis.print)
 
@@ -40,4 +37,3 @@ client.quit()
 // client.hdel("id:1159", 'contractor', redis.print)
 
 // client.quit();
->>>>>>> 66b0c65368963c052d76267fd9b319599c5302ff
