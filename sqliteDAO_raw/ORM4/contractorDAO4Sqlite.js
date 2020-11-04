@@ -167,6 +167,21 @@ remove = (id, db) => {
 }
 
 list = (db) => {
+
+    client.keys("*", function (err, keys) {
+        if (err) return console.log(err);
+      
+        for (var i = 0, len = keys.length; i < len; i++) {
+          const regex = "/id:*/g";
+          if (keys[i].search(regex)) {
+            client.hgetall(keys[i], (err, rep) => {
+              console.log(rep);
+              return;
+            });
+          }
+        }
+      });
+
     db.serialize(() => {
         let sql = `SELECT * FROM orm4_contractor;`;
         db.all(sql, [], (err, rows) => {
