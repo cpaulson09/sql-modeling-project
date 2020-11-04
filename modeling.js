@@ -634,8 +634,7 @@ for (let i = 0; i < 20; i++) {
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // Connect to Redis
-const client = redis.createClient()
-console.log(client)
+const client = redis.createClient('')
 client.on("error", err => {
     console.error(err)
 })
