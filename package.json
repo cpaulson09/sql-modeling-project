@@ -10,6 +10,7 @@
     "pg-types": "^3.0.1",
     "pgpass": "^1.0.2",
     "redis": "^3.0.2",
+    "redis-cli": "^2.0.0",
     "sequelize": "^6.3.5",
     "sqlite3": "^5.0.0",
     "validation": "0.0.1"
