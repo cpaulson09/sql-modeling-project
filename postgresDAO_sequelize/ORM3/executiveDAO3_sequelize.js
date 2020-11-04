@@ -146,7 +146,7 @@ const remove = async (id) => {
 
 const list = async () => {
   const executive= Person.findAll()
-  console.log(await executive);
+  // console.log(await executive);
 };
 
 module.exports = { create, read, update, remove, list };

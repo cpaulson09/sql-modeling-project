@@ -118,7 +118,7 @@ const remove = async (id) => {
 
 const list = async () => {
   const vendor = Vendor.findAll()
-  console.log(await vendor );
+  // console.log(await vendor );
 };
 
 module.exports = { create, read, update, remove, list };

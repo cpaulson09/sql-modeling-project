@@ -119,7 +119,7 @@ const remove = async (id) => {
 
 const list = async () => {
   const contractor= Contractor.findAll()
-  console.log(await contractor);
+  // console.log(await contractor);
 };
 
 module.exports = { create, read, update, remove, list };

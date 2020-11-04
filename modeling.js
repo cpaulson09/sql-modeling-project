@@ -2,7 +2,8 @@ const { exec } = require("child_process")
 const faker = require("faker")
 const sqlite = require("sqlite3").verbose()
 const { Pool, Client } = require("pg")
-const { Sequelize } = require("sequelize");
+const { Sequelize } = require("sequelize")
+const redis = require("redis")
 
 // Architecture/order of this file
 //  - "require()" for all ORM DAOs/views
@@ -64,11 +65,11 @@ vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
 
     // ===================== SQLITE Sequelize ======================== //
 // ============================ Sequelize Sqlite imports ================================ //
-const contractorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
-const customerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
-const employeesDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDOA_sequelize')
-const managerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDOA_sequilize')
-const vendorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
+// const contractorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
+// const customerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
+// const employeesDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDOA_sequelize')
+// const managerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDOA_sequilize')
+// const vendorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
 
 // contractorDAOSqlite_sequelize.create(contractors)
 // const contractorDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
@@ -167,16 +168,16 @@ employee4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/employeeDAO4Postgre
 vendor4DAOpostgres_knex = require('./postgresDAO_knex/ORM4/vendorDAO4Postgres_knex')
 
 // Mongo
-companiesMongo = require("./mongoDAO_raw/company")
-contractorsMongo = require("./mongoDAO_raw/contractor")
-customersMongo = require("./mongoDAO_raw/customer")
-vendorsMongo = require("./mongoDAO_raw/vendor")
+// companiesMongo = require("./mongoDAO_raw/company")
+// contractorsMongo = require("./mongoDAO_raw/contractor")
+// customersMongo = require("./mongoDAO_raw/customer")
+// vendorsMongo = require("./mongoDAO_raw/vendor")
 
-// Mongoose
-mongooseCompany = require('./mongooseDAO_raw/company')
-mongooseContractor = require('./mongooseDAO_raw/contractor')
-mongooseCustomer = require('./mongooseDAO_raw/customer')
-mongooseVendor = require('./mongooseDAO_raw/vendor')
+// // Mongoose
+// mongooseCompany = require('./mongooseDAO_raw/company')
+// mongooseContractor = require('./mongooseDAO_raw/contractor')
+// mongooseCustomer = require('./mongooseDAO_raw/customer')
+// mongooseVendor = require('./mongooseDAO_raw/vendor')
 
 // 1 - create ES6 classes with Contructors for Person, Employee, Manager, Executive, Nonemployee, Contractor, Vendor, Customer
 // parent class
@@ -632,6 +633,16 @@ for (let i = 0; i < 20; i++) {
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+// Connect to Redis
+const client = redis.createClient()
+console.log(client)
+client.on("error", err => {
+    console.error(err)
+})
+client.get("hello", redis.print)
+// client.quit()
+
+
 // CONNECTION TO SQLITE 
 // let db = new sqlite.Database("sqlite.db", (err) => {
 //     if (err) {
@@ -643,8 +654,8 @@ for (let i = 0; i < 20; i++) {
 
 // FUNCTION for POSTGRES TESTING
 // customers, employees, vendors, managers, contractors, executives
-postgresRun(customers, employees, vendors, managers, contractors, executives)
-return;
+// postgresRun(customers, employees, vendors, managers, contractors, executives)
+// return;
 
 // ================== DAOs =====================================================================================================
 // =============================================================================================================================
@@ -882,7 +893,7 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
 // async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
     // Postgres testing - - - - - - - -
     console.log()
-    await postgres_raw_views.generateViews()
+    //await postgres_raw_views.generateViews()
 
 
 //     // await vendor4DAOPostgres.create(vendors[0])
@@ -1084,13 +1095,13 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // }
     // run().catch(console.dir);
 
-    runMongoose()
-    async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
-        mongooseCompany.create(employees, managers, executives);
-        mongooseContractor.create(contractors);
-        mongooseCustomer.create(customers);
-        mongooseVendor.create(vendors);
-    }
+    // runMongoose()
+    // async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
+    //     mongooseCompany.create(employees, managers, executives);
+    //     mongooseContractor.create(contractors);
+    //     mongooseCustomer.create(customers);
+    //     mongooseVendor.create(vendors);
+    // }
     
     //manager1DAOsqlite_knex.list()
     // manager1DAOsqlite_knex.list()

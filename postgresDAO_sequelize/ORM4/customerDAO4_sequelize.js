@@ -118,7 +118,7 @@ const remove = async (id) => {
 
 const list = async () => {
   const customer= Customer.findAll()
-  console.log(await customer);
+  // console.log(await customer);
 };
 
 module.exports = { create, read, update, remove, list };
