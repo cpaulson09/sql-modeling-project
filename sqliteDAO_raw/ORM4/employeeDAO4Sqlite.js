@@ -1,8 +1,13 @@
 // ORM 4 sqlite employees
 const sqlite = require('sqlite3').verbose()
 const faker = require('faker')
+const redis = require('redis');
 
 const create = (employee) => {
+    client.hset(`id:${employee.id}`, 'employee', JSON.stringify(employee))
+
+    client.quit();
+
     let db = new sqlite.Database('sqlite.db', err => {
         if (err){
             console.error(err.message)
@@ -27,6 +32,15 @@ const create = (employee) => {
 }
 
 const read = (id) => {
+
+    client.hexists(`id:${id}`, "contractor" , (err, rep) => {
+        if (err) return err;
+        let redisEmployee = JSON.parse(rep.toString());
+        console.log(redisEmployee)
+        return
+    });
+
+    client.quit();
 
     let db = new sqlite.Database('sqlite.db', err => {
         if (err){
@@ -77,6 +91,16 @@ const read = (id) => {
 }
 
 const update = (employee) => {
+
+    client.hget(`id:${employee.id}`,  (err, rep) => {
+        if (err) return err;
+        let redisEmployee =  JSON.parse(rep.toString());
+        redisEmployee.firstName = employee.firstName;
+        return
+    });
+
+    client.quit();
+
     console.log(employee)
     let db = new sqlite.Database('sqlite.db', err => {
         if (err){
@@ -123,6 +147,10 @@ const update = (employee) => {
 }
 
 const remove = (id) => {
+    client.hdel(`id:${id}`,  'employee');
+
+    client.quit();
+
     let db = new sqlite.Database('sqlite.db', err => {
         if (err){
             console.error(err.message)
@@ -151,6 +179,20 @@ const remove = (id) => {
 }
 
 const list = () => {
+
+    client.keys("*", function (err, keys) {
+        if (err) return console.log(err);
+      
+        for (var i = 0, len = keys.length; i < len; i++) {
+          const regex = "/id:*/g";
+          if (keys[i].search(regex)) {
+            client.hgetall(keys[i], (err, rep) => {
+              console.log(rep);
+              return;
+            });
+          }
+        }
+      });
 
     let db = new sqlite.Database('sqlite.db', err => {
         if (err){
