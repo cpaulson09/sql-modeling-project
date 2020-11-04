@@ -12,9 +12,11 @@ create = (contractor, db) => {
    
 
     // on creation cache the new user
-client.set('contractor', JSON.stringify(contractor), redis.print)
+// client.set('contractor', JSON.stringify(contractor), redis.print)
+console.log(contractor)
+client.hset(`id:${contractor.id}`, 'contractor', JSON.stringify(contractor))
 
-client.quit;
+client.quit();
 
     db.serialize(() => {
         db.run(
@@ -46,14 +48,21 @@ client.quit;
 
 read = (id, db) => {
 
-    const cacheData = null;
+    let cacheData = null;
     //redis data
+       const contractorExists =  client.hexists(`id:${id}`, "contractor" , (error, reply) => {
+    // console.log(error, JSON.parse(reply.toString()))
+    //  contractorCache =  JSON.parse(reply.toString());
+    //  console.log(contractorCache)
+    return
+});
+if(contractorExists) {
+    // use the cache contractor
+    client.quit();
+}
 
-   if(client.get('contractor', redis.print)) {
+client.quit();
 
-       const cacheData = JSON.parse(client.get('contractor'))
-       client.quit;
-       console.log(cacheData["id"])
     let sql = `SELECT * FROM orm4_contractor WHERE id = ${id}`;
     db.serialize(() => {
         db.get(sql, [], (err, row) => {
@@ -80,40 +89,20 @@ read = (id, db) => {
                 : console.log(`No record found with the id ${id}`);
         });
     });
-    return
-   }
-
-    let sql = `SELECT * FROM orm4_contractor WHERE id = ${id}`;
-    db.serialize(() => {
-    //     db.get(sql, [], (err, row) => {
-    //         if (err) {
-    //             return console.error(err.message);
-    //         }
-    //         let obj = {
-    //             id: row.id,
-    //             firstName: row.firstName,
-    //             middleName: row.middleName,
-    //             lastName: row.lastName,
-    //             dob: row.dob,
-    //             phone: row.phone,
-    //             email: row.email,
-    //             streetAddress: row.streetAddress,
-    //             city: row.city,
-    //             state: row.state,
-    //             zip: row.zip,
-    //             company: row.company,
-    //         };
-    //         // {object}
-    //         return row
-    //             ? console.log(obj)
-    //             : console.log(`No record found with the id ${id}`);
-    //     });
-    });
 }
 
 
 
 update = (contractor, db) => {
+
+    client.hget(`id:${contractor.id}`,  (error, reply) => {
+        // console.log(error, JSON.parse(reply.toString()))
+         contractorCache =  JSON.parse(reply.toString());
+         //update cache first than db
+        contractorCache.firstName = contractor.firstName;
+        return
+    });
+
     let data = [
         contractor.id,
         contractor.firstName,
@@ -159,6 +148,10 @@ update = (contractor, db) => {
 }
 
 remove = (id, db) => {
+
+    //delete the contractor
+    client.hdel(`id:${contractor.id}`,  'contractor');
+
     db.serialize(() => {
         let sql = `DELETE FROM orm4_contractor WHERE id = ${id}`;
         db.run(sql, (err, row) => {
