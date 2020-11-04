@@ -1,6 +1,21 @@
 // ORM 4 sqlite contractors
+const redis = require('redis');
+const client = redis.createClient();
+
+
+// client.set('hello', "world")
+// client.get('hello', redis.print)
+
+// client.quit;
 
 create = (contractor, db) => {
+   
+
+    // on creation cache the new user
+client.set('contractor', JSON.stringify(contractor), redis.print)
+
+client.quit;
+
     db.serialize(() => {
         db.run(
             `INSERT INTO orm4_contractor ( id, "firstName", "middleName", "lastName", dob, phone, email, "streetAddress", city, state, zip, company) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)`,
@@ -30,6 +45,15 @@ create = (contractor, db) => {
 }
 
 read = (id, db) => {
+
+    const cacheData = null;
+    //redis data
+
+   if(client.get('contractor', redis.print)) {
+
+       const cacheData = JSON.parse(client.get('contractor'))
+       client.quit;
+       console.log(cacheData["id"])
     let sql = `SELECT * FROM orm4_contractor WHERE id = ${id}`;
     db.serialize(() => {
         db.get(sql, [], (err, row) => {
@@ -56,7 +80,38 @@ read = (id, db) => {
                 : console.log(`No record found with the id ${id}`);
         });
     });
+    return
+   }
+
+    let sql = `SELECT * FROM orm4_contractor WHERE id = ${id}`;
+    db.serialize(() => {
+    //     db.get(sql, [], (err, row) => {
+    //         if (err) {
+    //             return console.error(err.message);
+    //         }
+    //         let obj = {
+    //             id: row.id,
+    //             firstName: row.firstName,
+    //             middleName: row.middleName,
+    //             lastName: row.lastName,
+    //             dob: row.dob,
+    //             phone: row.phone,
+    //             email: row.email,
+    //             streetAddress: row.streetAddress,
+    //             city: row.city,
+    //             state: row.state,
+    //             zip: row.zip,
+    //             company: row.company,
+    //         };
+    //         // {object}
+    //         return row
+    //             ? console.log(obj)
+    //             : console.log(`No record found with the id ${id}`);
+    //     });
+    });
 }
+
+
 
 update = (contractor, db) => {
     let data = [

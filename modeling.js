@@ -37,6 +37,7 @@ executive3DAO = require("./sqliteDAO_raw/ORM3/executiveDAO3Sqlite")
 vendors3DAO = require("./sqliteDAO_raw/ORM3/vendorDAO3Sqlite")
 customer3DAO = require("./sqliteDAO_raw/ORM3/customerDAO3Sqlite")
 customer4DAO = require("./sqliteDAO_raw/ORM4/customerDAO4Sqlite")
+contractor4DAO = require("./sqliteDAO_raw/ORM4/contractorDAO4Sqlite")
 
 // SQLite Knex DAO
 employee1DAOsqlite_knex = require('./sqliteDAO_knex/ORM1/employeeDAO1SQLite_knex')
@@ -64,11 +65,11 @@ vendor4DAOsqlite_knex = require('./sqliteDAO_knex/ORM4/vendorDAO4Sqlite_knex')
 
     // ===================== SQLITE Sequelize ======================== //
 // ============================ Sequelize Sqlite imports ================================ //
-const contractorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
-const customerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
-const employeesDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDOA_sequelize')
-const managerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDOA_sequilize')
-const vendorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
+// const contractorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO_sequelize')
+// const customerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/customerDAO_sequelize')
+// const employeesDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/employeeDOA_sequelize')
+// const managerDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/managerDOA_sequilize')
+// const vendorDAOSqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/vendorDAO_sequelize')
 
 // contractorDAOSqlite_sequelize.create(contractors)
 // const contractorDAO2Sqlite_sequelize =require('./sqliteDAO_sequelize/ORM1/contractorDAO2Sqlite_sequelize')
@@ -633,18 +634,18 @@ for (let i = 0; i < 20; i++) {
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 // CONNECTION TO SQLITE 
-// let db = new sqlite.Database("sqlite.db", (err) => {
-//     if (err) {
-//         console.error(err.message)
-//     }
-//     console.log("\nconnected to db")
-// })
+let db = new sqlite.Database("sqlite.db", (err) => {
+    if (err) {
+        console.error(err.message)
+    }
+    console.log("\nconnected to db")
+})
 
 
 // FUNCTION for POSTGRES TESTING
 // customers, employees, vendors, managers, contractors, executives
-postgresRun(customers, employees, vendors, managers, contractors, executives)
-return;
+// postgresRun(customers, employees, vendors, managers, contractors, executives)
+// return;
 
 // ================== DAOs =====================================================================================================
 // =============================================================================================================================
@@ -848,7 +849,7 @@ return;
 
 // ORM 4 contractor testing - - - - - - - -
 // contractor4DAO.create(managers[0], db);
-// contractor4DAO.read(managers[0].id, db);
+contractor4DAO.read(managers[0].id, db);
 // contractors[0].firstName = "Breck";
 // contractor4DAO.update(managers[0], db);
 // contractor4DAO.remove(73627, db);
@@ -878,11 +879,11 @@ return;
 
 
 // ========================== TEST POSTGRES Raw DAO's here =================================================================================================
-async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
 // async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
-    // Postgres testing - - - - - - - -
-    console.log()
-    await postgres_raw_views.generateViews()
+// // async function postgresRun(customers, employees, vendors, managers, contractors, executives) {
+//     // Postgres testing - - - - - - - -
+//     console.log()
+//     await postgres_raw_views.generateViews()
 
 
 //     // await vendor4DAOPostgres.create(vendors[0])
@@ -965,7 +966,7 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // for (customer of customers) {
         // await customer2DAOpostgres.create(customer)
         // await customer2DAOpostgres.read(customer.id)
-}
+// }
 
 
 
@@ -1084,13 +1085,13 @@ async function postgresRun(customers, employees, vendors, managers, contractors,
     // }
     // run().catch(console.dir);
 
-    runMongoose()
-    async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
-        mongooseCompany.create(employees, managers, executives);
-        mongooseContractor.create(contractors);
-        mongooseCustomer.create(customers);
-        mongooseVendor.create(vendors);
-    }
+    // runMongoose()
+    // async function runMongoose(customers, employees, vendors, managers, contractors, executives) {
+    //     mongooseCompany.create(employees, managers, executives);
+    //     mongooseContractor.create(contractors);
+    //     mongooseCustomer.create(customers);
+    //     mongooseVendor.create(vendors);
+    // }
     
     //manager1DAOsqlite_knex.list()
     // manager1DAOsqlite_knex.list()
