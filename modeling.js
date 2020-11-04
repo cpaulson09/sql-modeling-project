@@ -858,8 +858,8 @@ let db = new sqlite.Database("sqlite.db", (err) => {
 // }
 
 // ORM 4 contractor testing - - - - - - - -
-// contractor4DAO.create(managers[0], db);
-contractor4DAO.read(managers[0].id, db);
+contractor4DAO.create(managers[0], db);
+// contractor4DAO.read(managers[0].id, db);
 // contractors[0].firstName = "Breck";
 // contractor4DAO.update(managers[0], db);
 // contractor4DAO.remove(73627, db);
